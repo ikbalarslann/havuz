@@ -9,3 +9,13 @@ export const getPropertyByTitle = async (title: string) => {
     return null;
   }
 };
+
+export const getAllProperties = async () => {
+  try {
+    const properties = await db.property.findMany({});
+
+    return properties;
+  } catch (error) {
+    return null;
+  }
+};

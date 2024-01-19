@@ -2,7 +2,7 @@
 
 This is a repository for rental pools
 
-### Authentication Data flow
+### Data flow
 
 ![image](./public/havuzDataflow.png)
 

@@ -20,8 +20,11 @@ export const Nav = () => {
         <Button asChild variant={pathname === "/" ? "default" : "outline"}>
           <Link href="/">Home</Link>
         </Button>
-        <Button asChild variant={pathname === "/about" ? "default" : "outline"}>
-          <Link href="/about">About</Link>
+        <Button
+          asChild
+          variant={pathname === "/shoppingCard" ? "default" : "outline"}
+        >
+          <Link href="/shoppingCard">Shopping Card</Link>
         </Button>
 
         <Button
