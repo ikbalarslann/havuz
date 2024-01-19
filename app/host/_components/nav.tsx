@@ -5,13 +5,9 @@ import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@/components/auth/user-button";
-import { LoginButton } from "@/components/auth/login-button";
-import { RegisterButton } from "@/components/auth/register-button";
-import { useCurrentUser } from "@/hooks/use-current-user";
 
 export const Nav = () => {
   const pathname = usePathname();
-  const user = useCurrentUser();
 
   return (
     <nav className="bg-secondary flex justify-between items-center p-4 rounded-xl w-[400px] shadow-sm">
