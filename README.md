@@ -4,7 +4,7 @@ This is a repository for rental pools
 
 ### Authentication Data flow
 
-![image](./public/authdataflow.png)
+![image](./public/havuzDataflow.png)
 
 ### Setup .env file
 
