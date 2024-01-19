@@ -84,14 +84,9 @@ model Booking {
 }
 
 model Property {
-  id             String   @id @default(cuid()) @map("_id")
-  hostId         String?
-  hostName       String?
-  availabilities Json[]
-  picture        String[]
-  title          String    @unique
-  description    String
-  reviews        String[]
-  User           User?    @relation(fields: [userId], references: [id])
-  userId         String?
+  id          String  @id @default(cuid()) @map("_id")
+  title       String  @unique
+  description String
+  User        User?   @relation(fields: [userId], references: [id])
+  userId      String?
 }
