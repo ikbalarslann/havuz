@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { PropertySchema } from "@/schemas";
+import * as z from "zod";
 
-interface Property {
-  title: string;
-  description: string;
-}
-
-const PropertyCard = ({ property }: { property: Property }) => {
-  const [test, setTest] = useState<Property[]>([]);
+const PropertyCard = ({
+  property,
+}: {
+  property: z.infer<typeof PropertySchema>;
+}) => {
+  const [test, setTest] = useState<z.infer<typeof PropertySchema>[]>([]);
 
   useEffect(() => {
     const storedTest = localStorage.getItem("test");

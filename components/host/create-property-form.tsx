@@ -4,6 +4,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 
 import { PropertySchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
@@ -22,6 +23,7 @@ import { FormSuccess } from "@/components/form-success";
 import { createProperty } from "@/actions/create-property";
 
 export const CreatePropertyForm = () => {
+  const [imageUrl, setImageUrl] = useState<string>("/car.jpg");
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -102,10 +104,30 @@ export const CreatePropertyForm = () => {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="imgUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>image url</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="imgUrl"
+                        type="text"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </>
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
+
+          <Image src={imageUrl} width={500} height={500} alt="image" />
           <Button disabled={isPending} type="submit" className="w-full">
             Create property
           </Button>

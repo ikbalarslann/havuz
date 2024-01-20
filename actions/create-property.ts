@@ -15,7 +15,7 @@ export const createProperty = async (
     return { error: "Invalid fields!" };
   }
 
-  const { title, description } = validatedFields.data;
+  const { title, description, imgUrl } = validatedFields.data;
 
   const existingProperty = await getPropertyByTitle(title);
 
@@ -27,6 +27,7 @@ export const createProperty = async (
       data: {
         title: title,
         description: description,
+        imgUrl: imgUrl,
       },
     });
 
