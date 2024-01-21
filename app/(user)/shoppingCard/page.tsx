@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { set } from "zod";
+import Image from "next/image";
 
 interface Property {
   title: string;
   description: string;
+  imgUrl: string;
 }
 
 const ShoppingCard = () => {
@@ -47,6 +48,13 @@ const ShoppingCard = () => {
           >
             <h3 className="text-lg font-semibold">{item.title}</h3>
             <p className="mt-2">{item.description}</p>
+
+            <Image
+              src={`${item.imgUrl}`}
+              alt={item.title}
+              width={100}
+              height={50}
+            />
           </div>
         ))}
       </div>
