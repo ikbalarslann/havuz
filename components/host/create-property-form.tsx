@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { createProperty } from "@/actions/create-property";
+import { UploadButton } from "@/components/uploadthing";
 
 export const CreatePropertyForm = () => {
   const [imageUrl, setImageUrl] = useState<string>("/car.jpg");
@@ -33,6 +34,7 @@ export const CreatePropertyForm = () => {
     defaultValues: {
       title: "",
       description: "",
+      imgUrl: "",
     },
   });
 
@@ -109,13 +111,18 @@ export const CreatePropertyForm = () => {
                 name="imgUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>image url</FormLabel>
+                    <FormLabel>Image</FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="imgUrl"
-                        type="text"
+                      <UploadButton
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(res) => {
+                          setImageUrl(res[0].url);
+                          console.log("Files: ", res);
+                          field.onChange(res[0].url);
+                        }}
+                        onUploadError={(error: Error) => {
+                          console.log(`ERROR! ${error.message}`);
+                        }}
                       />
                     </FormControl>
                     <FormMessage />

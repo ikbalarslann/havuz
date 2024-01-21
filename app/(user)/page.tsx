@@ -8,7 +8,9 @@ const HomePage = async () => {
     <div className="flex flex-col gap-4">
       Home page
       {properties?.map((property) => (
-        <PropertyCard property={property} />
+        <div key={property.id}>
+          <PropertyCard property={property} />
+        </div>
       ))}
     </div>
   );
