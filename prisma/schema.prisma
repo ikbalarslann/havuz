@@ -87,4 +87,14 @@ model Property {
   title       String  @unique
   description String
   imgUrl      String
+  availability Availability[]
+}
+
+model Availability {
+  id         String   @id @default(cuid()) @map("_id")
+  propertyId String
+  price      Int
+  date       DateTime
+  free       Int
+  Property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 }

@@ -17,6 +17,11 @@ export const createProperty = async (
 
   const { title, description, imgUrl } = validatedFields.data;
 
+  const avaliabiliyMock = [
+    { date: new Date(), price: 2, free: 3 },
+    { date: new Date(), price: 6, free: 4 },
+  ];
+
   const existingProperty = await getPropertyByTitle(title);
 
   if (existingProperty) {
@@ -28,6 +33,9 @@ export const createProperty = async (
         title: title,
         description: description,
         imgUrl: imgUrl,
+        availability: {
+          create: avaliabiliyMock,
+        },
       },
     });
 
