@@ -15,13 +15,23 @@ export const createProperty = async (
     return { error: "Invalid fields!" };
   }
 
-  const { title, description, imgUrl } = validatedFields.data;
+  const { title, description, price, availability, imgUrl } =
+    validatedFields.data;
 
-  const avaliabiliyMock = [
-    { date: new Date(), price: 2, free: 3 },
-    { date: new Date(), price: 6, free: 4 },
-  ];
+  const avaliabiliyMock = [];
 
+  for (let i = 0; i < 30; i++) {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + i);
+
+    const formattedDate = currentDate.toLocaleDateString("en-GB");
+
+    avaliabiliyMock.push({
+      date: formattedDate,
+      price: price,
+      free: availability,
+    });
+  }
   const existingProperty = await getPropertyByTitle(title);
 
   if (existingProperty) {

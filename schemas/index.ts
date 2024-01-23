@@ -79,4 +79,6 @@ export const PropertySchema = z.object({
     message: "Description is required",
   }),
   imgUrl: z.string(),
+  price: z.number().int(),
+  availability: z.number().int(),
 });

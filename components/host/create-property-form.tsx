@@ -35,6 +35,8 @@ export const CreatePropertyForm = () => {
       title: "",
       description: "",
       imgUrl: "",
+      price: 0,
+      availability: 0,
     },
   });
 
@@ -108,6 +110,52 @@ export const CreatePropertyForm = () => {
               />
               <FormField
                 control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Price</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="500 Tl"
+                        type="number"
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value, 10);
+                          field.onChange(value);
+                        }}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="availability"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Availability</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="4 people"
+                        type="number"
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value, 10);
+                          field.onChange(value);
+                        }}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="imgUrl"
                 render={({ field }) => (
                   <FormItem>
@@ -134,7 +182,6 @@ export const CreatePropertyForm = () => {
           <FormError message={error} />
           <FormSuccess message={success} />
 
-          <Image src={imageUrl} width={500} height={500} alt="image" />
           <Button disabled={isPending} type="submit" className="w-full">
             Create property
           </Button>
