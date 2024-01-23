@@ -1,4 +1,4 @@
-import { Nav } from "./_components/nav";
+import { Sidebar } from "./_components/sidebar";
 import { RoleGate } from "@/components/auth/role-gate";
 
 interface ProtectedHostLayoutProps {
@@ -7,9 +7,13 @@ interface ProtectedHostLayoutProps {
 
 const ProtectedHostLayout = ({ children }: ProtectedHostLayoutProps) => {
   return (
-    <div className="h-full w-full flex flex-col gap-y-10 items-center p-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
-      <Nav />
-      <RoleGate allowedRole="ADMIN">{children}</RoleGate>
+    <div className="flex h-full">
+      <div className="w-auto h-full">
+        <Sidebar />
+      </div>
+      <div className="flex-1 flex flex-col gap-y-10 items-center p-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
+        <RoleGate allowedRole="ADMIN">{children}</RoleGate>
+      </div>
     </div>
   );
 };
