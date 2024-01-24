@@ -5,11 +5,13 @@ import * as z from "zod";
 import { db } from "@/lib/db";
 import { PropertySchema } from "@/schemas";
 import { getPropertyByTitle } from "@/data/property";
+import { currentUser } from "@/lib/auth";
 
 export const createProperty = async (
   values: z.infer<typeof PropertySchema>
 ) => {
   const validatedFields = PropertySchema.safeParse(values);
+  const user = await currentUser();
 
   if (!validatedFields.success) {
     return { error: "Invalid fields!" };
@@ -24,10 +26,8 @@ export const createProperty = async (
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() + i);
 
-    const formattedDate = currentDate.toLocaleDateString("en-GB");
-
     avaliabiliyMock.push({
-      date: formattedDate,
+      date: currentDate,
       price: price,
       free: availability,
     });
@@ -40,6 +40,7 @@ export const createProperty = async (
   try {
     await db.property.create({
       data: {
+        userId: user?.id,
         title: title,
         description: description,
         imgUrl: imgUrl,
