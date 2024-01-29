@@ -9,7 +9,15 @@ export const getPropertyByTitle = async (title: string) => {
     return null;
   }
 };
+export const getPropertyById = async (id: string) => {
+  try {
+    const property = await db.property.findUnique({ where: { id } });
 
+    return property;
+  } catch {
+    return null;
+  }
+};
 export const getAllProperties = async () => {
   try {
     const properties = await db.property.findMany({});

@@ -82,3 +82,10 @@ export const PropertySchema = z.object({
   price: z.number().int(),
   availability: z.number().int(),
 });
+
+export const AvailabilitySchema = z.object({
+  id: z.string(),
+  date: z.date(),
+  price: z.number().int(),
+  free: z.number().int(),
+});

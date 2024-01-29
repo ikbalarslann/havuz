@@ -27,6 +27,7 @@ export const createProperty = async (
     currentDate.setDate(currentDate.getDate() + i);
 
     avaliabiliyMock.push({
+      id: currentDate.toLocaleDateString("en-GB"),
       date: currentDate,
       price: price,
       free: availability,
@@ -38,14 +39,23 @@ export const createProperty = async (
     return { error: "Title already in use!" };
   }
   try {
-    await db.property.create({
+    const createdproperty = await db.property.create({
       data: {
         userId: user?.id,
         title: title,
         description: description,
         imgUrl: imgUrl,
-        availability: {
-          create: avaliabiliyMock,
+        availability: avaliabiliyMock,
+      },
+    });
+
+    await db.user.update({
+      where: {
+        id: user?.id,
+      },
+      data: {
+        propertyIds: {
+          push: createdproperty.id,
         },
       },
     });

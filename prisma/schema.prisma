@@ -24,11 +24,8 @@ model User {
   password      String?
   role          UserRole   @default(USER)
   accounts      Account[]
-  properties    Property[]
+  propertyIds   String[]
   reviews       Json[]
-  bookings      Booking?   @relation(fields: [bookingId], references: [id])
-  payments      Json[]
-  bookingId     String?
 }
 
 model Account {
@@ -68,36 +65,15 @@ model PasswordResetToken {
   @@unique([email, token])
 }
 
-model Booking {
-  id             String   @id @default(cuid()) @map("_id")
-  propertyId     String
-  propertyTitle  String
-  userId         String
-  userName       String
-  date           String
-  price          Int
-  payment        Boolean
-  paymentGateway String
-  bookingTime    DateTime
-  paymentTime    DateTime
-  User           User[]
-}
+
 
 model Property {
   id           String         @id @default(cuid()) @map("_id")
   title        String         @unique
   description  String
   imgUrl       String
-  availability Availability[]
-  User         User?          @relation(fields: [userId], references: [id])
+  availability Json[]
   userId       String?
 }
 
-model Availability {
-  id         String   @id @default(cuid()) @map("_id")
-  propertyId String
-  price      Int
-  date       DateTime
-  free       Int
-  Property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-}
+
