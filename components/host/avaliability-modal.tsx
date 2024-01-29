@@ -1,64 +1,78 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
-import { AvailabilitySchema } from "@/schemas/index";
+"use client";
 
-interface EditModalProps {
-  isOpen: boolean;
-  closeModal: () => void;
-  availability: typeof AvailabilitySchema;
-  onEdit: (updatedAvailability: typeof AvailabilitySchema) => void;
-}
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import { UpdatePropertyAvailability } from "@/actions/availability";
 
-const EditModal: React.FC<EditModalProps> = ({
-  isOpen,
-  closeModal,
-  availability,
-  onEdit,
-}) => {
-  const [editedAvailability, setEditedAvailability] = useState({
-    ...availability,
+export function Modal({ Trigger, property, title }: any) {
+  const [formData, setFormData] = useState({
+    id: property.id,
+    price: property.price,
+    free: property.free,
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEditedAvailability((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
   };
 
-  const handleSave = () => {
-    // Perform validation if needed
-    onEdit(editedAvailability);
-    closeModal();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    await UpdatePropertyAvailability({ title, values: formData });
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={closeModal}
-      contentLabel="Edit Modal"
-    >
-      <h2>Edit Availability - {availability.id}</h2>
-      <label>
-        Price:
-        <input
-          type="text"
-          name="price"
-          value={editedAvailability.price}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Free:
-        <input
-          type="text"
-          name="free"
-          value={editedAvailability.free}
-          onChange={handleInputChange}
-        />
-      </label>
-      <button onClick={handleSave}>Save</button>
-      <button onClick={closeModal}>Cancel</button>
-    </Modal>
+    <Dialog>
+      <DialogTrigger asChild>{Trigger}</DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <form onSubmit={handleSubmit}>
+          <DialogHeader>
+            <DialogTitle>Edit Availability</DialogTitle>
+            <DialogDescription>{property.id}</DialogDescription>
+          </DialogHeader>
+          <div className="flex items-center space-x-2 gap-3">
+            <div className="grid flex-1 gap-2">
+              <Label htmlFor="price">Price</Label>
+              <Input
+                id="price"
+                defaultValue={property.price}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="grid flex-1 gap-2">
+              <Label htmlFor="free">Free</Label>
+              <Input
+                id="free"
+                defaultValue={property.free}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <DialogFooter className="sm:justify-start flex">
+            <DialogClose asChild>
+              <Button type="button" variant="secondary">
+                Close
+              </Button>
+            </DialogClose>
+            <Button type="submit" variant="default">
+              Update
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
-};
-
-export default EditModal;
+}
