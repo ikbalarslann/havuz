@@ -83,6 +83,7 @@ model Booking {
   userId       String
   date         String  
   price        Float
- 
+  propertyTitle String
+  userName     String
 }
 

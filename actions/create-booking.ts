@@ -26,9 +26,11 @@ export const createBooking = async (property: Property) => {
     userId: user.id,
     date: property.availability[0].id,
     price: parseFloat(property.availability[0].price),
+    propertyTitle: property.title,
+    userName: user.name,
   };
 
-  const { propertyId, userId, date, price } = inputs;
+  const { propertyId, userId, date, price, propertyTitle, userName } = inputs;
 
   try {
     await db.booking.create({
@@ -37,6 +39,8 @@ export const createBooking = async (property: Property) => {
         userId,
         date,
         price,
+        propertyTitle,
+        userName,
       },
     });
     const property = await getPropertyById(propertyId);
