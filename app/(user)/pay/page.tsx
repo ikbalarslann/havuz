@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { createBooking } from "@/actions/create-booking";
 
 interface Property {
+  id: string;
   title: string;
   description: string;
   imgUrl: string;
@@ -25,11 +26,13 @@ const Payment = () => {
     return acc + parseFloat(item.availability[0].price);
   }, 0);
 
-  const handlePayment = async () => {
-    // ToDo:create a booking for each item after creating a booking reduce the free space
-    // Clear localStorage
-    // localStorage.removeItem("test");
-    // ToDo: give success message
+  const handlePayment = () => {
+    Promise.all(
+      items.map((item) => {
+        return createBooking(item);
+      })
+    );
+    localStorage.removeItem("test");
   };
 
   return (

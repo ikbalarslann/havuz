@@ -83,6 +83,6 @@ model Booking {
   userId       String
   date         String  
   price        Float
-  bookingTime  DateTime
+ 
 }
 
