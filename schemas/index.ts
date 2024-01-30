@@ -72,6 +72,7 @@ export const RegisterSchema = z.object({
 });
 
 export const PropertySchema = z.object({
+  id: z.string(),
   title: z.string().min(1, {
     message: "Title is required",
   }),
@@ -80,12 +81,15 @@ export const PropertySchema = z.object({
   }),
   imgUrl: z.string(),
   price: z.number().int(),
-  availability: z.number().int(),
+  availability: z.array(z.any()),
+  date: z.string(),
 });
 
-export const AvailabilitySchema = z.object({
+export const BookingSchema = z.object({
   id: z.string(),
-  date: z.date(),
+  propertyId: z.string(),
+  userId: z.string(),
+  date: z.string(),
   price: z.number().int(),
-  free: z.number().int(),
+  bookingTime: z.date(),
 });

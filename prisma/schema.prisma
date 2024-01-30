@@ -77,3 +77,12 @@ model Property {
 }
 
 
+model Booking {
+  id           String         @id @default(cuid()) @map("_id")
+  propertyId   String
+  userId       String
+  date         String  
+  price        Float
+  bookingTime  DateTime
+}
+

@@ -4,7 +4,7 @@ import { Modal } from "@/components/host/avaliability-modal";
 
 const HostAvaliabilityPage = async () => {
   const user = await currentUser();
-  const property = await getPropertyById(user.propertyIds[2]);
+  const property = await getPropertyById(user.propertyIds[0]);
   return (
     <div key={property?.title}>
       <h1>{property?.title}</h1>

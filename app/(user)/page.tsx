@@ -1,5 +1,5 @@
 import { getAllProperties } from "@/data/property";
-import PropertyCard from "@/components/host/property-card";
+import PropertyCard from "@/components/user/property-card";
 
 const HomePage = async () => {
   const properties = await getAllProperties();

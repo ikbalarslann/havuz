@@ -27,7 +27,7 @@ export const createProperty = async (
     currentDate.setDate(currentDate.getDate() + i);
 
     avaliabiliyMock.push({
-      id: currentDate.toLocaleDateString("en-GB"),
+      date: currentDate.toLocaleDateString("en-GB"),
       price: price,
       free: availability,
     });
