@@ -15,7 +15,7 @@ const BookingPage = async () => {
         >
           <h2 className="text-xl font-bold">{booking.date}</h2>
           <p className="text-gray-600">Price: ${booking.price}</p>
-          <p className="text-gray-600">User: {booking.userName}</p>
+          <p className="text-gray-600">Property: {booking.propertyTitle}</p>
         </div>
       ))}
     </div>
