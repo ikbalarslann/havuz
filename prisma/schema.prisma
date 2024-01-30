@@ -76,6 +76,10 @@ model Property {
   userId       String?
 }
 
+enum BookingStatus {
+  PENDING
+  APPROVED
+}
 
 model Booking {
   id           String         @id @default(cuid()) @map("_id")
@@ -85,5 +89,6 @@ model Booking {
   price        Float
   propertyTitle String
   userName     String
+  status       BookingStatus @default(PENDING)
 }
 
