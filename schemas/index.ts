@@ -91,3 +91,11 @@ export const BookingSchema = z.object({
   price: z.number().int(),
   bookingTime: z.date(),
 });
+
+export const ReviewSchema = z.object({
+  bookingId: z.string(),
+  propertyId: z.string(),
+  rating: z.number().int(),
+  title: z.string(),
+  description: z.string(),
+});

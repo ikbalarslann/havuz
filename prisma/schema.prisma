@@ -74,6 +74,7 @@ model Property {
   imgUrl       String
   availability Json[]
   userId       String?
+  reviews      Json[]
 }
 
 enum BookingStatus {
@@ -90,5 +91,6 @@ model Booking {
   propertyTitle String
   userName     String
   status       BookingStatus @default(PENDING)
+  review       Boolean @default(false)
 }
 

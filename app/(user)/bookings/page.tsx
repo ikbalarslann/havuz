@@ -1,5 +1,6 @@
 import { getBookingByUserId } from "@/data/booking";
 import { currentUser } from "@/lib/auth";
+import ReviewButton from "@/components/user/review-button";
 
 const BookingPage = async () => {
   const user = await currentUser();
@@ -10,6 +11,7 @@ const BookingPage = async () => {
   const bookingsApproved = bookings?.filter(
     (booking) => booking.status === "APPROVED"
   );
+
   return (
     <div className="p-4 border border-gray-300 rounded-md shadow-md">
       <h1 className="text-2xl font-bold mb-4">Arrival Bookings</h1>
@@ -37,6 +39,12 @@ const BookingPage = async () => {
           <h2 className="text-xl font-bold">{booking.date}</h2>
           <p className="text-gray-600">Price: ${booking.price}</p>
           <p className="text-gray-600">Property: {booking.propertyTitle}</p>
+          {!booking.review && (
+            <ReviewButton
+              bookingId={booking.id}
+              propertyId={booking.propertyId}
+            />
+          )}
         </div>
       ))}
     </div>
