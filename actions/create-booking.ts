@@ -23,11 +23,11 @@ export const createBooking = async (property: Property) => {
 
   const inputs = {
     propertyId: property.id,
-    userId: user.id,
+    userId: user?.id,
     date: property.availability[0].id,
     price: parseFloat(property.availability[0].price),
     propertyTitle: property.title,
-    userName: user.name,
+    userName: user?.name,
   };
 
   const { propertyId, userId, date, price, propertyTitle, userName } = inputs;

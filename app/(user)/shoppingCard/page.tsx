@@ -40,7 +40,7 @@ const ShoppingCard = () => {
     setSuccess("Property successfully booked!");
   };
 
-  return (
+  return items ? (
     <div className="flex justify-center items-center h-screen flex-col gap-7">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {items.map((item, index) => (
@@ -66,6 +66,8 @@ const ShoppingCard = () => {
       <FormSuccess message={success} />
       <Button onClick={() => handleOnClick()}>Pay Now</Button>
     </div>
+  ) : (
+    <div>shopping card is empty</div>
   );
 };
 
