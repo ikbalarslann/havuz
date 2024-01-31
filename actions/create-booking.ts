@@ -19,12 +19,14 @@ interface PropertySchema {
 }
 
 export const createBooking = async (property: Property) => {
+  console.log("property", property);
+
   const user = await currentUser();
 
   const inputs = {
     propertyId: property.id,
     userId: user?.id,
-    date: property.availability[0].id,
+    date: property.availability[0].date,
     price: parseFloat(property.availability[0].price),
     propertyTitle: property.title,
     userName: user?.name,

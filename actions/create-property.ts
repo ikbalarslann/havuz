@@ -17,8 +17,7 @@ export const createProperty = async (
     return { error: "Invalid fields!" };
   }
 
-  const { title, description, price, availability, imgUrl } =
-    validatedFields.data;
+  const { title, description, price, free, imgUrl } = validatedFields.data;
 
   const avaliabiliyMock = [];
 
@@ -29,7 +28,7 @@ export const createProperty = async (
     avaliabiliyMock.push({
       date: currentDate.toLocaleDateString("en-GB"),
       price: price,
-      free: availability,
+      free: free,
     });
   }
   const existingProperty = await getPropertyByTitle(title);

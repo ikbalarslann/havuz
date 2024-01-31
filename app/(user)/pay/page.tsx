@@ -43,7 +43,7 @@ const Payment = () => {
           <p key={index} className="mb-4">
             {item.title}
             {"   "}
-            Date: {item.availability[0].id}
+            Date: {item.availability[0].date}
             {"   "} Price: ${item.availability[0].price}
           </p>
         ))}

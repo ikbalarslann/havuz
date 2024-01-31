@@ -48,7 +48,7 @@ const ShoppingCard = () => {
             key={index}
             className="bg-purple-500 p-4 rounded-md text-white text-center"
           >
-            <h1>{item.availability[0].id}</h1>
+            <h1>{item.availability[0].date}</h1>
             <h2>Price : {item.availability[0].price}</h2>
             <h3 className="text-lg font-semibold">{item.title}</h3>
             <p className="mt-2">{item.description}</p>

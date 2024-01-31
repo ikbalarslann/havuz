@@ -36,7 +36,7 @@ export const CreatePropertyForm = () => {
       description: "",
       imgUrl: "",
       price: 0,
-      availability: 0,
+      free: 0,
     },
   });
 
@@ -133,7 +133,7 @@ export const CreatePropertyForm = () => {
               />
               <FormField
                 control={form.control}
-                name="availability"
+                name="free"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Availability</FormLabel>

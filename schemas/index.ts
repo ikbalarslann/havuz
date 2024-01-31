@@ -72,7 +72,6 @@ export const RegisterSchema = z.object({
 });
 
 export const PropertySchema = z.object({
-  id: z.string(),
   title: z.string().min(1, {
     message: "Title is required",
   }),
@@ -80,9 +79,8 @@ export const PropertySchema = z.object({
     message: "Description is required",
   }),
   imgUrl: z.string(),
-  price: z.number().int(),
-  availability: z.array(z.any()),
-  date: z.string(),
+  price: z.number(),
+  free: z.number(),
 });
 
 export const BookingSchema = z.object({

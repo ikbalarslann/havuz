@@ -31,12 +31,8 @@ const FormSchema = z.object({
   }),
 });
 
-const DatePickerForm = ({
-  property,
-}: {
-  property: z.infer<typeof PropertySchema>;
-}) => {
-  const [test, setTest] = useState<z.infer<typeof PropertySchema>[]>([]);
+const DatePickerForm = ({ property }: any) => {
+  const [test, setTest] = useState([]);
 
   useEffect(() => {
     const storedTest = localStorage.getItem("test");
@@ -52,7 +48,7 @@ const DatePickerForm = ({
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const choosenDate = data.dob.toLocaleDateString("en-GB");
     const newAvailability = property.availability.filter(
-      (item) => item.id === choosenDate
+      (item) => item.date === choosenDate
     );
     const newProperty = { ...property, availability: newAvailability };
 
