@@ -20,7 +20,6 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
     title: "",
     description: "",
   });
-  const [inputs, setInputs] = useState({} as any);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -29,23 +28,15 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
     });
   };
 
-  useEffect(() => {
-    setInputs({
+  const handleSubmit = async () => {
+    const inputs = {
       bookingId: bookingId,
       propertyId: propertyId,
-      rating: formData.rating,
+      rating: parseInt(formData.rating),
       title: formData.title,
       description: formData.description,
-    });
-  }, [formData]);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    try {
-      const response = await createReview(inputs);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    };
+    await createReview(inputs);
   };
 
   return (

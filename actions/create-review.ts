@@ -34,8 +34,6 @@ export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
 
     const newReviewArray = [...reviewArray, review];
 
-    console.log("HELLO");
-
     await db.property.update({
       where: {
         id: propertyId,
