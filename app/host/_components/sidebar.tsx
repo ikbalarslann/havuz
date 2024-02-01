@@ -15,6 +15,7 @@ export const Sidebar = () => {
       <Link href="/host/bookings">Bookings</Link>
       <Link href="/host/avaliability">Avaliability</Link>
       <Link href="/host/analytics">Analytics</Link>
+      <Link href="/host/reviews">Reviews</Link>
     </aside>
   );
 };
