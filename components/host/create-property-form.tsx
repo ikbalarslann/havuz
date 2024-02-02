@@ -22,9 +22,10 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { createProperty } from "@/actions/create-property";
 import { UploadButton } from "@/components/uploadthing";
+import { TypePicker } from "@/components/host/type-picker";
 
 export const CreatePropertyForm = () => {
-  const [imageUrl, setImageUrl] = useState<string>("/car.jpg");
+  const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -34,7 +35,7 @@ export const CreatePropertyForm = () => {
     defaultValues: {
       title: "",
       description: "",
-      imgUrl: "",
+      imgUrls: [],
       price: 0,
       free: 0,
     },
@@ -43,6 +44,8 @@ export const CreatePropertyForm = () => {
   const onSubmit = (values: z.infer<typeof PropertySchema>) => {
     setError("");
     setSuccess("");
+
+    values = { ...values, imgUrls: images };
 
     startTransition(() => {
       createProperty(values)
@@ -156,17 +159,75 @@ export const CreatePropertyForm = () => {
               />
               <FormField
                 control={form.control}
-                name="imgUrl"
+                name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Image</FormLabel>
+                    <FormLabel>Location</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="Istanbul, Turkey"
+                        type="text"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="depth"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Depth</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="4 (meters)"
+                        type="number"
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value, 10);
+                          field.onChange(value);
+                        }}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Type</FormLabel>
+                    <FormControl>
+                      <TypePicker setType={field.onChange} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="imgUrls"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Image ({images.length}/5) </FormLabel>
+
                     <FormControl>
                       <UploadButton
                         endpoint="imageUploader"
                         onClientUploadComplete={(res) => {
-                          setImageUrl(res[0].url);
                           console.log("Files: ", res);
-                          field.onChange(res[0].url);
+                          const newImages = [...images, res[0].url];
+                          setImages(newImages);
+
+                          field.onChange(images);
                         }}
                         onUploadError={(error: Error) => {
                           console.log(`ERROR! ${error.message}`);

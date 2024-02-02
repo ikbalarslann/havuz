@@ -20,7 +20,7 @@ const PropertyCard = ({
         <h3 className="text-red-600">{property.title}</h3>
         <p>{property.description}</p>
         <Image
-          src={`${property.imgUrl}`}
+          src={`${property.imgUrls[0]}`}
           alt={property.title}
           width={100}
           height={50}

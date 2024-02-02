@@ -78,9 +78,14 @@ export const PropertySchema = z.object({
   description: z.string().min(1, {
     message: "Description is required",
   }),
-  imgUrl: z.string(),
+  location: z.string().min(1, {
+    message: "location is required",
+  }),
+  imgUrls: z.array(z.string()),
   price: z.number(),
   free: z.number(),
+  type: z.string(),
+  depth: z.number(),
 });
 
 export const BookingSchema = z.object({

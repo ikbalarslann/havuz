@@ -69,11 +69,14 @@ model PasswordResetToken {
 
 model Property {
   id           String         @id @default(cuid()) @map("_id")
+  userId       String?
   title        String         @unique
   description  String
-  imgUrl       String
+  imgUrls       String[]
+  location     String
+  depth        Float
+  type         String
   availability Json[]
-  userId       String?
   reviews      Json[]
 }
 

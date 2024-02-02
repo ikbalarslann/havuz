@@ -8,9 +8,6 @@ const HostHomePage = () => {
 
   return (
     <div className="text-center">
-      <h1 className="text-5xl">Host Home Page</h1>
-      <h5 className="text-3xl"> users role is : {role}</h5>
-
       <CreatePropertyForm />
     </div>
   );
