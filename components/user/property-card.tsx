@@ -1,5 +1,3 @@
-"use client";
-
 import { PropertySchema } from "@/schemas";
 import Image from "next/image";
 import * as z from "zod";
@@ -13,18 +11,22 @@ const PropertyCard = ({
   return (
     <Link href={`/${property.id}`}>
       <div
-        className="bg-red-200 rounded-md text-center"
+        className="bg-blue-200 rounded-md text-center p-4 flex-1"
         key={property.title}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", maxWidth: "600px" }}
       >
-        <h3 className="text-red-600">{property.title}</h3>
-        <p>{property.description}</p>
-        <Image
-          src={`${property.imgUrls[0]}`}
-          alt={property.title}
-          width={100}
-          height={50}
-        />
+        <div className="relative overflow-hidden rounded-md">
+          <Image
+            src={`${property.imgUrls[0]}`}
+            alt={property.title}
+            width={1000}
+            height={700}
+            className="rounded-md"
+          />
+        </div>
+        <h3 className="text-blue-600 text-xl font-bold mb-2 pt-3">
+          {property.title}
+        </h3>
       </div>
     </Link>
   );

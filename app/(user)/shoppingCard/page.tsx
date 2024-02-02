@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 interface Property {
   title: string;
   description: string;
-  imgUrl: string;
+  imgUrls: string[];
   availability: Array<JSON>;
 }
 
@@ -54,7 +54,7 @@ const ShoppingCard = () => {
             <p className="mt-2">{item.description}</p>
 
             <Image
-              src={`${item.imgUrl}`}
+              src={`${item.imgUrls[0]}`}
               alt={item.title}
               width={100}
               height={50}

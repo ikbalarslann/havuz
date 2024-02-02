@@ -18,7 +18,7 @@ export const Nav = () => {
     <nav className="relative container mx-auto p-6">
       <div className="flex items-center justify-between">
         <div className="pt-2 text-5xl">
-          <Link href="/">H</Link>
+          <Link href="/">Havuz</Link>
         </div>
         <div className="hidden space-x-6 md:flex">
           <Link href="/shoppingCard">Shopping Card</Link>
@@ -46,7 +46,7 @@ export const Nav = () => {
         </div>
       </div>
 
-      <div className={`md:hidden ${isMenuOpen ? "block " : "hidden"}`}>
+      <div className={`md:hidden z-50 ${isMenuOpen ? "block " : "hidden"}`}>
         <div
           id="menu"
           className={`absolute flex-col items-center  self-end py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ${

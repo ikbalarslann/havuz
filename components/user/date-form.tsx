@@ -5,7 +5,6 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { PropertySchema } from "@/schemas";
 import * as z from "zod";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -13,10 +12,8 @@ import { Calendar } from "@/components/ui/calendar";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import {
@@ -24,14 +21,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   dob: z.date({
-    required_error: "A date of birth is required.",
+    required_error: "Please select a date.",
   }),
 });
 
 const DatePickerForm = ({ property }: any) => {
+  const router = useRouter();
   const [test, setTest] = useState([]);
 
   useEffect(() => {
@@ -57,6 +56,7 @@ const DatePickerForm = ({ property }: any) => {
       localStorage.setItem("test", JSON.stringify(newTest));
       return newTest;
     });
+    router.push("/shoppingCard");
   }
 
   return (
@@ -67,7 +67,6 @@ const DatePickerForm = ({ property }: any) => {
           name="dob"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -97,9 +96,7 @@ const DatePickerForm = ({ property }: any) => {
                   />
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
+
               <FormMessage />
             </FormItem>
           )}
