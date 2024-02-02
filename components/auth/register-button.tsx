@@ -15,14 +15,14 @@ interface RegisterButtonProps {
 
 export const RegisterButton = ({
   children,
-  mode = "modal",
+  mode = "redirect",
   asChild,
   role,
 }: RegisterButtonProps) => {
   const router = useRouter();
 
   const onClick = () => {
-    router.push("/auth/register");
+    router.push(`/auth/register/${role}`);
   };
 
   if (mode === "modal") {

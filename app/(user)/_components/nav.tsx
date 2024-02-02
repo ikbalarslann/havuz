@@ -9,13 +9,14 @@ import { LoginButton } from "@/components/auth/login-button";
 import { RegisterButton } from "@/components/auth/register-button";
 import { useCurrentRole } from "@/hooks/use-current-role";
 import { UserRole } from "@prisma/client";
+import { LoginButtonDropDown } from "@/components/user/login-button";
 
 export const Nav = () => {
   const pathname = usePathname();
   const role = useCurrentRole();
 
   return (
-    <nav className="bg-secondary flex justify-between items-center p-4 rounded-xl w-[800px] shadow-sm">
+    <nav className="bg-secondary flex justify-between items-center p-4  w-full shadow-sm">
       <div className="flex gap-x-2">
         <Button asChild variant={pathname === "/" ? "default" : "outline"}>
           <Link href="/">Home</Link>
@@ -40,21 +41,7 @@ export const Nav = () => {
         >
           <Link href="/settings">Settings</Link>
         </Button>
-        {role !== "USER" && (
-          <div className="ml-20 flex gap-2">
-            <LoginButton asChild>
-              <Button variant="outline">Login</Button>
-            </LoginButton>
-            <RegisterButton role={UserRole.USER} asChild>
-              <Button variant="outline">Register</Button>
-            </RegisterButton>
-            <div className="ml-10 flex gap-2">
-              <RegisterButton role={UserRole.ADMIN} asChild>
-                <Button variant="outline">Host Register</Button>
-              </RegisterButton>
-            </div>
-          </div>
-        )}
+        {!role && <LoginButtonDropDown />}
       </div>
       <UserButton />
     </nav>
