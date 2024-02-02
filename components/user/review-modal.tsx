@@ -47,7 +47,7 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
           <DialogHeader>
             <DialogTitle>Leave a Review</DialogTitle>
           </DialogHeader>
-          <div className="flex items-center space-x-2 gap-3">
+          <div className="flex items-center space-x-2 gap-5 flex-col ">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="rating">Rating</Label>
               <Input
@@ -66,7 +66,7 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
               <Input id="description" defaultValue="" onChange={handleChange} />
             </div>
           </div>
-          <DialogFooter className="sm:justify-start flex">
+          <DialogFooter className="sm:justify-enx flex mt-3">
             <Button type="submit" variant="default">
               Update
             </Button>

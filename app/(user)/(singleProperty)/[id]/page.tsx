@@ -8,8 +8,9 @@ const SinglePropertyPage = async ({ params }: any) => {
   const array = property?.imgUrls;
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center ">
       <h1 className="text-6xl pb-3 text-blue-100">{property?.title}</h1>
+
       <Slider array={array} />
 
       <h2 className="text-red-50 py-3">{property?.description}</h2>

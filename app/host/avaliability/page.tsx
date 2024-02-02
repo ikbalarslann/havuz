@@ -21,7 +21,7 @@ const HostAvaliabilityPage = async () => {
                 key={a.id}
                 className="bg-white p-4 rounded-md shadow-md transition transform hover:scale-105"
               >
-                <p className="text-lg font-semibold">{a.id}</p>
+                <p className="text-lg font-semibold">{a.date}</p>
                 <p className="text-gray-600">{a.price}</p>
                 <p className="text-green-500">{a.free} available</p>
               </div>

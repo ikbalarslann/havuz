@@ -11,7 +11,7 @@ const PropertyCard = ({
   return (
     <Link href={`/${property.id}`}>
       <div
-        className="bg-blue-200 rounded-md text-center p-4 flex-1"
+        className="bg-blue-200 rounded-md text-center p-4 flex-1 mx-2"
         key={property.title}
         style={{ cursor: "pointer", maxWidth: "600px" }}
       >

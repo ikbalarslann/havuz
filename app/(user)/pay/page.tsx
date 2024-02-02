@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { createBooking } from "@/actions/create-booking";
+import { useRouter } from "next/navigation";
 
 interface Property {
   id: string;
@@ -13,6 +14,8 @@ interface Property {
 }
 
 const Payment = () => {
+  const router = useRouter();
+
   const [items, setItems] = useState<Property[]>([]);
   useEffect(() => {
     // Retrieve items array from localStorage
@@ -33,12 +36,13 @@ const Payment = () => {
       })
     );
     localStorage.removeItem("test");
+    router.push("/bookings");
   };
 
   return (
     <div className="text-center">
       <h1 className="text-3xl font-bold mb-4">Payment</h1>
-      <div className="bg-red-50 p-4 rounded-md">
+      <div className="bg-blue-100 p-4 rounded-md my-5">
         {items.map((item, index) => (
           <p key={index} className="mb-4">
             {item.title}

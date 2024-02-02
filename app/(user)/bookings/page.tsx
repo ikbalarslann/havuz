@@ -13,17 +13,17 @@ const BookingPage = async () => {
   );
 
   return (
-    <div className="p-4 border border-gray-300 rounded-md shadow-md">
+    <div>
       <h1 className="text-2xl font-bold mb-4">Arrival Bookings</h1>
 
       {bookingsPending?.map((booking) => (
         <div
           key={booking.id}
-          className="mb-4 p-4 bg-white rounded-md shadow-md"
+          className="mb-4 p-4 bg-blue-100 rounded-md shadow-md"
         >
           <h2 className="text-xl font-bold">{booking.date}</h2>
           <p className="text-gray-600">Price: ${booking.price}</p>
-          <p className="text-gray-600">Property: {booking.propertyTitle}</p>
+          <p className="text-gray-600">Pool: {booking.propertyTitle}</p>
         </div>
       ))}
 
@@ -34,11 +34,11 @@ const BookingPage = async () => {
       {bookingsApproved?.map((booking) => (
         <div
           key={booking.id}
-          className="mb-4 p-4 bg-white rounded-md shadow-md"
+          className="mb-4 p-4 bg-blue-100 rounded-md shadow-md"
         >
           <h2 className="text-xl font-bold">{booking.date}</h2>
           <p className="text-gray-600">Price: ${booking.price}</p>
-          <p className="text-gray-600">Property: {booking.propertyTitle}</p>
+          <p className="text-gray-600">Pool: {booking.propertyTitle}</p>
           {!booking.review && (
             <ReviewButton
               bookingId={booking.id}
