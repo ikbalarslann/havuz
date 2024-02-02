@@ -41,23 +41,17 @@ const ShoppingCard = () => {
   };
 
   return items ? (
-    <div className="flex justify-start items-center h-screen flex-col gap-7 ">
-      <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex justify-start items-center h-screen flex-col gap-7  ">
+      <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-blue-800 p-4 rounded-md text-white text-center flex flex-col w-auto mx-2"
+            className="bg-blue-800 p-4 rounded-md text-white text-center flex w-auto  mx-2 "
           >
-            <h3 className="text-lg font-semibold">{item.title}</h3>
-            <div className="flex gap-3">
-              <Image
-                src={`${item.imgUrls[0]}`}
-                alt={item.title}
-                width={80}
-                height={30}
-              />
+            <div className="flex gap-3 justify-center items-center flex-col">
+              <h3 className="text-lg font-semibold">{item.title}</h3>
               <div>
-                <h1>{item.availability[0].date}</h1>
+                <h1 className="pb-1">{item.availability[0].date}</h1>
                 <h2>Price : {item.availability[0].price} TL</h2>
               </div>
               <div>

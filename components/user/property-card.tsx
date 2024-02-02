@@ -21,7 +21,7 @@ const PropertyCard = ({
             alt={property.title}
             width={1000}
             height={700}
-            className="rounded-md"
+            className="rounded-md z-0 "
           />
         </div>
         <h3 className="text-blue-600 text-xl font-bold mb-2 pt-3">

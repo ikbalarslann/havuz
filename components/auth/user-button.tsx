@@ -18,6 +18,8 @@ import { RegisterButton } from "@/components/auth/register-button";
 import { useEffect, useState } from "react";
 
 export const UserButton = ({ toggleMenu }: any) => {
+  if (typeof window === "undefined") return null;
+
   const user = useCurrentUser();
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
 

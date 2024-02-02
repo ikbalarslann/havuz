@@ -61,12 +61,15 @@ const DatePickerForm = ({ property }: any) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 flex flex-col justify-center items-center"
+      >
         <FormField
           control={form.control}
           name="dob"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem className="flex flex-col ">
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>

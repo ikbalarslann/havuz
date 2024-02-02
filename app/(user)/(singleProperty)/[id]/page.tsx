@@ -8,18 +8,19 @@ const SinglePropertyPage = async ({ params }: any) => {
   const array = property?.imgUrls;
 
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col">
       <h1 className="text-6xl pb-3 text-blue-100">{property?.title}</h1>
 
       <Slider array={array} />
 
-      <h2 className="text-red-50 py-3">{property?.description}</h2>
-
-      <p>Depth of the pool is {property?.depth}m</p>
-      <p>Type : {property?.type} pool</p>
-      <p>Adress : {property?.location}</p>
-      <p>Check in time: 8am</p>
-      <p className="pb-6">Check out time: 11pm</p>
+      <h2 className="text-red-50 py-3 text-center">{property?.description}</h2>
+      <div className="pl-6">
+        <p>Depth of the pool is {property?.depth}m</p>
+        <p>Type : {property?.type} pool</p>
+        <p>Adress : {property?.location}</p>
+        <p>Check in time: 8am</p>
+        <p className="pb-6">Check out time: 11pm</p>
+      </div>
 
       <div className="pb-6">
         <DatePickerForm property={property} />

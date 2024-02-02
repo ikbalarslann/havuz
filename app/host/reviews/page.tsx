@@ -8,7 +8,7 @@ const HostReviewsPage = async () => {
   const reviews = property?.reviews;
 
   return (
-    <div className="p-4 shadow-md">
+    <div>
       <h1 className="text-2xl font-bold mb-4">Reviews</h1>
 
       {reviews?.map((review) => (

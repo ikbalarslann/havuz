@@ -45,8 +45,9 @@ export const Nav = () => {
           </button>
         </div>
       </div>
-
-      <div className={`md:hidden z-50 ${isMenuOpen ? "block " : "hidden"}`}>
+      <div
+        className={`md:hidden z-50 sticky  ${isMenuOpen ? "block " : "hidden"}`}
+      >
         <div
           id="menu"
           className={`absolute flex-col items-center  self-end py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ${

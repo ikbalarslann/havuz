@@ -7,9 +7,6 @@ const HostAvaliabilityPage = async () => {
   const property = await getPropertyById(user.propertyIds[0]);
   return (
     <div key={property?.title}>
-      <h1>{property?.title}</h1>
-      <p>{property?.availability[0].free}</p>
-
       <div className="grid grid-cols-5 gap-4">
         {property?.availability.map((a) => (
           <Modal
@@ -22,8 +19,8 @@ const HostAvaliabilityPage = async () => {
                 className="bg-white p-4 rounded-md shadow-md transition transform hover:scale-105"
               >
                 <p className="text-lg font-semibold">{a.date}</p>
-                <p className="text-gray-600">{a.price}</p>
-                <p className="text-green-500">{a.free} available</p>
+                <p className="text-gray-600"> Price: {a.price} TL</p>
+                <p className="text-gray-500">Free : {a.free} People </p>
               </div>
             }
           />

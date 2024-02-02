@@ -42,7 +42,7 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
   return (
     <Dialog>
       <DialogTrigger asChild>{Trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="bg-blue-100 rounded-md mx-2 ">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Leave a Review</DialogTitle>
@@ -53,20 +53,31 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
               <Input
                 type="number"
                 id="rating"
+                className="bg-white"
                 defaultValue="0"
                 onChange={handleChange}
               />
             </div>
             <div className="grid flex-1 gap-2">
               <Label htmlFor="title">title</Label>
-              <Input id="title" defaultValue="" onChange={handleChange} />
+              <Input
+                id="title"
+                className="bg-white"
+                defaultValue=""
+                onChange={handleChange}
+              />
             </div>
             <div className="grid flex-1 gap-2">
               <Label htmlFor="description">description</Label>
-              <Input id="description" defaultValue="" onChange={handleChange} />
+              <Input
+                id="description"
+                className="bg-white"
+                defaultValue=""
+                onChange={handleChange}
+              />
             </div>
           </div>
-          <DialogFooter className="sm:justify-enx flex mt-3">
+          <DialogFooter className="sm:justify-end flex mt-3">
             <Button type="submit" variant="default">
               Update
             </Button>

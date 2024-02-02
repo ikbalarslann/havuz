@@ -13,7 +13,7 @@ const HostBookingsPage = async () => {
   );
 
   return (
-    <div className="p-4 shadow-md">
+    <div>
       <h1 className="text-2xl font-bold mb-4">Pending Bookings</h1>
 
       {bookingsPending?.map((booking) => (
@@ -30,7 +30,7 @@ const HostBookingsPage = async () => {
 
       <hr />
 
-      <h1 className="text-2xl font-bold mb-4">Completed Bookings</h1>
+      <h1 className="text-2xl font-bold mb-4 mt-4">Completed Bookings</h1>
 
       {bookingsApproved?.map((booking) => (
         <div
