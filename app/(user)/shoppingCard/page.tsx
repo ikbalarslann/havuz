@@ -25,7 +25,7 @@ const ShoppingCard = () => {
 
   useEffect(() => {
     // Retrieve items array from localStorage
-    const storedItems = localStorage.getItem("test");
+    const storedItems = localStorage.getItem("shoppingCard");
     if (storedItems) {
       setItems(JSON.parse(storedItems));
     }

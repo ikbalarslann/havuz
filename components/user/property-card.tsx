@@ -1,3 +1,5 @@
+"use client";
+
 import { PropertySchema } from "@/schemas";
 import Image from "next/image";
 import * as z from "zod";
@@ -8,12 +10,19 @@ const PropertyCard = ({
 }: {
   property: z.infer<typeof PropertySchema>;
 }) => {
+  const onClick = () => {
+    const singleProperty = JSON.stringify(property);
+
+    localStorage.setItem("singleProperty", singleProperty);
+  };
+
   return (
-    <Link href={`/${property.id}`}>
+    <Link href="/pool">
       <div
         className="bg-blue-200 rounded-md text-center p-4 flex-1 mx-2"
         key={property.title}
         style={{ cursor: "pointer", maxWidth: "600px" }}
+        onClick={onClick}
       >
         <div className="relative overflow-hidden rounded-md">
           <Image

@@ -34,7 +34,7 @@ const DatePickerForm = ({ property }: any) => {
   const [test, setTest] = useState([]);
 
   useEffect(() => {
-    const storedTest = localStorage.getItem("test");
+    const storedTest = localStorage.getItem("shoppingCard");
     if (storedTest) {
       setTest(JSON.parse(storedTest));
     }
@@ -53,7 +53,7 @@ const DatePickerForm = ({ property }: any) => {
 
     setTest((prevTest) => {
       const newTest = [...prevTest, newProperty];
-      localStorage.setItem("test", JSON.stringify(newTest));
+      localStorage.setItem("shoppingCard", JSON.stringify(newTest));
       return newTest;
     });
     router.push("/shoppingCard");

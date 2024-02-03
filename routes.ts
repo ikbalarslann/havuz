@@ -9,6 +9,7 @@ export const publicRoutes = [
   "/shoppingCard",
   "[id]",
   "/api/uploadthing",
+  "/pool",
 ];
 
 /**

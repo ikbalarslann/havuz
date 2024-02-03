@@ -1,11 +1,19 @@
-import { getPropertyById } from "@/data/property";
+"use client";
 import DatePickerForm from "@/components/user/date-form";
 import Slider from "@/components/user/slider";
+import { useEffect, useState } from "react";
 
-const SinglePropertyPage = async ({ params }: any) => {
-  const { id } = params;
-  const property = await getPropertyById(id);
-  const array = property?.imgUrls;
+const SinglePropertyPage = () => {
+  const [array, setArray] = useState();
+  const [property, setProperty] = useState();
+
+  useEffect(() => {
+    const singleProperty = localStorage.getItem("singleProperty");
+    const object = singleProperty && JSON.parse(singleProperty);
+
+    setProperty(object);
+    setArray(object.imgUrls);
+  }, []);
 
   return (
     <div className="flex flex-col">

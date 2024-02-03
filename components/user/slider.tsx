@@ -12,7 +12,7 @@ const Slider = ({ array }: any) => {
   return (
     <Carousel className="w-full max-w-xs">
       <CarouselContent>
-        {array.map((item, index) => (
+        {array?.map((item, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
               <Card>
