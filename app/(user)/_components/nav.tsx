@@ -15,8 +15,8 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="relative container mx-auto p-6">
-      <div className="flex items-center justify-between">
+    <nav className="relative container mx-auto p-6  ">
+      <div className="flex items-center justify-between ">
         <div className="pt-2 text-5xl">
           <Link href="/">Havuz</Link>
         </div>
