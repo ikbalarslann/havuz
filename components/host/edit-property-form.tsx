@@ -2,10 +2,8 @@
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-
 import { PropertySchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import {
@@ -20,15 +18,22 @@ import { CardWrapper } from "@/components/auth/card-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
-import { createProperty } from "@/actions/create-property";
+import { editProperty } from "@/actions/edit-property";
 import { UploadButton } from "@/components/uploadthing";
 import { TypePicker } from "@/components/host/type-picker";
 
-export const CreatePropertyForm = () => {
+export const EditPropertyForm = () => {
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const [property, setProperty] = useState<typeof PropertySchema>();
+
+  useEffect(() => {
+    const propertyHostString = localStorage.getItem("HostProperty");
+    const propertyHost = propertyHostString && JSON.parse(propertyHostString);
+    setProperty(propertyHost);
+  }, []);
 
   const form = useForm<z.infer<typeof PropertySchema>>({
     resolver: zodResolver(PropertySchema),
@@ -51,7 +56,7 @@ export const CreatePropertyForm = () => {
     values = { ...values, imgUrls: images };
 
     startTransition(() => {
-      createProperty(values)
+      editProperty(values)
         .then((data) => {
           if (data?.error) {
             form.reset();
@@ -67,9 +72,11 @@ export const CreatePropertyForm = () => {
     });
   };
 
-  return (
+  return property?.title === undefined ? (
+    <div>Loading...</div>
+  ) : (
     <CardWrapper
-      headerLabel="Create property"
+      headerLabel="Edit property"
       backButtonLabel="Edit property"
       backButtonHref="/auth/register"
     >
@@ -250,7 +257,7 @@ export const CreatePropertyForm = () => {
           <FormSuccess message={success} />
 
           <Button disabled={isPending} type="submit" className="w-full">
-            Create property
+            Edit property
           </Button>
         </form>
       </Form>

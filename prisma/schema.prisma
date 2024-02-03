@@ -70,7 +70,7 @@ model PasswordResetToken {
 
 model Property {
   id           String         @id @default(cuid()) @map("_id")
-  userId       String?
+  userId       String?        @unique
   title        String         @unique
   description  String
   imgUrls       String[]
