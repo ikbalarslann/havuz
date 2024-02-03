@@ -18,24 +18,18 @@ import { RegisterButton } from "@/components/auth/register-button";
 import { useEffect, useState } from "react";
 
 export const UserButton = ({ toggleMenu }: any) => {
-  if (typeof window === "undefined") return null;
-
   const user = useCurrentUser();
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      const newIsDesktop = window.innerWidth > 768;
-      setIsDesktop(newIsDesktop);
+      setIsDesktop(window.innerWidth > 768);
     };
 
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Call the handleResize function on initial render
     handleResize();
 
-    // Remove the event listener when the component is unmounted
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
