@@ -21,7 +21,7 @@ export const UserButton = ({ toggleMenu }: any) => {
   if (typeof window === "undefined") return null;
 
   const user = useCurrentUser();
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -51,11 +51,11 @@ export const UserButton = ({ toggleMenu }: any) => {
     <DropdownMenu>
       <DropdownMenuTrigger>{user?.name}</DropdownMenuTrigger>
       <DropdownMenuContent className="w-40" align="end">
-        <Link href="/settings" onClick={onClick}>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+        <Link href="/settings">
+          <DropdownMenuItem onClick={onClick}>Settings</DropdownMenuItem>
         </Link>
         <LogoutButton>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={onClick}>
             <ExitIcon className="h-4 w-4 mr-2" />
             Logout
           </DropdownMenuItem>

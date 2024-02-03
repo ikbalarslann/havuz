@@ -40,7 +40,7 @@ const ShoppingCard = () => {
     setSuccess("Property successfully booked!");
   };
 
-  return items ? (
+  return items.length > 0 ? (
     <div className="flex justify-start items-center h-screen flex-col gap-7  ">
       <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
         {items.map((item, index) => (
