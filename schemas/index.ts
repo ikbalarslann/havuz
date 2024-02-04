@@ -77,6 +77,12 @@ export const PropertySchema = z.object({
   description: z.string().min(1, {
     message: "Description is required",
   }),
+  checkIn: z.string().min(5, {
+    message: "checkIn is required",
+  }),
+  checkOut: z.string().min(5, {
+    message: "checkOut is required",
+  }),
   location: z.string().min(1, {
     message: "location is required",
   }),

@@ -17,8 +17,18 @@ export const createProperty = async (
     return { error: "Invalid fields!" };
   }
 
-  const { title, description, price, free, imgUrls, location, depth, type } =
-    validatedFields.data;
+  const {
+    title,
+    description,
+    price,
+    free,
+    imgUrls,
+    location,
+    depth,
+    type,
+    checkIn,
+    checkOut,
+  } = validatedFields.data;
 
   const avaliabiliyMock = [];
 
@@ -48,6 +58,8 @@ export const createProperty = async (
         location: location,
         type: type,
         availability: avaliabiliyMock,
+        checkIn: checkIn,
+        checkOut: checkOut,
       },
     });
 

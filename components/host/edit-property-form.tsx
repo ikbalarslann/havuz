@@ -46,6 +46,8 @@ export const EditPropertyForm = () => {
       price: 0,
       free: 0,
       depth: 0,
+      checkIn: "08:00",
+      checkOut: "23:00",
     },
   });
 
@@ -61,6 +63,8 @@ export const EditPropertyForm = () => {
         price: 0,
         free: 0,
         depth: property.depth || 0,
+        checkIn: property.checkIn || "08:00",
+        checkOut: property.checkOut || "23:00",
       });
     }
   }, [property, form]);
@@ -127,6 +131,44 @@ export const EditPropertyForm = () => {
                         disabled={isPending}
                         placeholder="A 5-star hotel in the heart of Istanbul."
                         type="text"
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="checkIn"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Checkin Time</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="checkin time"
+                        type="time"
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="checkOut"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>CheckOut Time</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="checkout time"
+                        type="time"
                       />
                     </FormControl>
 

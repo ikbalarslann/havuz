@@ -73,10 +73,12 @@ model Property {
   userId       String?        @unique
   title        String         @unique
   description  String
-  imgUrls       String[]
+  checkIn      String
+  checkOut     String
   location     String
   depth        Float
   type         String
+  imgUrls       String[]
   availability Json[]
   reviews      Json[]
 }

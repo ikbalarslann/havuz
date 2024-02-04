@@ -35,6 +35,8 @@ export const CreatePropertyForm = () => {
     defaultValues: {
       title: "",
       description: "",
+      checkIn: "08:00",
+      checkOut: "23:00",
       location: "",
       type: "",
       imgUrls: [],
@@ -47,9 +49,7 @@ export const CreatePropertyForm = () => {
   const onSubmit = (values: z.infer<typeof PropertySchema>) => {
     setError("");
     setSuccess("");
-
     values = { ...values, imgUrls: images };
-
     startTransition(() => {
       createProperty(values)
         .then((data) => {
@@ -57,10 +57,10 @@ export const CreatePropertyForm = () => {
             form.reset();
             setError(data.error);
           }
-
           if (data?.success) {
             form.reset();
             setSuccess(data.success);
+            window.location.reload();
           }
         })
         .catch(() => setError("Something went wrong"));
@@ -106,6 +106,44 @@ export const CreatePropertyForm = () => {
                         disabled={isPending}
                         placeholder="A 5-star hotel in the heart of Istanbul."
                         type="text"
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="checkIn"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Checkin Time</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="checkin time"
+                        type="time"
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="checkOut"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>CheckOut Time</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="checkout time"
+                        type="time"
                       />
                     </FormControl>
 
