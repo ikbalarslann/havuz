@@ -32,19 +32,21 @@ const Payment = () => {
     return acc + parseFloat(item.availability[0].price);
   }, 0);
 
-  const handlePayment = () => {
-    Promise.all(
-      items.map((item) => {
-        if (discount) {
-          const availability = item.availability;
-          const newAvailability = { ...availability[0], price: total * 0.9 };
-          const newItem = { ...item, availability: [newAvailability] };
-          return createBooking(newItem);
-        }
+  const handlePayment = async () => {
+    const bookingPromises = items.map(async (item) => {
+      if (discount) {
+        const availability = item.availability;
+        const newPrice = availability[0].price * 0.9;
+        const newAvailability = { ...availability[0], price: newPrice };
+        const newItem = { ...item, availability: [newAvailability] };
+        return createBooking(newItem);
+      }
 
-        return createBooking(item);
-      })
-    );
+      return createBooking(item);
+    });
+
+    await Promise.all(bookingPromises);
+
     localStorage.removeItem("shoppingCard");
     router.push("/bookings");
   };
