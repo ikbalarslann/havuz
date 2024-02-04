@@ -103,3 +103,7 @@ export const ReviewSchema = z.object({
   title: z.string(),
   description: z.string(),
 });
+
+export const DiscountSchema = z.object({
+  code: z.string(),
+});

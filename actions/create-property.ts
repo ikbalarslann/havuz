@@ -28,7 +28,7 @@ export const createProperty = async (
 
     avaliabiliyMock.push({
       date: currentDate.toLocaleDateString("en-GB"),
-      price: price,
+      price: ((price * 10) / 9).toFixed(1),
       free: free,
     });
   }
