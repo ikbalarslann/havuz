@@ -3,9 +3,21 @@ import DatePickerForm from "@/components/user/date-form";
 import Slider from "@/components/user/slider";
 import { useEffect, useState } from "react";
 
+interface Property {
+  title: string;
+  description: string;
+  depth: number;
+  type: string;
+  checkIn: string;
+  checkOut: string;
+  location: string;
+  imgUrls: string[];
+  reviews: JSON[];
+}
+
 const SinglePropertyPage = () => {
   const [array, setArray] = useState();
-  const [property, setProperty] = useState();
+  const [property, setProperty] = useState<Property>();
 
   useEffect(() => {
     const singleProperty = localStorage.getItem("singleProperty");
@@ -40,7 +52,9 @@ const SinglePropertyPage = () => {
           <div key={index} className="bg-white p-6 rounded-lg shadow-md">
             <div className="flex items-center mb-4">
               <div className="flex items-center">
-                <span className="text-2xl font-bold mr-2">{review.rating}</span>
+                <span className="text-2xl font-bold mr-2">
+                  {review.rating}/5
+                </span>
                 <span className="text-blue-500">{review.title}</span>
               </div>
               <p className="ml-auto text-gray-600">{review.date}</p>
