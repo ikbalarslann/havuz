@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import { createReview } from "@/actions/create-review";
+import { RatingPicker } from "./rating-picker";
 
 export function Modal({ Trigger, bookingId, propertyId }: any) {
   const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
       description: formData.description,
     };
     await createReview(inputs);
+    window.location.reload();
   };
 
   return (
@@ -50,12 +52,10 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
           <div className="flex items-center space-x-2 gap-5 flex-col ">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="rating">Rating</Label>
-              <Input
-                type="number"
-                id="rating"
-                className="bg-white"
-                defaultValue="0"
-                onChange={handleChange}
+              <RatingPicker
+                setRating={(value: any) =>
+                  setFormData({ ...formData, rating: value })
+                }
               />
             </div>
             <div className="grid flex-1 gap-2">

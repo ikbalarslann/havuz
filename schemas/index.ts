@@ -106,7 +106,7 @@ export const BookingSchema = z.object({
 export const ReviewSchema = z.object({
   bookingId: z.string(),
   propertyId: z.string(),
-  rating: z.number(),
+  rating: z.number().min(1).max(5),
   title: z.string(),
   description: z.string(),
 });

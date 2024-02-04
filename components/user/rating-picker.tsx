@@ -19,28 +19,32 @@ import {
 
 const frameworks = [
   {
-    value: "olimpic",
-    label: "Olympic",
+    value: "1",
+    label: "1",
   },
   {
-    value: "semi-olimpic",
-    label: "Semi-Olympic",
+    value: "2",
+    label: "2",
   },
   {
-    value: "hotel",
-    label: "Hotel",
+    value: "3",
+    label: "3",
   },
   {
-    value: "aqua-park",
-    label: "Aqua Park",
+    value: "4",
+    label: "4",
+  },
+  {
+    value: "5",
+    label: "5",
   },
 ];
 
-export function TypePicker({ setType }: any) {
+export function RatingPicker({ setRating }: any) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   React.useEffect(() => {
-    setType(value);
+    setRating(value);
   }, [value]);
 
   return (
@@ -50,17 +54,17 @@ export function TypePicker({ setType }: any) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[400px] justify-between"
+          className="w-[250px] justify-between"
         >
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select Type"}
+            : "Select Rating"}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] p-0">
+      <PopoverContent className="w-[250px] p-0">
         <Command>
-          <CommandEmpty>No type found.</CommandEmpty>
+          <CommandEmpty>No rating found.</CommandEmpty>
           <CommandGroup>
             {frameworks.map((framework) => (
               <CommandItem
