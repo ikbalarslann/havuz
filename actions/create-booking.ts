@@ -17,6 +17,7 @@ interface PropertySchema {
   price: number;
   availability: string[];
   code?: string;
+  location: string;
 }
 
 export const createBooking = async (property: Property) => {
@@ -32,6 +33,7 @@ export const createBooking = async (property: Property) => {
     propertyTitle: property.title,
     userName: user?.name,
     discountCode: property.code,
+    location: property.location,
   };
 
   const {
@@ -42,6 +44,7 @@ export const createBooking = async (property: Property) => {
     propertyTitle,
     userName,
     discountCode,
+    location,
   } = inputs;
 
   try {
@@ -54,6 +57,7 @@ export const createBooking = async (property: Property) => {
         propertyTitle,
         userName,
         discountCode,
+        location,
       },
     });
     const property = await getPropertyById(propertyId);

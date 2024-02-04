@@ -24,6 +24,7 @@ const BookingPage = async () => {
           <h2 className="text-xl font-bold">{booking.date}</h2>
           <p className="text-gray-600">Price: ${booking.price}</p>
           <p className="text-gray-600">Pool: {booking.propertyTitle}</p>
+          <p className="text-gray-600">Adress: {booking.location}</p>
         </div>
       ))}
 
@@ -39,6 +40,7 @@ const BookingPage = async () => {
           <h2 className="text-xl font-bold">{booking.date}</h2>
           <p className="text-gray-600">Price: ${booking.price}</p>
           <p className="text-gray-600">Pool: {booking.propertyTitle}</p>
+          <p className="text-gray-600">Adress: {booking.location}</p>
           {!booking.review && (
             <ReviewButton
               bookingId={booking.id}

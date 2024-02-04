@@ -43,7 +43,9 @@ export const UserButton = ({ toggleMenu }: any) => {
 
   return user ? (
     <DropdownMenu>
-      <DropdownMenuTrigger>{user?.name}</DropdownMenuTrigger>
+      <DropdownMenuTrigger className="text-xl">
+        {user?.name}
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40" align="end">
         <Link href="/settings">
           <DropdownMenuItem onClick={onClick}>Settings</DropdownMenuItem>

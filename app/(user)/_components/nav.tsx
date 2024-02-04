@@ -24,9 +24,15 @@ export const Nav = () => {
           </Link>
         </div>
         <div className="hidden space-x-6 md:flex">
-          <Link href="/shoppingCard">Shopping Card</Link>
+          <Link href="/shoppingCard" className="text-xl">
+            Shopping Card
+          </Link>
 
-          {role && <Link href="/bookings">Bookings</Link>}
+          {role && (
+            <Link href="/bookings" className="text-xl">
+              Bookings
+            </Link>
+          )}
 
           <div className="pl-32">
             <UserButton />
