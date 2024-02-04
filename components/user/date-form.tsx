@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import * as z from "zod";
@@ -32,6 +32,7 @@ const FormSchema = z.object({
 const DatePickerForm = ({ property }: any) => {
   const router = useRouter();
   const [test, setTest] = useState([]);
+  const dates = property?.availability.map((item) => item.date);
 
   useEffect(() => {
     const storedTest = localStorage.getItem("shoppingCard");
@@ -94,7 +95,23 @@ const DatePickerForm = ({ property }: any) => {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) => date < new Date()}
+                    disabled={(date) => {
+                      const originalDate = date;
+                      const day = originalDate
+                        .getDate()
+                        .toString()
+                        .padStart(2, "0");
+                      const month = (originalDate.getMonth() + 1)
+                        .toString()
+                        .padStart(2, "0");
+                      const year = originalDate.getFullYear();
+
+                      const formattedDate = `${day}/${month}/${year}`;
+                      return (
+                        date < new Date() ||
+                        !dates.find((item) => `${item}` === formattedDate)
+                      );
+                    }}
                     initialFocus
                   />
                 </PopoverContent>
