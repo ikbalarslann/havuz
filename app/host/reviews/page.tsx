@@ -8,15 +8,26 @@ const HostReviewsPage = async () => {
   const reviews = property?.reviews;
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Reviews</h1>
+    <div className="max-w-2xl mx-auto">
+      <h1 className="text-3xl font-bold mb-8 text-center">Customer Reviews</h1>
 
       {reviews?.map((review) => (
-        <div key={review.id} className="mb-4 p-4 bg-white rounded-md shadow-md">
-          <h1>{review.userName}</h1>
-          <h2> rating: {review.rating}</h2>
+        <div
+          key={review.id}
+          className="mb-8 p-6 w-[500px] bg-white rounded-md shadow-md"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-xl font-bold">{review.userName}</h1>
+            <span
+              className={`text-${
+                review.rating >= 4 ? "green" : "red"
+              }-500 font-semibold`}
+            >
+              {review.rating}/5
+            </span>
+          </div>
           <h3 className="text-lg font-bold mb-2">{review.title}</h3>
-          <p className="text-gray-600"> {review.description}</p>
+          <p className="text-gray-700">{review.description}</p>
         </div>
       ))}
     </div>
