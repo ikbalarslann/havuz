@@ -7,16 +7,28 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 
 const Slider = ({ array }: any) => {
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel
+      className="w-full max-w-xs"
+      opts={{
+        align: "start",
+        loop: true,
+      }}
+      plugins={[
+        Autoplay({
+          delay: 3000,
+        }),
+      ]}
+    >
       <CarouselContent>
         {array?.map((item, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
               <Card>
-                <CardContent className="flex aspect-square items-center justify-center  ">
+                <CardContent className="flex items-center justify-center  ">
                   <Image
                     src={item}
                     alt="Pool Image"
