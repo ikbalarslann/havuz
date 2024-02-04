@@ -4,6 +4,7 @@ import Link from "next/link";
 import { UserButton } from "@/components/auth/user-button";
 import { useCurrentRole } from "@/hooks/use-current-role";
 import { useState } from "react";
+import Image from "next/image";
 
 export const Nav = () => {
   const role = useCurrentRole();
@@ -18,7 +19,9 @@ export const Nav = () => {
     <nav className="relative container mx-auto p-6  ">
       <div className="flex items-center justify-between ">
         <div className="pt-2 text-5xl">
-          <Link href="/">Havuz</Link>
+          <Link href="/">
+            <Image src="/logo.png" alt="logo" width={120} height={100} />
+          </Link>
         </div>
         <div className="hidden space-x-6 md:flex">
           <Link href="/shoppingCard">Shopping Card</Link>

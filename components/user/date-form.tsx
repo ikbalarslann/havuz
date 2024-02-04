@@ -82,7 +82,7 @@ const DatePickerForm = ({ property }: any) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
+                        "w-[300px] pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
                       onClick={handleOnClick}
@@ -97,7 +97,7 @@ const DatePickerForm = ({ property }: any) => {
                   </FormControl>
                 </PopoverTrigger>
 
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent className="w-[300px] p-0" align="start">
                   <Calendar
                     mode="single"
                     selected={field.value}

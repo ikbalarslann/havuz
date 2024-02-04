@@ -69,7 +69,11 @@ const Payment = () => {
           </p>
         ))}
         total Price : {total} TL
-        {discount ? <p>Discounted Price : {total * 0.9} TL</p> : ""}
+        {discount ? (
+          <p className="text-green-500 ">Discounted Price : {total * 0.9} TL</p>
+        ) : (
+          ""
+        )}
       </div>
       <p className="my-4 mx-1 bg-red-300 p-3 rounded-md text-gray-900">
         <span className="text-red-600">important Note:</span> full payment will
