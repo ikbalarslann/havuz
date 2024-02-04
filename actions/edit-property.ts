@@ -36,14 +36,14 @@ export const editProperty = async (values: z.infer<typeof PropertySchema>) => {
 
     avaliabiliyMock.push({
       date: currentDate.toLocaleDateString("en-GB"),
-      price: price,
+      price: ((price * 10) / 9).toFixed(1),
       free: free,
     });
   }
   const existingProperty = await getPropertyByTitle(title);
 
-  if (existingProperty) {
-    return { error: "Title already in use!" };
+  if (!existingProperty) {
+    return { error: "This title Doesn't include in the database" };
   }
 
   try {

@@ -11,7 +11,7 @@ const HostAvaliabilityPage = async () => {
         {property?.availability.map((a) => (
           <Modal
             key={a?.id}
-            property={a}
+            availabilityItem={a}
             title={property.title}
             Trigger={
               <div

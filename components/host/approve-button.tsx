@@ -2,9 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { UpdateStatus } from "@/actions/booking-status";
 
-const ApproveButton = ({ bookingId }: any) => {
+const ApproveButton = ({ bookingId, propertyId, date }: any) => {
   const handleApprove = async () => {
-    await UpdateStatus({ bookingId });
+    await UpdateStatus({ bookingId, propertyId, date });
 
     window.location.reload();
   };

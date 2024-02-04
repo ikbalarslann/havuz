@@ -22,7 +22,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useRouter } from "next/navigation";
-import * as Pop from "@radix-ui/react-popover";
 
 const FormSchema = z.object({
   dob: z.date({
@@ -34,7 +33,7 @@ const DatePickerForm = ({ property }: any) => {
   const router = useRouter();
   const [test, setTest] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const dates = property?.availability.map((item) => item.date);
+  const availabilityArray = property?.availability;
 
   useEffect(() => {
     const storedTest = localStorage.getItem("shoppingCard");
@@ -62,6 +61,10 @@ const DatePickerForm = ({ property }: any) => {
     router.push("/shoppingCard");
   }
 
+  const handleOnClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Form {...form}>
       <form
@@ -82,7 +85,7 @@ const DatePickerForm = ({ property }: any) => {
                         "w-[240px] pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
-                      onClick={() => setIsOpen(!isOpen)}
+                      onClick={handleOnClick}
                     >
                       {field.value ? (
                         format(field.value, "PPP")
@@ -116,7 +119,12 @@ const DatePickerForm = ({ property }: any) => {
                       const formattedDate = `${day}/${month}/${year}`;
                       return (
                         date < new Date() ||
-                        !dates.find((item) => `${item}` === formattedDate)
+                        !availabilityArray.find(
+                          (item) => `${item.date}` === formattedDate
+                        ) ||
+                        availabilityArray.find(
+                          (item) => `${item.date}` === formattedDate
+                        ).free < 1
                       );
                     }}
                     initialFocus

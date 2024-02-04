@@ -16,11 +16,11 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { UpdatePropertyAvailability } from "@/actions/availability";
 
-export function Modal({ Trigger, property, title }: any) {
+export function Modal({ Trigger, availabilityItem, title }: any) {
   const [formData, setFormData] = useState({
-    id: property.id,
-    price: property.price,
-    free: property.free,
+    date: availabilityItem.date,
+    price: availabilityItem.price,
+    free: availabilityItem.free,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,14 +41,14 @@ export function Modal({ Trigger, property, title }: any) {
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Edit Availability</DialogTitle>
-            <DialogDescription>{property.id}</DialogDescription>
+            <DialogDescription>{availabilityItem.date}</DialogDescription>
           </DialogHeader>
           <div className="flex items-center space-x-2 gap-3">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="price">Price</Label>
               <Input
                 id="price"
-                defaultValue={property.price}
+                defaultValue={availabilityItem.price}
                 onChange={handleChange}
               />
             </div>
@@ -56,18 +56,13 @@ export function Modal({ Trigger, property, title }: any) {
               <Label htmlFor="free">Free</Label>
               <Input
                 id="free"
-                defaultValue={property.free}
+                defaultValue={availabilityItem.free}
                 onChange={handleChange}
               />
             </div>
           </div>
           <DialogFooter className="sm:justify-start flex">
-            <DialogClose asChild>
-              <Button type="button" variant="secondary">
-                Close
-              </Button>
-            </DialogClose>
-            <Button type="submit" variant="default">
+            <Button type="submit" variant="default" className="mt-4">
               Update
             </Button>
           </DialogFooter>

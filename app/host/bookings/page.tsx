@@ -27,7 +27,11 @@ const HostBookingsPage = async () => {
           </div>
 
           <div className="mt-4 flex items-center justify-between">
-            <ApproveButton bookingId={booking.id} />
+            <ApproveButton
+              bookingId={booking.id}
+              propertyId={booking.propertyId}
+              date={booking.date}
+            />
           </div>
         </div>
       ))}
