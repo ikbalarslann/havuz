@@ -22,6 +22,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useRouter } from "next/navigation";
+import * as Pop from "@radix-ui/react-popover";
 
 const FormSchema = z.object({
   dob: z.date({
@@ -90,31 +91,34 @@ const DatePickerForm = ({ property }: any) => {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) => {
-                      const originalDate = date;
-                      const day = originalDate
-                        .getDate()
-                        .toString()
-                        .padStart(2, "0");
-                      const month = (originalDate.getMonth() + 1)
-                        .toString()
-                        .padStart(2, "0");
-                      const year = originalDate.getFullYear();
+                <Pop.Close>
+                  {" "}
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date) => {
+                        const originalDate = date;
+                        const day = originalDate
+                          .getDate()
+                          .toString()
+                          .padStart(2, "0");
+                        const month = (originalDate.getMonth() + 1)
+                          .toString()
+                          .padStart(2, "0");
+                        const year = originalDate.getFullYear();
 
-                      const formattedDate = `${day}/${month}/${year}`;
-                      return (
-                        date < new Date() ||
-                        !dates.find((item) => `${item}` === formattedDate)
-                      );
-                    }}
-                    initialFocus
-                  />
-                </PopoverContent>
+                        const formattedDate = `${day}/${month}/${year}`;
+                        return (
+                          date < new Date() ||
+                          !dates.find((item) => `${item}` === formattedDate)
+                        );
+                      }}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Pop.Close>
               </Popover>
 
               <FormMessage />
