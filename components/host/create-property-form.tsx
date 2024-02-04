@@ -68,11 +68,7 @@ export const CreatePropertyForm = () => {
   };
 
   return (
-    <CardWrapper
-      headerLabel="Create property"
-      backButtonLabel="Edit property"
-      backButtonHref="/auth/register"
-    >
+    <CardWrapper headerLabel="Create property">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

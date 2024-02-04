@@ -38,7 +38,7 @@ export const EditPropertyForm = () => {
   const form = useForm<z.infer<typeof PropertySchema>>({
     resolver: zodResolver(PropertySchema),
     defaultValues: {
-      title: "",
+      title: property?.title ?? "",
       description: "",
       location: "",
       type: "",
@@ -48,6 +48,22 @@ export const EditPropertyForm = () => {
       depth: 0,
     },
   });
+
+  useEffect(() => {
+    if (property) {
+      // Only initialize the form if property is not undefined
+      form.reset({
+        title: property.title || "",
+        description: property.description || "",
+        location: property.location || "",
+        type: "",
+        imgUrls: [],
+        price: 0,
+        free: 0,
+        depth: property.depth || 0,
+      });
+    }
+  }, [property, form]);
 
   const onSubmit = (values: z.infer<typeof PropertySchema>) => {
     setError("");
@@ -72,14 +88,8 @@ export const EditPropertyForm = () => {
     });
   };
 
-  return property?.title === undefined ? (
-    <div>Loading...</div>
-  ) : (
-    <CardWrapper
-      headerLabel="Edit property"
-      backButtonLabel="Edit property"
-      backButtonHref="/auth/register"
-    >
+  return (
+    <CardWrapper headerLabel="Edit property">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
