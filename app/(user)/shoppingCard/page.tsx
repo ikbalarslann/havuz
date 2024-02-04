@@ -7,6 +7,7 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { set } from "date-fns";
 
 interface Property {
   title: string;
@@ -39,9 +40,21 @@ const ShoppingCard = () => {
     router.push("/pay");
     setSuccess("Property successfully booked!");
   };
+  const handleRemoveClick = (item: any) => {
+    const spesificItem = items.find(
+      (i) =>
+        i.title === item.title &&
+        i.availability[0].date === item.availability[0].date
+    );
+
+    const newItems = items.filter((i) => i !== spesificItem);
+    setItems(newItems);
+    localStorage.setItem("shoppingCard", JSON.stringify(newItems));
+  };
 
   return items.length > 0 ? (
     <div className="flex justify-start items-center h-screen flex-col gap-7  ">
+      <h1 className="text-3xl">Shopping Card</h1>
       <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
         {items.map((item, index) => (
           <div
@@ -57,6 +70,11 @@ const ShoppingCard = () => {
               <div>
                 <p>Check in : 8 am</p>
                 <p>Check out : 11 pm</p>
+              </div>
+              <div className="flex gap-3 justify-center items-center">
+                <Button onClick={() => handleRemoveClick(item)}>
+                  Remove from the card
+                </Button>
               </div>
             </div>
           </div>
