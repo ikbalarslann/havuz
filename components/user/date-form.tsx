@@ -33,6 +33,7 @@ const FormSchema = z.object({
 const DatePickerForm = ({ property }: any) => {
   const router = useRouter();
   const [test, setTest] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const dates = property?.availability.map((item) => item.date);
 
   useEffect(() => {
@@ -72,7 +73,7 @@ const DatePickerForm = ({ property }: any) => {
           name="dob"
           render={({ field }) => (
             <FormItem className="flex flex-col ">
-              <Popover>
+              <Popover open={isOpen}>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
@@ -81,6 +82,7 @@ const DatePickerForm = ({ property }: any) => {
                         "w-[240px] pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
+                      onClick={() => setIsOpen(!isOpen)}
                     >
                       {field.value ? (
                         format(field.value, "PPP")
@@ -91,34 +93,35 @@ const DatePickerForm = ({ property }: any) => {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <Pop.Close>
-                  {" "}
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      disabled={(date) => {
-                        const originalDate = date;
-                        const day = originalDate
-                          .getDate()
-                          .toString()
-                          .padStart(2, "0");
-                        const month = (originalDate.getMonth() + 1)
-                          .toString()
-                          .padStart(2, "0");
-                        const year = originalDate.getFullYear();
 
-                        const formattedDate = `${day}/${month}/${year}`;
-                        return (
-                          date < new Date() ||
-                          !dates.find((item) => `${item}` === formattedDate)
-                        );
-                      }}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Pop.Close>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={(date) => {
+                      setIsOpen(false);
+                      field.onChange(date);
+                    }}
+                    disabled={(date) => {
+                      const originalDate = date;
+                      const day = originalDate
+                        .getDate()
+                        .toString()
+                        .padStart(2, "0");
+                      const month = (originalDate.getMonth() + 1)
+                        .toString()
+                        .padStart(2, "0");
+                      const year = originalDate.getFullYear();
+
+                      const formattedDate = `${day}/${month}/${year}`;
+                      return (
+                        date < new Date() ||
+                        !dates.find((item) => `${item}` === formattedDate)
+                      );
+                    }}
+                    initialFocus
+                  />
+                </PopoverContent>
               </Popover>
 
               <FormMessage />

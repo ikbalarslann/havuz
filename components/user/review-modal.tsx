@@ -38,7 +38,6 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
       description: formData.description,
     };
     await createReview(inputs);
-    window.location.reload();
   };
 
   return (
