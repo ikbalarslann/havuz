@@ -96,5 +96,6 @@ model Booking {
   userName     String
   status       BookingStatus @default(PENDING)
   review       Boolean @default(false)
+  discountCode String?
 }
 

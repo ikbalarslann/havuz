@@ -94,6 +94,7 @@ export const BookingSchema = z.object({
   date: z.string(),
   price: z.number().int(),
   bookingTime: z.date(),
+  discountCode: z.optional(z.string()),
 });
 
 export const ReviewSchema = z.object({

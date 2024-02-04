@@ -53,7 +53,7 @@ const ShoppingCard = () => {
   };
 
   return items.length > 0 ? (
-    <div className="flex justify-start items-center h-screen flex-col gap-7  ">
+    <div className="flex justify-start items-center min-h-full flex-col gap-7 ">
       <h1 className="text-3xl">Shopping Card</h1>
       <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
         {items.map((item, index) => (

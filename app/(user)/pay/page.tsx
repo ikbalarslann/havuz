@@ -19,6 +19,7 @@ const Payment = () => {
 
   const [items, setItems] = useState<Property[]>([]);
   const [discount, setDiscount] = useState<boolean>(false);
+  const [code, setCode] = useState<string>("");
 
   useEffect(() => {
     // Retrieve items array from localStorage
@@ -38,7 +39,11 @@ const Payment = () => {
         const availability = item.availability;
         const newPrice = availability[0].price * 0.9;
         const newAvailability = { ...availability[0], price: newPrice };
-        const newItem = { ...item, availability: [newAvailability] };
+        const newItem = {
+          ...item,
+          availability: [newAvailability],
+          code: code,
+        };
         return createBooking(newItem);
       }
 
@@ -70,7 +75,7 @@ const Payment = () => {
         <span className="text-red-600">important Note:</span> full payment will
         be charged in person at the time of check-in
       </p>
-      <DiscountForm setDiscount={setDiscount} />
+      <DiscountForm setDiscount={setDiscount} setCode={setCode} />
       <Button className="my-4" onClick={handlePayment}>
         Complete the Reservation
       </Button>

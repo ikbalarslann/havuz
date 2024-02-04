@@ -19,7 +19,7 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import discountArray from "@/data/discount";
 
-export const DiscountForm = ({ setDiscount }: any) => {
+export const DiscountForm = ({ setDiscount, setCode }: any) => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -39,6 +39,7 @@ export const DiscountForm = ({ setDiscount }: any) => {
       const result = discountArray.find((item) => item.code === values.code);
       if (result) {
         setDiscount(true);
+        setCode(values.code);
         setSuccess("10%  Discount applied!");
       } else {
         setDiscount(false);
