@@ -3,20 +3,36 @@
 import { db } from "@/lib/db";
 import { getPropertyById } from "@/data/property";
 
-export const UpdateStatus = async ({ bookingId, propertyId, date }) => {
+interface updateProps {
+  bookingId: string;
+  propertyId: string;
+  date: string;
+}
+
+export const UpdateStatus = async ({
+  bookingId,
+  propertyId,
+  date,
+}: updateProps) => {
   const property = await getPropertyById(propertyId);
   const availability = property?.availability;
-  const availabilityArrayWithout = availability?.filter((item) => {
+  const stringAvailability = availability?.map((a) => JSON.stringify(a));
+  const objAvailability =
+    stringAvailability && stringAvailability.map((a) => JSON.parse(a));
+  const availabilityArrayWithout = objAvailability?.filter((item) => {
     return item.date !== date;
   });
-  const theAvailability = availability?.filter((item) => {
+  const theAvailability = objAvailability?.filter((item) => {
     return item.date === date;
   });
-  const newAvailability = {
+  const newAvailability = theAvailability && {
     ...theAvailability[0],
     free: theAvailability[0].free - 1,
   };
-  const newAvailabilityArray = [...availabilityArrayWithout, newAvailability];
+  const newAvailabilityArray = availabilityArrayWithout && [
+    ...availabilityArrayWithout,
+    newAvailability,
+  ];
 
   try {
     await db.booking.update({
