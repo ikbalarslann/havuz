@@ -18,7 +18,9 @@ export const UpdatePropertyAvailability = async ({
 }) => {
   const { date, price, free } = values;
   const property = await getPropertyByTitle(title);
-  const availability = property?.availability.filter((a) => a?.date !== date);
+  const availability = (property?.availability || []).filter(
+    (a): a is Availability => a?.date !== date
+  );
   const updatedAvailability = [...availability, { date, price, free }];
 
   try {
