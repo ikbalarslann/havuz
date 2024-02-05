@@ -15,14 +15,20 @@ import { useState, useEffect } from "react";
 import { createReview } from "@/actions/create-review";
 import { RatingPicker } from "./rating-picker";
 
-export function Modal({ Trigger, bookingId, propertyId }) {
+interface ModalProps {
+  Trigger: React.ReactNode;
+  bookingId: string;
+  propertyId: string;
+}
+
+export function Modal({ Trigger, bookingId, propertyId }: ModalProps) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
   });
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState<string>("1");
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,

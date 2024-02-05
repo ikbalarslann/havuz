@@ -42,7 +42,7 @@
     "app/host/availability/page.tsx",
     "components/host/edit-property-form.jsx",
     "components/user/date-form.tsx",
-    "components/user/review-modal.jsx",
+    "components/user/review-modal.tsx",
     "components/user/slider.tsx",
     "app/(user)/pool/page.tsx"
   ],
