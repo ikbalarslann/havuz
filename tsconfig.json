@@ -41,7 +41,7 @@
     "app/host/bookings/page.jsx",
     "app/host/availability/page.jsx",
     "components/host/edit-property-form.jsx",
-    "components/user/date-form.jsx",
+    "components/user/date-form.tsx",
     "components/user/review-modal.jsx",
     "components/user/slider.tsx",
     "app/(user)/pool/page.tsx"

@@ -95,6 +95,13 @@ export const PropertySchema = z.object({
       userName: z.string(),
     })
   ),
+  availability: z.array(
+    z.object({
+      date: z.string(),
+      price: z.string(),
+      free: z.number(),
+    })
+  ),
   imgUrls: z.array(z.string()),
   price: z.number(),
   free: z.number(),

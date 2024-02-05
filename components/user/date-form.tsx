@@ -22,6 +22,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useRouter } from "next/navigation";
+import { PropertySchema } from "@/schemas";
 
 const FormSchema = z.object({
   dob: z.date({
@@ -29,7 +30,11 @@ const FormSchema = z.object({
   }),
 });
 
-const DatePickerForm = ({ property }) => {
+const DatePickerForm = ({
+  property,
+}: {
+  property: z.infer<typeof PropertySchema>;
+}) => {
   const router = useRouter();
   const [test, setTest] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +51,7 @@ const DatePickerForm = ({ property }) => {
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data) {
+  function onSubmit(data: any) {
     const choosenDate = data.dob.toLocaleDateString("en-GB");
     const newAvailability = property.availability.filter(
       (item) => item.date === choosenDate
@@ -61,6 +66,36 @@ const DatePickerForm = ({ property }) => {
 
   const handleOnClick = () => {
     setIsOpen(!isOpen);
+  };
+
+  const foundItem = (formattedDate: string) => {
+    const theItem = availabilityArray.find(
+      (item) => `${item.date}` === formattedDate
+    );
+    return theItem;
+  };
+
+  const disabledDays = (date: Date) => {
+    const originalDate = date;
+    const day = originalDate.getDate().toString().padStart(2, "0");
+    const month = (originalDate.getMonth() + 1).toString().padStart(2, "0");
+    const year = originalDate.getFullYear();
+
+    const formattedDate = `${day}/${month}/${year}`;
+    const item = foundItem(formattedDate);
+
+    if (item?.free === undefined) {
+      return (
+        date < new Date() ||
+        !availabilityArray.find((item) => `${item.date}` === formattedDate)
+      );
+    }
+
+    return (
+      date < new Date() ||
+      !availabilityArray.find((item) => `${item.date}` === formattedDate) ||
+      item.free < 1
+    );
   };
 
   return (
@@ -103,28 +138,7 @@ const DatePickerForm = ({ property }) => {
                       setIsOpen(false);
                       field.onChange(date);
                     }}
-                    disabled={(date) => {
-                      const originalDate = date;
-                      const day = originalDate
-                        .getDate()
-                        .toString()
-                        .padStart(2, "0");
-                      const month = (originalDate.getMonth() + 1)
-                        .toString()
-                        .padStart(2, "0");
-                      const year = originalDate.getFullYear();
-
-                      const formattedDate = `${day}/${month}/${year}`;
-                      return (
-                        date < new Date() ||
-                        !availabilityArray.find(
-                          (item) => `${item.date}` === formattedDate
-                        ) ||
-                        availabilityArray.find(
-                          (item) => `${item.date}` === formattedDate
-                        ).free < 1
-                      );
-                    }}
+                    disabled={(date) => disabledDays(date)}
                     initialFocus
                   />
                 </PopoverContent>

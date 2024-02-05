@@ -33,7 +33,7 @@ const SinglePropertyPage = () => {
       </div>
 
       <div className="pb-6">
-        <DatePickerForm property={property} />
+        {property && <DatePickerForm property={property} />}
       </div>
 
       <div className="space-y-6">
