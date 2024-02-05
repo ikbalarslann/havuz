@@ -3,13 +3,13 @@
 import { db } from "@/lib/db";
 import { getPropertyById } from "@/data/property";
 
-export const UpdateStatus = async ({ bookingId, propertyId, date }: any) => {
+export const UpdateStatus = async ({ bookingId, propertyId, date }) => {
   const property = await getPropertyById(propertyId);
   const availability = property?.availability;
-  const availabilityArrayWithout = availability?.filter((item: any) => {
+  const availabilityArrayWithout = availability?.filter((item) => {
     return item.date !== date;
   });
-  const theAvailability = availability?.filter((item: any) => {
+  const theAvailability = availability?.filter((item) => {
     return item.date === date;
   });
   const newAvailability = {
