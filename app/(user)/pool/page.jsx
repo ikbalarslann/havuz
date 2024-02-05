@@ -3,21 +3,9 @@ import DatePickerForm from "@/components/user/date-form";
 import Slider from "@/components/user/slider";
 import { useEffect, useState } from "react";
 
-interface Property {
-  title: string;
-  description: string;
-  depth: number;
-  type: string;
-  checkIn: string;
-  checkOut: string;
-  location: string;
-  imgUrls: string[];
-  reviews: JSON[];
-}
-
 const SinglePropertyPage = () => {
   const [array, setArray] = useState();
-  const [property, setProperty] = useState<Property>();
+  const [property, setProperty] = useState();
 
   useEffect(() => {
     const singleProperty = localStorage.getItem("singleProperty");
