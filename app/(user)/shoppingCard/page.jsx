@@ -4,22 +4,13 @@ import React, { useEffect, useState } from "react";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { set } from "date-fns";
-
-interface Property {
-  title: string;
-  description: string;
-  imgUrls: string[];
-  availability: Array<JSON>;
-}
 
 const ShoppingCard = () => {
-  const [items, setItems] = useState<Property[]>([]);
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const user = useCurrentUser();
   const router = useRouter();
@@ -40,7 +31,7 @@ const ShoppingCard = () => {
     router.push("/pay");
     setSuccess("Property successfully booked!");
   };
-  const handleRemoveClick = (item: any) => {
+  const handleRemoveClick = (item) => {
     const spesificItem = items.find(
       (i) =>
         i.title === item.title &&

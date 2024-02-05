@@ -6,23 +6,14 @@ import { createBooking } from "@/actions/create-booking";
 import { useRouter } from "next/navigation";
 import { DiscountForm } from "@/components/user/discount-form";
 
-interface Property {
-  id: string;
-  title: string;
-  description: string;
-  imgUrl: string;
-  availability: Array<JSON>;
-}
-
 const Payment = () => {
   const router = useRouter();
 
-  const [items, setItems] = useState<Property[]>([]);
-  const [discount, setDiscount] = useState<boolean>(false);
-  const [code, setCode] = useState<string>("");
+  const [items, setItems] = useState([]);
+  const [discount, setDiscount] = useState(false);
+  const [code, setCode] = useState("");
 
   useEffect(() => {
-    // Retrieve items array from localStorage
     const storedItems = localStorage.getItem("shoppingCard");
     if (storedItems) {
       setItems(JSON.parse(storedItems));

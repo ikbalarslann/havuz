@@ -30,7 +30,9 @@
     "actions/availability.js",
     "actions/booking-status.js",
     "actions/create-booking.js",
-    "actions/create-review.js"
-  ],
+    "actions/create-review.js",
+    "actions/settings.js",
+, "app/(user)/pay/page.jsx"    "app/(user)/bookings/page.jsx"
+, "app/(user)/shoppingCard/page.jsx", "app/(user)/page.jsx"  ],
   "exclude": ["node_modules"]
 }
