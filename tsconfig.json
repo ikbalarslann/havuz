@@ -34,7 +34,7 @@
     "actions/settings.js",
     "app/(user)/pay/page.jsx",
     "app/(user)/bookings/page.jsx",
-    "app/(user)/shoppingCard/page.jsx",
+    "app/(user)/shoppingCard/page.tsx",
     "app/(user)/page.jsx",
     "app/host/_components/sidebar.jsx",
     "app/host/reviews/page.jsx",

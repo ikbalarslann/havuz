@@ -6,9 +6,11 @@ import { FormSuccess } from "@/components/form-success";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import * as z from "zod";
+import { PropertySchema } from "@/schemas";
 
 const ShoppingCard = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<z.infer<typeof PropertySchema>[]>([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -31,7 +33,8 @@ const ShoppingCard = () => {
     router.push("/pay");
     setSuccess("Property successfully booked!");
   };
-  const handleRemoveClick = (item) => {
+
+  const handleRemoveClick = (item: z.infer<typeof PropertySchema>) => {
     const spesificItem = items.find(
       (i) =>
         i.title === item.title &&
