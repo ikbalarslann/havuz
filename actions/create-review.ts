@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { currentUser } from "@/lib/auth";
 import { getPropertyById } from "@/data/property";
 
-export const createReview = async (values) => {
+export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
   const validatedFields = ReviewSchema.safeParse(values);
   const user = await currentUser();
 
@@ -21,7 +21,12 @@ export const createReview = async (values) => {
 
   try {
     const property = await getPropertyById(propertyId);
+
     const reviewArray = property?.reviews;
+    if (!Array.isArray(reviewArray)) {
+      return { error: "Invalid reviews array!" };
+    }
+
     const review = {
       id: uuidv4(),
       bookingId: bookingId,

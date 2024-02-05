@@ -5,13 +5,11 @@ import { Modal } from "./review-modal";
 
 const ReviewButton = ({ bookingId, propertyId }: any) => {
   return (
-    <div>
-      <Modal
-        Trigger={<Button>Review</Button>}
-        bookingId={bookingId}
-        propertyId={propertyId}
-      />
-    </div>
+    <Modal
+      Trigger={<Button>Review</Button>}
+      bookingId={bookingId}
+      propertyId={propertyId}
+    />
   );
 };
 

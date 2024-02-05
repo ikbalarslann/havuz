@@ -30,7 +30,7 @@
     "actions/availability.js",
     "actions/booking-status.js",
     "actions/create-booking.js",
-    "actions/create-review.js",
+    "actions/create-review.ts",
     "actions/settings.js",
     "app/(user)/pay/page.tsx",
     "app/(user)/bookings/page.tsx",
