@@ -38,13 +38,14 @@ export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
     };
 
     const newReviewArray = [...reviewArray, review];
+    const newReviewArrayJson = JSON.parse(JSON.stringify(newReviewArray));
 
     await db.property.update({
       where: {
         id: propertyId,
       },
       data: {
-        reviews: newReviewArray,
+        reviews: newReviewArrayJson,
       },
     });
 
