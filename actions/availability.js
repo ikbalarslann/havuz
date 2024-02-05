@@ -3,23 +3,11 @@
 import { db } from "@/lib/db";
 import { getPropertyByTitle } from "@/data/property";
 
-interface Availability {
-  date: string;
-  price: number;
-  free: boolean;
-}
-
-export const UpdatePropertyAvailability = async ({
-  title,
-  values,
-}: {
-  title: string;
-  values: Availability;
-}) => {
+export const UpdatePropertyAvailability = async ({ title, values }) => {
   const { date, price, free } = values;
   const property = await getPropertyByTitle(title);
   const availability = (property?.availability || []).filter(
-    (a): a is Availability => a?.date !== date
+    (a) => a?.date !== date
   );
   const updatedAvailability = [...availability, { date, price, free }];
 
