@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import * as z from "zod";
@@ -29,7 +29,7 @@ const FormSchema = z.object({
   }),
 });
 
-const DatePickerForm = ({ property }: any) => {
+const DatePickerForm = ({ property }) => {
   const router = useRouter();
   const [test, setTest] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -42,22 +42,20 @@ const DatePickerForm = ({ property }: any) => {
     }
   }, []);
 
-  const form = useForm<z.infer<typeof FormSchema>>({
+  const form = useForm({
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  function onSubmit(data) {
     const choosenDate = data.dob.toLocaleDateString("en-GB");
     const newAvailability = property.availability.filter(
       (item) => item.date === choosenDate
     );
     const newProperty = { ...property, availability: newAvailability };
 
-    setTest((prevTest) => {
-      const newTest = [...prevTest, newProperty];
-      localStorage.setItem("shoppingCard", JSON.stringify(newTest));
-      return newTest;
-    });
+    const newTest = [...test, newProperty];
+    localStorage.setItem("shoppingCard", JSON.stringify(newTest));
+
     router.push("/shoppingCard");
   }
 

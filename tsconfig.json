@@ -39,7 +39,10 @@
     "app/host/_components/sidebar.jsx",
     "app/host/reviews/page.jsx",
     "app/host/bookings/page.jsx",
-    "app/host/availability/page.jsx"
+    "app/host/availability/page.jsx",
+    "components/host/edit-property-form.jsx",
+    "components/user/date-form.jsx",
+    "components/user/review-modal.jsx"
   ],
   "exclude": ["node_modules"]
 }

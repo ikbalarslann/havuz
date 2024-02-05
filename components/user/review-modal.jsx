@@ -11,18 +11,18 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createReview } from "@/actions/create-review";
 import { RatingPicker } from "./rating-picker";
 
-export function Modal({ Trigger, bookingId, propertyId }: any) {
+export function Modal({ Trigger, bookingId, propertyId }) {
   const [formData, setFormData] = useState({
     rating: 0,
     title: "",
     description: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
@@ -52,7 +52,7 @@ export function Modal({ Trigger, bookingId, propertyId }: any) {
             <div className="grid flex-1 gap-2">
               <Label htmlFor="rating">Rating</Label>
               <RatingPicker
-                setRating={(value: any) =>
+                setRating={(value) =>
                   setFormData({ ...formData, rating: value })
                 }
               />
