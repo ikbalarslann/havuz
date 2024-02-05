@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import { createBooking } from "@/actions/create-booking";
 import { useRouter } from "next/navigation";
 import { DiscountForm } from "@/components/user/discount-form";
+import * as z from "zod";
+import { PropertySchema } from "@/schemas";
 
 const Payment = () => {
   const router = useRouter();
-
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<z.infer<typeof PropertySchema>[]>([]);
   const [discount, setDiscount] = useState(false);
   const [code, setCode] = useState("");
 
@@ -28,7 +29,7 @@ const Payment = () => {
     const bookingPromises = items.map(async (item) => {
       if (discount) {
         const availability = item.availability;
-        const newPrice = availability[0].price * 0.9;
+        const newPrice = parseFloat(availability[0].price) * 0.9;
         const newAvailability = { ...availability[0], price: newPrice };
         const newItem = {
           ...item,

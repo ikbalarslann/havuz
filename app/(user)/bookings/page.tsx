@@ -4,7 +4,7 @@ import ReviewButton from "@/components/user/review-button";
 
 const BookingPage = async () => {
   const user = await currentUser();
-  const bookings = await getBookingByUserId(user.id);
+  const bookings = user && (await getBookingByUserId(user.id));
   const bookingsPending = bookings?.filter(
     (booking) => booking.status === "PENDING"
   );

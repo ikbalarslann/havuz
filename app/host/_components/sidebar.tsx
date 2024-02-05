@@ -7,7 +7,7 @@ import Image from "next/image";
 export const Sidebar = async () => {
   const user = await currentUser();
   const properties = user?.propertyIds;
-  const property = await getPropertyById(properties[0]);
+  const property = properties && (await getPropertyById(properties[0]));
 
   return (
     <aside className="bg-gray-400 h-full w-[250px] p-4 shadow-sm flex flex-col items-center ">
