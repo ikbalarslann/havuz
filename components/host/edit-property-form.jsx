@@ -23,11 +23,11 @@ import { UploadButton } from "@/components/uploadthing";
 import { TypePicker } from "@/components/host/type-picker";
 
 export const EditPropertyForm = () => {
-  const [images, setImages] = useState<string[]>([]);
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+  const [images, setImages] = useState([]);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
-  const [property, setProperty] = useState<typeof PropertySchema>();
+  const [property, setProperty] = useState();
 
   useEffect(() => {
     const propertyHostString = localStorage.getItem("HostProperty");
@@ -35,7 +35,7 @@ export const EditPropertyForm = () => {
     setProperty(propertyHost);
   }, []);
 
-  const form = useForm<z.infer<typeof PropertySchema>>({
+  const form = useForm({
     resolver: zodResolver(PropertySchema),
     defaultValues: {
       title: property?.title ?? "",
@@ -69,7 +69,7 @@ export const EditPropertyForm = () => {
     }
   }, [property, form]);
 
-  const onSubmit = (values: z.infer<typeof PropertySchema>) => {
+  const onSubmit = (values) => {
     setError("");
     setSuccess("");
 

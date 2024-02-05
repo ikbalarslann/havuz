@@ -4,7 +4,6 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 
 import { PropertySchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
