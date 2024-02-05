@@ -3,14 +3,14 @@
 import * as z from "zod";
 
 import { db } from "@/lib/db";
-import { PropertySchema } from "@/schemas";
+import { PropertyCreateEdit } from "@/schemas";
 import { getPropertyByTitle } from "@/data/property";
 import { currentUser } from "@/lib/auth";
 
 export const createProperty = async (
-  values: z.infer<typeof PropertySchema>
+  values: z.infer<typeof PropertyCreateEdit>
 ) => {
-  const validatedFields = PropertySchema.safeParse(values);
+  const validatedFields = PropertyCreateEdit.safeParse(values);
   const user = await currentUser();
 
   if (!validatedFields.success) {

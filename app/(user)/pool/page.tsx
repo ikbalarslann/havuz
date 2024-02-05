@@ -19,7 +19,9 @@ const SinglePropertyPage = () => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-6xl pb-3 text-blue-100">{property?.title}</h1>
+      <h1 className="text-6xl pb-3 text-blue-100 text-center">
+        {property?.title}
+      </h1>
 
       <Slider array={array} />
 

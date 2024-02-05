@@ -4,8 +4,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { PropertySchema } from "@/schemas";
+import { PropertyCreateEdit } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -29,8 +28,8 @@ export const CreatePropertyForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof PropertySchema>>({
-    resolver: zodResolver(PropertySchema),
+  const form = useForm<z.infer<typeof PropertyCreateEdit>>({
+    resolver: zodResolver(PropertyCreateEdit),
     defaultValues: {
       title: "",
       description: "",
@@ -45,7 +44,7 @@ export const CreatePropertyForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof PropertySchema>) => {
+  const onSubmit = (values: z.infer<typeof PropertyCreateEdit>) => {
     setError("");
     setSuccess("");
     values = { ...values, imgUrls: images };

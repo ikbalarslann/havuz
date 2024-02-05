@@ -24,8 +24,8 @@ import { z } from "zod";
 
 export const EditPropertyForm = () => {
   const [images, setImages] = useState<string[]>([]);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [property, setProperty] =
     useState<z.infer<typeof PropertyCreateEdit>>();
