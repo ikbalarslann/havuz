@@ -1,8 +1,8 @@
 import { RegisterForm } from "@/components/auth/register-form";
 import { UserRole } from "@prisma/client";
 
-const RegisterPage = ({ role = UserRole.ADMIN }: any) => {
-  return <RegisterForm role={role} />;
+const RegisterPage = () => {
+  return <RegisterForm role={UserRole.ADMIN} />;
 };
 
 export default RegisterPage;
