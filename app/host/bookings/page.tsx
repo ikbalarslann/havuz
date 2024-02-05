@@ -4,7 +4,7 @@ import ApproveButton from "@/components/host/approve-button";
 
 const HostBookingsPage = async () => {
   const user = await currentUser();
-  const bookings = await getBookingByPropertyId(user.propertyIds[0]);
+  const bookings = user && (await getBookingByPropertyId(user.propertyIds[0]));
   const bookingsPending = bookings?.filter(
     (booking) => booking.status === "PENDING"
   );
