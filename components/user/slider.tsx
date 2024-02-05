@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 
-const Slider = ({ array }) => {
+const Slider = ({ array }: { array: string[] }) => {
   return (
     <Carousel
       className="w-full max-w-xs"
