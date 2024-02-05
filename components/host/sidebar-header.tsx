@@ -7,7 +7,7 @@ const Header = ({ property }: any) => {
     const prop = JSON.stringify(property);
 
     localStorage.setItem("HostProperty", prop);
-  }, []);
+  }, [property]);
 
   return property ? (
     <Link href="/host">

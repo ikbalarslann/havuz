@@ -45,7 +45,7 @@ export function RatingPicker({ setRating }: any) {
   const [value, setValue] = React.useState("");
   React.useEffect(() => {
     setRating(value);
-  }, [value]);
+  }, [value, setRating]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

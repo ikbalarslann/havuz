@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Modal } from "./review-modal";
 
-const ReviewButton = async ({ bookingId, propertyId }: any) => {
+const ReviewButton = ({ bookingId, propertyId }: any) => {
   return (
     <div>
       <Modal

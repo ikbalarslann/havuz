@@ -41,7 +41,7 @@ export function TypePicker({ setType }: any) {
   const [value, setValue] = React.useState("");
   React.useEffect(() => {
     setType(value);
-  }, [value]);
+  }, [value, setType]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

@@ -1,11 +1,11 @@
 import { RegisterForm } from "@/components/auth/register-form";
 import { UserRole } from "@prisma/client";
 
-interface RegisterPageProps {
+interface HostRegisterPageProps {
   role: UserRole;
 }
 
-const RegisterPage: React.FC<RegisterPageProps> = ({
+const RegisterPage: React.FC<HostRegisterPageProps> = ({
   role = UserRole.ADMIN,
 }) => {
   return <RegisterForm role={role} />;
