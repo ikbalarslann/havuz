@@ -31,7 +31,7 @@
     "actions/booking-status.js",
     "actions/create-booking.js",
     "actions/create-review.ts",
-    "actions/settings.js",
+    "actions/settings.ts",
     "app/(user)/pay/page.tsx",
     "app/(user)/bookings/page.tsx",
     "app/(user)/shoppingCard/page.tsx",
