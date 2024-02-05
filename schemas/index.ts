@@ -86,6 +86,15 @@ export const PropertySchema = z.object({
   location: z.string().min(1, {
     message: "location is required",
   }),
+  reviews: z.array(
+    z.object({
+      date: z.string(),
+      rating: z.number(),
+      title: z.string(),
+      description: z.string(),
+      userName: z.string(),
+    })
+  ),
   imgUrls: z.array(z.string()),
   price: z.number(),
   free: z.number(),

@@ -44,7 +44,7 @@
     "components/user/date-form.jsx",
     "components/user/review-modal.jsx",
     "components/user/slider.tsx",
-    "app/(user)/pool/page.jsx"
+    "app/(user)/pool/page.tsx"
   ],
   "exclude": ["node_modules"]
 }

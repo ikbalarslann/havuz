@@ -2,10 +2,12 @@
 import DatePickerForm from "@/components/user/date-form";
 import Slider from "@/components/user/slider";
 import { useEffect, useState } from "react";
+import * as z from "zod";
+import { PropertySchema } from "@/schemas";
 
 const SinglePropertyPage = () => {
-  const [array, setArray] = useState();
-  const [property, setProperty] = useState();
+  const [array, setArray] = useState<string[]>([]);
+  const [property, setProperty] = useState<z.infer<typeof PropertySchema>>();
 
   useEffect(() => {
     const singleProperty = localStorage.getItem("singleProperty");
@@ -37,30 +39,31 @@ const SinglePropertyPage = () => {
       <div className="space-y-6">
         <h1 className="text-4xl mb-6 font-bold">Customer Reviews</h1>
 
-        {property?.reviews.length > 0 ? (
-          property?.reviews.map((review, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="flex items-center">
-                  <span className="text-2xl font-bold mr-2">
-                    {review.rating}/5
-                  </span>
-                  <span className="text-blue-500">{review.title}</span>
+        {property?.reviews &&
+          (property?.reviews.length > 0 ? (
+            property?.reviews.map((review, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <div className="flex items-center mb-4">
+                  <div className="flex items-center">
+                    <span className="text-2xl font-bold mr-2">
+                      {review.rating}/5
+                    </span>
+                    <span className="text-blue-500">{review.title}</span>
+                  </div>
+                  <p className="ml-auto text-gray-600">{review.date}</p>
                 </div>
-                <p className="ml-auto text-gray-600">{review.date}</p>
+                <p className="text-gray-700 mb-4">{review.description}</p>
+                <div className="flex items-center">
+                  <span className="text-gray-700 font-semibold mr-2">
+                    Posted by:
+                  </span>
+                  <span className="text-blue-500">{review.userName}</span>
+                </div>
               </div>
-              <p className="text-gray-700 mb-4">{review.description}</p>
-              <div className="flex items-center">
-                <span className="text-gray-700 font-semibold mr-2">
-                  Posted by:
-                </span>
-                <span className="text-blue-500">{review.userName}</span>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-center">No reviews yet</p>
-        )}
+            ))
+          ) : (
+            <p className="text-center">No reviews yet</p>
+          ))}
       </div>
     </div>
   );
