@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PropertySchema } from "@/schemas";
+import { PropertyCreateEdit } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -20,13 +20,15 @@ import { FormSuccess } from "@/components/form-success";
 import { editProperty } from "@/actions/edit-property";
 import { UploadButton } from "@/components/uploadthing";
 import { TypePicker } from "@/components/host/type-picker";
+import { z } from "zod";
 
 export const EditPropertyForm = () => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
-  const [property, setProperty] = useState();
+  const [property, setProperty] =
+    useState<z.infer<typeof PropertyCreateEdit>>();
 
   useEffect(() => {
     const propertyHostString = localStorage.getItem("HostProperty");
@@ -35,9 +37,9 @@ export const EditPropertyForm = () => {
   }, []);
 
   const form = useForm({
-    resolver: zodResolver(PropertySchema),
+    resolver: zodResolver(PropertyCreateEdit),
     defaultValues: {
-      title: property?.title ?? "",
+      title: "",
       description: "",
       location: "",
       type: "",
@@ -68,7 +70,7 @@ export const EditPropertyForm = () => {
     }
   }, [property, form]);
 
-  const onSubmit = (values) => {
+  const onSubmit = (values: any) => {
     setError("");
     setSuccess("");
 
