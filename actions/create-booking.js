@@ -1,26 +1,10 @@
 "use server";
 
-import * as z from "zod";
-
 import { db } from "@/lib/db";
-import { PropertySchema } from "@/schemas";
 import { getPropertyById } from "@/data/property";
 import { currentUser } from "@/lib/auth";
 
-// Replace 'Property' interface with 'PropertySchema' type
-type Property = PropertySchema;
-
-// Remove unnecessary comma after 'title' property
-interface PropertySchema {
-  title: string;
-  description: string;
-  price: number;
-  availability: string[];
-  code?: string;
-  location: string;
-}
-
-export const createBooking = async (property: Property) => {
+export const createBooking = async (property) => {
   console.log("property", property);
 
   const user = await currentUser();

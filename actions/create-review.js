@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { currentUser } from "@/lib/auth";
 import { getPropertyById } from "@/data/property";
 
-export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
+export const createReview = async (values) => {
   const validatedFields = ReviewSchema.safeParse(values);
   const user = await currentUser();
 
