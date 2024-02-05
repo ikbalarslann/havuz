@@ -35,7 +35,11 @@
     "app/(user)/pay/page.jsx",
     "app/(user)/bookings/page.jsx",
     "app/(user)/shoppingCard/page.jsx",
-    "app/(user)/page.jsx"
+    "app/(user)/page.jsx",
+    "app/host/_components/sidebar.jsx",
+    "app/host/reviews/page.jsx",
+    "app/host/bookings/page.jsx",
+    "app/host/availability/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

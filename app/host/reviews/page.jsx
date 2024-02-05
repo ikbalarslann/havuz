@@ -1,6 +1,5 @@
 import { getPropertyById } from "@/data/property";
 import { currentUser } from "@/lib/auth";
-import ApproveButton from "@/components/host/approve-button";
 
 const HostReviewsPage = async () => {
   const user = await currentUser();
