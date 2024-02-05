@@ -42,7 +42,8 @@
     "app/host/availability/page.jsx",
     "components/host/edit-property-form.jsx",
     "components/user/date-form.jsx",
-    "components/user/review-modal.jsx"
+    "components/user/review-modal.jsx",
+    "components/user/slider.jsx"
   ],
   "exclude": ["node_modules"]
 }

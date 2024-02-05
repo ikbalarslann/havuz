@@ -1,6 +1,5 @@
 "use client";
 
-import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useEffect, useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -294,7 +293,7 @@ export const EditPropertyForm = () => {
 
                           field.onChange(images);
                         }}
-                        onUploadError={(error: Error) => {
+                        onUploadError={(error) => {
                           console.log(`ERROR! ${error.message}`);
                         }}
                       />
