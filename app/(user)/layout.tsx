@@ -7,7 +7,7 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
-    <div className="h-auto min-h-full w-full flex flex-col gap-y-10 items-center pb-0 mb-0  bg-blue-400">
+    <div className="h-auto min-h-full w-full flex flex-col px-2 items-center   bg-blue-400">
       <Nav />
       <div className="mb-16">{children}</div>
       <Footer />

@@ -12,7 +12,7 @@ import Autoplay from "embla-carousel-autoplay";
 const Slider = ({ array }: { array: string[] }) => {
   return (
     <Carousel
-      className="w-full max-w-xs"
+      className="w-full max-w-[600px]  "
       opts={{
         align: "start",
         loop: true,
@@ -28,13 +28,13 @@ const Slider = ({ array }: { array: string[] }) => {
           <CarouselItem key={index}>
             <div className="py-1">
               <Card>
-                <CardContent className="flex items-center justify-center  ">
+                <CardContent className="flex items-center justify-center   ">
                   <Image
                     src={item}
                     alt="Pool Image"
                     width={1000}
                     height={1000}
-                    className="min-w-full min-h-full rounded-xl"
+                    className="min-w-full min-h-full rounded-xl "
                   />
                 </CardContent>
               </Card>

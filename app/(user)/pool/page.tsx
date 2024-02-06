@@ -25,13 +25,25 @@ const SinglePropertyPage = () => {
 
       <Slider array={array} />
 
-      <h2 className="text-red-50 py-3 text-center">{property?.description}</h2>
-      <div>
-        <p>Depth of the pool is {property?.depth}m</p>
-        <p>Type : {property?.type} pool</p>
-        <p>Check in time: {property?.checkIn}</p>
-        <p>Check out time: {property?.checkOut}</p>
-        <p className="pb-3">Adress : {property?.location}</p>
+      <h2 className="bg-blue-500 text-white py-4 px-2 mb-1 rounded-md shadow-md text-center">
+        {property?.description}
+      </h2>
+      <div className="bg-blue-500 py-4  mb-5 rounded-md shadow-md">
+        <p className="text-white text-center my-1">
+          Depth of the pool is {property?.depth}m
+        </p>
+        <p className="text-white text-center my-1">
+          Type: {property?.type} pool
+        </p>
+        <p className="text-white text-center my-1">
+          Check-in time: {property?.checkIn}
+        </p>
+        <p className="text-white text-center my-1">
+          Check-out time: {property?.checkOut}
+        </p>
+        <p className="text-white text-center my-1 pb-3">
+          Address: {property?.location}
+        </p>
       </div>
 
       <div className="pb-6">
