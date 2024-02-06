@@ -26,7 +26,7 @@ const Slider = ({ array }: { array: string[] }) => {
       <CarouselContent>
         {array?.map((item, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
+            <div className="py-1">
               <Card>
                 <CardContent className="flex items-center justify-center  ">
                   <Image
