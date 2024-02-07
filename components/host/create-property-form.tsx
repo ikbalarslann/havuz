@@ -154,7 +154,7 @@ export const CreatePropertyForm = () => {
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price</FormLabel>
+                    <FormLabel>Price (Turkish Liras)</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -200,7 +200,7 @@ export const CreatePropertyForm = () => {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Location</FormLabel>
+                    <FormLabel>Location (Google Maps Link)</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -218,7 +218,7 @@ export const CreatePropertyForm = () => {
                 name="depth"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Depth</FormLabel>
+                    <FormLabel>Depth (meters)</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -226,8 +226,10 @@ export const CreatePropertyForm = () => {
                         placeholder="4 (meters)"
                         type="number"
                         onChange={(e) => {
-                          const value = parseInt(e.target.value, 10);
-                          field.onChange(value);
+                          const value = parseFloat(e.target.value);
+                          if (!isNaN(value)) {
+                            field.onChange(value);
+                          }
                         }}
                       />
                     </FormControl>
