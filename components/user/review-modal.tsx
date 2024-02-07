@@ -49,7 +49,7 @@ export function Modal({ Trigger, bookingId, propertyId }: ModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{Trigger}</DialogTrigger>
-      <DialogContent className="bg-blue-400 rounded-md mx-2 ">
+      <DialogContent className="bg-blue-400 rounded-md w-[350px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Leave a Review</DialogTitle>

@@ -5,8 +5,6 @@ import { getPropertyById } from "@/data/property";
 import { currentUser } from "@/lib/auth";
 
 export const createBooking = async (property) => {
-  console.log("property", property);
-
   const user = await currentUser();
 
   const inputs = {
@@ -18,6 +16,8 @@ export const createBooking = async (property) => {
     userName: user?.name,
     discountCode: property.code,
     location: property.location,
+    checkIn: property.checkIn,
+    checkOut: property.checkOut,
   };
 
   const {
@@ -29,6 +29,8 @@ export const createBooking = async (property) => {
     userName,
     discountCode,
     location,
+    checkIn,
+    checkOut,
   } = inputs;
 
   try {
@@ -42,6 +44,8 @@ export const createBooking = async (property) => {
         userName,
         discountCode,
         location,
+        checkIn,
+        checkOut,
       },
     });
     const property = await getPropertyById(propertyId);

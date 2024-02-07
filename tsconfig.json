@@ -44,7 +44,8 @@
     "components/user/date-form.tsx",
     "components/user/review-modal.tsx",
     "components/user/slider.tsx",
-    "app/(user)/pool/page.tsx"
+    "app/(user)/pool/page.tsx",
+    "components/user/booking-modal.tsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -100,5 +100,7 @@ model Booking {
   review       Boolean @default(false)
   discountCode String?
   location     String
+  checkIn      String
+  checkOut     String
 }
 

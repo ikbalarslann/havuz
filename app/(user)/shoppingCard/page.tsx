@@ -55,28 +55,32 @@ const ShoppingCard = () => {
             key={index}
             className="bg-blue-800 p-4 rounded-md text-white text-center flex w-auto  mx-2 "
           >
-            <div className="flex gap-3 justify-center items-center flex-col">
+            <div className="flex gap-3 justify-center items-center flex-col w-[300px]">
               <h3 className="text-lg font-semibold">{item.title}</h3>
-              <div>
-                <h1 className="pb-1">{item.availability[0].date}</h1>
-                <h2>Price : {item.availability[0].price} TL</h2>
+              <div className="flex gap-4">
+                <p className="pb-1">{item.availability[0].date}</p>
+                <p>Price : {item.availability[0].price} TL</p>
               </div>
-              <div>
-                <p>Check in : 8 am</p>
-                <p>Check out : 11 pm</p>
+              <div className="flex gap-4">
+                <p>Check in : {item.checkIn}</p>
+                <p>Check out : {item.checkOut}</p>
               </div>
-              <div className="flex gap-3 justify-center items-center">
-                <Button onClick={() => handleRemoveClick(item)}>
-                  Remove from the card
-                </Button>
-              </div>
+
+              <Button
+                onClick={() => handleRemoveClick(item)}
+                className="w-full bg-blue-950"
+              >
+                Remove from the card
+              </Button>
             </div>
           </div>
         ))}
       </div>
       <FormError message={error} />
       <FormSuccess message={success} />
-      <Button onClick={() => handleOnClick()}>Pay Now</Button>
+      <Button onClick={() => handleOnClick()} className="w-full bg-blue-950">
+        Pay Now
+      </Button>
     </div>
   ) : (
     <div>shopping card is empty</div>
