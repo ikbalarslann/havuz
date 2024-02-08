@@ -33,7 +33,7 @@ export const createProperty = async (
 
   const avaliabiliyMock = [];
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 300; i++) {
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() + i);
 
