@@ -41,7 +41,7 @@
     "app/host/bookings/page.tsx",
     "app/host/availability/page.tsx",
     "components/host/edit-property-form.tsx",
-    "components/user/date-form.tsx",
+    "components/user/date-form-pool.tsx",
     "components/user/review-modal.tsx",
     "components/user/slider.tsx",
     "app/(user)/pool/page.tsx",
