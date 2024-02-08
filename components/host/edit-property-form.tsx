@@ -19,7 +19,6 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { editProperty } from "@/actions/edit-property";
 import { UploadButton } from "@/components/uploadthing";
-import { TypePicker } from "@/components/host/type-picker";
 import { z } from "zod";
 
 export const EditPropertyForm = () => {

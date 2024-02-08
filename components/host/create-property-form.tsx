@@ -180,7 +180,7 @@ export const CreatePropertyForm = () => {
                 name="free"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Availability</FormLabel>
+                    <FormLabel>Max Guest Number</FormLabel>
                     <FormControl>
                       <Input
                         {...field}

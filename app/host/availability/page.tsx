@@ -12,9 +12,13 @@ const HostAvaliabilityPage = async () => {
 
   return (
     <div key={property?.title}>
-      <div>
-        <Callendar property={property} array={availabilityObjArray} />
-      </div>
+      {property ? (
+        <div>
+          <Callendar property={property} array={availabilityObjArray} />
+        </div>
+      ) : (
+        <div>Don't have a property yet!</div>
+      )}
     </div>
   );
 };
