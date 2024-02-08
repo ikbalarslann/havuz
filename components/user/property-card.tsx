@@ -36,6 +36,15 @@ const PropertyCard = ({ property }: any) => {
     localStorage.setItem("singleProperty", singleProperty);
   };
 
+  const env = () => {
+    const environment = property.env;
+    if (environment === "indoor") {
+      return "Indoor";
+    } else {
+      return "Outdoor";
+    }
+  };
+
   return (
     isAvailable && (
       <Link href="/pool">
@@ -57,7 +66,10 @@ const PropertyCard = ({ property }: any) => {
           <h3 className="text-blue-600 text-xl font-bold mb-2 pt-3">
             {property.title}
           </h3>
-          <p> Price : {price} TL</p>
+          <div className="flex justify-between text-l font-bold text-blue-900">
+            <p> Price : {price} TL</p>
+            <p>Type : {env()}</p>
+          </div>
         </div>
       </Link>
     )
