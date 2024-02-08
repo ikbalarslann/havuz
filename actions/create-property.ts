@@ -3,14 +3,14 @@
 import * as z from "zod";
 
 import { db } from "@/lib/db";
-import { PropertyCreateEdit } from "@/schemas";
+import { CreatePropertyFormProps } from "@/schemas";
 import { getPropertyByTitle } from "@/data/property";
 import { currentUser } from "@/lib/auth";
 
 export const createProperty = async (
-  values: z.infer<typeof PropertyCreateEdit>
+  values: z.infer<typeof CreatePropertyFormProps>
 ) => {
-  const validatedFields = PropertyCreateEdit.safeParse(values);
+  const validatedFields = CreatePropertyFormProps.safeParse(values);
   const user = await currentUser();
 
   if (!validatedFields.success) {
@@ -28,6 +28,7 @@ export const createProperty = async (
     type,
     checkIn,
     checkOut,
+    enviroment,
   } = validatedFields.data;
 
   const avaliabiliyMock = [];
@@ -60,6 +61,7 @@ export const createProperty = async (
         availability: avaliabiliyMock,
         checkIn: checkIn,
         checkOut: checkOut,
+        env: enviroment,
       },
     });
 

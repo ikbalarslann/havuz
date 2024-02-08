@@ -4,7 +4,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PropertyCreateEdit } from "@/schemas";
+import { CreatePropertyFormProps } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -21,6 +21,7 @@ import { FormSuccess } from "@/components/form-success";
 import { createProperty } from "@/actions/create-property";
 import { UploadButton } from "@/components/uploadthing";
 import { TypePicker } from "@/components/host/type-picker";
+import { EnviromentPicker } from "@/components/host/env-picker";
 
 export const CreatePropertyForm = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -28,8 +29,8 @@ export const CreatePropertyForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof PropertyCreateEdit>>({
-    resolver: zodResolver(PropertyCreateEdit),
+  const form = useForm<z.infer<typeof CreatePropertyFormProps>>({
+    resolver: zodResolver(CreatePropertyFormProps),
     defaultValues: {
       title: "",
       description: "",
@@ -41,10 +42,12 @@ export const CreatePropertyForm = () => {
       price: 0,
       free: 0,
       depth: 0,
+      enviroment: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof PropertyCreateEdit>) => {
+  const onSubmit = (values: z.infer<typeof CreatePropertyFormProps>) => {
+    console.log("values: ", values);
     setError("");
     setSuccess("");
     values = { ...values, imgUrls: images };
@@ -246,6 +249,19 @@ export const CreatePropertyForm = () => {
                     <FormLabel>Type</FormLabel>
                     <FormControl>
                       <TypePicker setType={field.onChange} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="enviroment"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Enviroment</FormLabel>
+                    <FormControl>
+                      <EnviromentPicker setEnv={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

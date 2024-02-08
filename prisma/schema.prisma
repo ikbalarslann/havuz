@@ -78,7 +78,8 @@ model Property {
   location     String
   depth        Float
   type         String
-  imgUrls       String[]
+  env          String
+  imgUrls      String[]
   availability Json[]
   reviews      Json[]
 }

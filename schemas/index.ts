@@ -130,7 +130,29 @@ export const PropertyCreateEdit = z.object({
   type: z.string(),
   depth: z.number(),
 });
-
+export const CreatePropertyFormProps = z.object({
+  title: z.string().min(1, {
+    message: "Title is required",
+  }),
+  description: z.string().min(1, {
+    message: "Description is required",
+  }),
+  checkIn: z.string().min(5, {
+    message: "checkIn is required",
+  }),
+  checkOut: z.string().min(5, {
+    message: "checkOut is required",
+  }),
+  location: z.string().min(1, {
+    message: "location is required",
+  }),
+  imgUrls: z.array(z.string()),
+  price: z.number(),
+  free: z.number(),
+  type: z.string(),
+  depth: z.number(),
+  enviroment: z.string(),
+});
 export const BookingSchema = z.object({
   id: z.string(),
   propertyId: z.string(),

@@ -5,11 +5,11 @@
  */
 export const publicRoutes = [
   "/",
-  "/auth/new-verification",
-  "/shoppingCard",
-  "[id]",
-  "/api/uploadthing",
+  "/discover",
   "/pool",
+  "/shoppingCard",
+  "/auth/new-verification",
+  "/api/uploadthing",
 ];
 
 /**
