@@ -40,6 +40,7 @@ const DatePickerForm = () => {
   function onSubmit(data: any) {
     const choosenDate = data.dob.toLocaleDateString("en-GB");
     localStorage.setItem("choosenDate", choosenDate);
+    router.push("/discover");
   }
 
   const handleOnClick = () => {
@@ -69,7 +70,7 @@ const DatePickerForm = () => {
                       onClick={handleOnClick}
                     >
                       {field.value ? (
-                        format(field.value, "PPP")
+                        format(field.value, "dd/MM/yyyy")
                       ) : (
                         <span>Pick a date</span>
                       )}

@@ -25,9 +25,7 @@ import { useRouter } from "next/navigation";
 import { PropertySchema } from "@/schemas";
 
 const FormSchema = z.object({
-  dob: z.date({
-    required_error: "Please select a date.",
-  }),
+  dob: z.date().nullable().optional(),
 });
 
 const DatePickerForm = ({
@@ -38,13 +36,15 @@ const DatePickerForm = ({
   const router = useRouter();
   const [test, setTest] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [choosenDateL, setChoosenDate] = useState("");
   const availabilityArray = property?.availability;
 
   useEffect(() => {
     const storedTest = localStorage.getItem("shoppingCard");
-    if (storedTest) {
-      setTest(JSON.parse(storedTest));
-    }
+    const date = localStorage.getItem("choosenDate");
+
+    storedTest && setTest(JSON.parse(storedTest));
+    date && setChoosenDate(date);
   }, []);
 
   const form = useForm({
@@ -52,7 +52,9 @@ const DatePickerForm = ({
   });
 
   function onSubmit(data: any) {
-    const choosenDate = data.dob.toLocaleDateString("en-GB");
+    const choosenDate = data.dob
+      ? data.dob.toLocaleDateString("en-GB")
+      : choosenDateL;
     const newAvailability = property.availability.filter(
       (item) => item.date === choosenDate
     );
@@ -84,15 +86,18 @@ const DatePickerForm = ({
     const formattedDate = `${day}/${month}/${year}`;
     const item = foundItem(formattedDate);
 
+    let current = new Date();
+    current.setHours(0, 0, 0, 0);
+
     if (item?.free === undefined) {
       return (
-        date < new Date() ||
+        date < current ||
         !availabilityArray.find((item) => `${item.date}` === formattedDate)
       );
     }
 
     return (
-      date < new Date() ||
+      date < current ||
       !availabilityArray.find((item) => `${item.date}` === formattedDate) ||
       item.free < 1
     );
@@ -121,9 +126,9 @@ const DatePickerForm = ({
                       onClick={handleOnClick}
                     >
                       {field.value ? (
-                        format(field.value, "PPP")
+                        format(field.value, "dd/MM/yyyy")
                       ) : (
-                        <span>Pick a date</span>
+                        <span>{choosenDateL || "pick a date"}</span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
