@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PropertyCreateEdit } from "@/schemas";
+import { EditPropertyFormProps } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -28,7 +28,7 @@ export const EditPropertyForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [property, setProperty] =
-    useState<z.infer<typeof PropertyCreateEdit>>();
+    useState<z.infer<typeof EditPropertyFormProps>>();
 
   useEffect(() => {
     const propertyHostString = localStorage.getItem("HostProperty");
@@ -37,16 +37,12 @@ export const EditPropertyForm = () => {
   }, []);
 
   const form = useForm({
-    resolver: zodResolver(PropertyCreateEdit),
+    resolver: zodResolver(EditPropertyFormProps),
     defaultValues: {
-      title: "",
       description: "",
-      location: "",
-      type: "",
       imgUrls: [],
       price: 0,
       free: 0,
-      depth: 0,
       checkIn: "08:00",
       checkOut: "23:00",
     },
@@ -54,16 +50,11 @@ export const EditPropertyForm = () => {
 
   useEffect(() => {
     if (property) {
-      // Only initialize the form if property is not undefined
       form.reset({
-        title: property.title || "",
         description: property.description || "",
-        location: property.location || "",
-        type: "",
         imgUrls: [],
         price: 0,
         free: 0,
-        depth: property.depth || 0,
         checkIn: property.checkIn || "08:00",
         checkOut: property.checkOut || "23:00",
       });
@@ -102,24 +93,6 @@ export const EditPropertyForm = () => {
         >
           <div className="space-y-4">
             <>
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="Hayat Hotel"
-                        type="text"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name="description"
@@ -205,7 +178,7 @@ export const EditPropertyForm = () => {
                 name="free"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Availability</FormLabel>
+                    <FormLabel>Max Guest Number</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -219,62 +192,6 @@ export const EditPropertyForm = () => {
                       />
                     </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="location"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Location (Google Maps Link)</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="Istanbul, Turkey"
-                        type="text"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="depth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Depth (meters)</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="4 (meters)"
-                        type="number"
-                        onChange={(e) => {
-                          const value = parseFloat(e.target.value);
-                          if (!isNaN(value)) {
-                            field.onChange(value);
-                          }
-                        }}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Type</FormLabel>
-                    <FormControl>
-                      <TypePicker setType={field.onChange} />
-                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}

@@ -108,10 +108,7 @@ export const PropertySchema = z.object({
   type: z.string(),
   depth: z.number(),
 });
-export const PropertyCreateEdit = z.object({
-  title: z.string().min(1, {
-    message: "Title is required",
-  }),
+export const EditPropertyFormProps = z.object({
   description: z.string().min(1, {
     message: "Description is required",
   }),
@@ -121,14 +118,10 @@ export const PropertyCreateEdit = z.object({
   checkOut: z.string().min(5, {
     message: "checkOut is required",
   }),
-  location: z.string().min(1, {
-    message: "location is required",
-  }),
+
   imgUrls: z.array(z.string()),
   price: z.number(),
   free: z.number(),
-  type: z.string(),
-  depth: z.number(),
 });
 export const CreatePropertyFormProps = z.object({
   title: z.string().min(1, {
