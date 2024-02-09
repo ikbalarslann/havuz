@@ -19,7 +19,7 @@ const SinglePropertyPage = () => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-6xl pb-3 text-blue-100 text-center">
+      <h1 className="text-3xl pb-3  text-blue-100 text-center font-bold">
         {property?.title}
       </h1>
 
