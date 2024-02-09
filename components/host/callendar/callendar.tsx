@@ -22,7 +22,7 @@ const Callendar = ({ property, array }: any) => {
     setYear(firstItem.date.split("/")[2]);
 
     setFilteredArray(filt);
-  }, [month]);
+  }, [month, array]);
 
   const comparator = (a: Item, b: Item) => {
     const aDate = parseInt(a.date.slice(0, 2));

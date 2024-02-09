@@ -28,7 +28,7 @@ const PropertyCard = ({ property }: any) => {
       return;
     }
     avilability.free > 0 ? setIsAvailable(true) : setIsAvailable(false);
-  }, [currentDate]);
+  }, [currentDate, property.availability]);
 
   const onClick = () => {
     const singleProperty = JSON.stringify(property);

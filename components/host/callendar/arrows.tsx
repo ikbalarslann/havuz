@@ -5,6 +5,8 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { useState, useEffect } from "react";
 const Arrows = ({ setMonth }: any) => {
   const [currentMonth, setCurrentMonth] = useState("01");
+  const arrayIndex = parseInt(currentMonth) - 1;
+
   const month = [
     { value: "01", label: "January" },
     { value: "02", label: "February" },
@@ -30,7 +32,7 @@ const Arrows = ({ setMonth }: any) => {
 
   useEffect(() => {
     setMonth(month[arrayIndex].value);
-  }, [currentMonth]);
+  }, [currentMonth, arrayIndex, setMonth, month]);
 
   const increseMonth = () => {
     if (currentMonth === "12") return;
@@ -47,8 +49,6 @@ const Arrows = ({ setMonth }: any) => {
     const newMonthString = newMonth.toString();
     currentMonth && setCurrentMonth(newMonthString);
   };
-
-  const arrayIndex = parseInt(currentMonth) - 1;
 
   return (
     <div className="flex justify-between w-[500px] ">
