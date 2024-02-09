@@ -51,7 +51,8 @@ const SinglePropertyPage = () => {
       </div>
 
       <div className="space-y-6">
-        <h1 className="text-4xl mb-6 font-bold">Customer Reviews</h1>
+        <hr />
+        <h1 className="text-4xl mb-6 font-bold text-center">Reviews</h1>
 
         {property?.reviews &&
           (property?.reviews.length > 0 ? (

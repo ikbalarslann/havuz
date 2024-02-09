@@ -32,8 +32,8 @@ const Slider = ({ array }: { array: string[] }) => {
                   <Image
                     src={item}
                     alt="Pool Image"
-                    width={1000}
-                    height={1000}
+                    width={500}
+                    height={500}
                     className="min-w-full min-h-full rounded-xl "
                   />
                 </CardContent>
