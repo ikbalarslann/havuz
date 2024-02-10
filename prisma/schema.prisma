@@ -77,6 +77,8 @@ model Property {
   checkOut     String
   location     String
   depth        Float
+  width        Float
+  heigth       Float
   type         String
   env          String
   imgUrls      String[]

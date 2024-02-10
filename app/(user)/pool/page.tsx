@@ -29,9 +29,18 @@ const SinglePropertyPage = () => {
         {property?.description}
       </h2>
       <div className="bg-blue-500 py-4  mb-5 rounded-md shadow-md">
-        <p className="text-white text-center my-1">
-          Depth of the pool is {property?.depth}m
-        </p>
+        <div className="flex items-center justify-between mx-3">
+          <p className="text-white text-center my-1">
+            Depth : {property?.depth} m
+          </p>
+          <p className="text-white text-center my-1">
+            Heigth : {property?.heigth} m
+          </p>
+          <p className="text-white text-center my-1">
+            Width : {property?.width} m
+          </p>
+        </div>
+
         <p className="text-white text-center my-1">
           Type: {property?.type} pool
         </p>

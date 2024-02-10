@@ -42,12 +42,13 @@ export const CreatePropertyForm = () => {
       price: 0,
       free: 0,
       depth: 0,
+      heigth: 0,
+      width: 0,
       enviroment: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof CreatePropertyFormProps>) => {
-    console.log("values: ", values);
     setError("");
     setSuccess("");
     values = { ...values, imgUrls: images };
@@ -227,6 +228,56 @@ export const CreatePropertyForm = () => {
                         {...field}
                         disabled={isPending}
                         placeholder="4 (meters)"
+                        type="number"
+                        onChange={(e) => {
+                          const value = parseFloat(e.target.value);
+                          if (!isNaN(value)) {
+                            field.onChange(value);
+                          }
+                        }}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="heigth"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Heigth (meters)</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="25 (meters)"
+                        type="number"
+                        onChange={(e) => {
+                          const value = parseFloat(e.target.value);
+                          if (!isNaN(value)) {
+                            field.onChange(value);
+                          }
+                        }}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="width"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Width (meters)</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="6 (meters)"
                         type="number"
                         onChange={(e) => {
                           const value = parseFloat(e.target.value);

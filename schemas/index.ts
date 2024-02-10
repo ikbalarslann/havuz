@@ -107,6 +107,8 @@ export const PropertySchema = z.object({
   free: z.number(),
   type: z.string(),
   depth: z.number(),
+  heigth: z.number(),
+  width: z.number(),
 });
 export const EditPropertyFormProps = z.object({
   description: z.string().min(1, {
@@ -144,6 +146,8 @@ export const CreatePropertyFormProps = z.object({
   free: z.number(),
   type: z.string(),
   depth: z.number(),
+  heigth: z.number(),
+  width: z.number(),
   enviroment: z.string(),
 });
 export const BookingSchema = z.object({
