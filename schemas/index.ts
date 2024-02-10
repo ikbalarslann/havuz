@@ -121,7 +121,6 @@ export const EditPropertyFormProps = z.object({
     message: "checkOut is required",
   }),
 
-  imgUrls: z.array(z.string()),
   price: z.number(),
   free: z.number(),
 });

@@ -18,7 +18,7 @@ const SinglePropertyPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-[600px]">
       <h1 className="text-3xl pb-3  text-blue-100 text-center font-bold">
         {property?.title}
       </h1>
@@ -49,9 +49,6 @@ const SinglePropertyPage = () => {
         </p>
         <p className="text-white text-center my-1">
           Check-out time: {property?.checkOut}
-        </p>
-        <p className="text-white text-center my-1 pb-3">
-          Address: {property?.location}
         </p>
       </div>
 

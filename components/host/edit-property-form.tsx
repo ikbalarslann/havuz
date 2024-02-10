@@ -18,11 +18,9 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { editProperty } from "@/actions/edit-property";
-import { UploadButton } from "@/components/uploadthing";
 import { z } from "zod";
 
 export const EditPropertyForm = () => {
-  const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -39,7 +37,6 @@ export const EditPropertyForm = () => {
     resolver: zodResolver(EditPropertyFormProps),
     defaultValues: {
       description: "",
-      imgUrls: [],
       price: 0,
       free: 0,
       checkIn: "08:00",
@@ -51,7 +48,6 @@ export const EditPropertyForm = () => {
     if (property) {
       form.reset({
         description: property.description || "",
-        imgUrls: [],
         price: 0,
         free: 0,
         checkIn: property.checkIn || "08:00",
@@ -63,8 +59,6 @@ export const EditPropertyForm = () => {
   const onSubmit = (values: any) => {
     setError("");
     setSuccess("");
-
-    values = { ...values, imgUrls: images };
 
     startTransition(() => {
       editProperty(values)
@@ -191,33 +185,6 @@ export const EditPropertyForm = () => {
                       />
                     </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="imgUrls"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Image ({images.length}/5) </FormLabel>
-
-                    <FormControl>
-                      <UploadButton
-                        endpoint="imageUploader"
-                        onClientUploadComplete={(res) => {
-                          console.log("Files: ", res);
-                          const newImages = [...images, res[0].url];
-                          setImages(newImages);
-
-                          field.onChange(images);
-                        }}
-                        onUploadError={(error) => {
-                          console.log(`ERROR! ${error.message}`);
-                        }}
-                      />
-                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}

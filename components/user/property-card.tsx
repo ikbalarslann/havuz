@@ -1,14 +1,18 @@
 "use client";
 
-import { set } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 const PropertyCard = ({ property }: any) => {
   const [currentDate, setCurrentDate] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [price, setPrice] = useState("");
+
+  const openNewTab = () => {
+    window.open(property.location, "_blank");
+  };
 
   useEffect(() => {
     const date = localStorage.getItem("choosenDate");
@@ -66,10 +70,18 @@ const PropertyCard = ({ property }: any) => {
           <h3 className="text-blue-600 text-xl font-bold mb-2 pt-3">
             {property.title}
           </h3>
-          <div className="flex justify-between text-l font-bold text-blue-900">
+
+          <div className="flex justify-between items-center text-l font-bold text-blue-900">
             <p> Price : {price} TL</p>
+
             <p>Type : {env()}</p>
           </div>
+          <Button
+            className=" text-xl font-bold  bg-blue-200 text-blue-900 shadow-none hover:text-white  w-full mt-2 "
+            onClick={openNewTab}
+          >
+            Location
+          </Button>
         </div>
       </Link>
     )

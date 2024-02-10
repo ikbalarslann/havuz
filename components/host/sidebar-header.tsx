@@ -11,7 +11,7 @@ const Header = ({ property }: any) => {
 
   return property ? (
     <Link href="/host">
-      <p className="text-4xl text-blue-800">{property.title}</p>
+      <p className="text-4xl text-blue-800 text-center">{property.title}</p>
     </Link>
   ) : (
     <p className="text-4xl text-blue-800">Havuz</p>

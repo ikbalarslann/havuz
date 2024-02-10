@@ -209,7 +209,7 @@ export const CreatePropertyForm = () => {
                       <Input
                         {...field}
                         disabled={isPending}
-                        placeholder="Istanbul, Turkey"
+                        placeholder="https://www.google.com/maps/..."
                         type="text"
                       />
                     </FormControl>

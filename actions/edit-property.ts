@@ -16,8 +16,7 @@ export const editProperty = async (
     return { error: "Invalid fields!" };
   }
 
-  const { description, price, free, imgUrls, checkIn, checkOut } =
-    validatedFields.data;
+  const { description, price, free, checkIn, checkOut } = validatedFields.data;
 
   const avaliabiliyMock = [];
 
@@ -40,7 +39,6 @@ export const editProperty = async (
       data: {
         userId: user?.id,
         description: description,
-        imgUrls: imgUrls,
         availability: avaliabiliyMock,
         checkIn: checkIn,
         checkOut: checkOut,
