@@ -40,22 +40,19 @@ const BookingPage = async () => {
       {bookingsApproved?.map((booking: any) => (
         <div
           key={booking.id}
-          className="mb-4 p-4 bg-blue-100 rounded-md shadow-md"
+          className="mb-4 px-3 py-2 bg-blue-100 rounded-md shadow-md"
         >
           <p className="text-l font-bold text-center">{booking.date}</p>
-          <div className="flex gap-8">
-            <p className="text-gray-600">Price: ${booking.price}</p>
+          <div className="flex justify-between">
+            <p className="text-gray-600">Price: {booking.price.toFixed(1)}TL</p>
             <p className="text-gray-600">Pool: {booking.propertyTitle}</p>
           </div>
 
-          <div className="flex gap-8">
+          <div className="flex justify-between">
             <p className="text-gray-600">check in: {booking.checkIn}</p>
             <p className="text-gray-600">check out: {booking.checkOut}</p>
           </div>
 
-          <p className="text-gray-600 text-center">
-            Adress: {booking.location}
-          </p>
           {!booking.review && (
             <ReviewButton
               bookingId={booking.id}
