@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as z from "zod";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -36,6 +36,11 @@ const DatePickerForm = () => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
   });
+
+  useEffect(() => {
+    const currentDate = new Date();
+    form.setValue("dob", currentDate);
+  }, [form]);
 
   function onSubmit(data: any) {
     const choosenDate = data.dob.toLocaleDateString("en-GB");
