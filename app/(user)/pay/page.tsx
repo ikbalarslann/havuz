@@ -60,9 +60,11 @@ const Payment = () => {
             {"   "} Price: {item.availability[0].price} TL
           </p>
         ))}
-        total Price : {total} TL
+        total Price : {total.toFixed(1)} TL
         {discount ? (
-          <p className="text-green-500 ">Discounted Price : {total * 0.9} TL</p>
+          <p className="text-green-500 ">
+            Discounted Price : {(total * 0.9).toFixed(1)} TL
+          </p>
         ) : (
           ""
         )}
