@@ -2,6 +2,12 @@ import { getBookingByUserId } from "@/data/booking";
 import { currentUser } from "@/lib/auth";
 import ReviewButton from "@/components/user/review-button";
 import Modal from "@/components/user/booking-modal";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bookings",
+  description: "view your bookings for the best pools in Istanbul.",
+};
 
 const BookingPage = async () => {
   const user = await currentUser();

@@ -1,5 +1,11 @@
 import { getAllProperties } from "@/data/property";
 import PropertyCard from "@/components/user/property-card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Discover",
+  description: "Discover pools in Istanbul and rent them easily.",
+};
 
 const DiscoverPage = async () => {
   const properties = await getAllProperties();

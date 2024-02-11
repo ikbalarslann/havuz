@@ -9,7 +9,10 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Havuz ve Havuz",
+  title: {
+    default: "Havuz ve Havuz",
+    template: "%s | Havuz ve Havuz",
+  },
   description: "Pool renting made easy",
 };
 

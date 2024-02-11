@@ -1,11 +1,12 @@
 "use client";
+
 import DatePickerForm from "@/components/user/date-form-pool";
 import Slider from "@/components/user/slider";
 import { useEffect, useState } from "react";
 import * as z from "zod";
 import { PropertySchema } from "@/schemas";
 
-const SinglePropertyPage = () => {
+const SingleProperty = () => {
   const [array, setArray] = useState<string[]>([]);
   const [property, setProperty] = useState<z.infer<typeof PropertySchema>>();
 
@@ -18,7 +19,7 @@ const SinglePropertyPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col max-w-[600px]">
+    <div className="flex flex-col max-w-[400px]">
       <h1 className="text-3xl pb-3  text-blue-100 text-center font-bold">
         {property?.title}
       </h1>
@@ -90,4 +91,4 @@ const SinglePropertyPage = () => {
   );
 };
 
-export default SinglePropertyPage;
+export default SingleProperty;
