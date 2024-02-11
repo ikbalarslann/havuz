@@ -3,13 +3,16 @@
  * These routes do not require authentication
  * @type {string[]}
  */
-export const publicRoutes = [
-  "/",
-  "/discover",
-  "/pool",
-  "/shoppingCard",
-  "/auth/new-verification",
-  "/api/uploadthing",
+
+export const secureRoutes = [
+  "/pay",
+  "/bookings",
+  "/settings",
+  "/host",
+  "/host/analytics",
+  "/host/availability",
+  "/host/bookings",
+  "/host/reviews",
 ];
 
 /**
