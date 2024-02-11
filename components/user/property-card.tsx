@@ -49,9 +49,15 @@ const PropertyCard = ({ property }: any) => {
     }
   };
 
+  const linkTo = () => {
+    const newTitle = property.title.split(" ").join("-");
+
+    return `discover/${newTitle}`;
+  };
+
   return (
     isAvailable && (
-      <Link href="/pool">
+      <Link href={linkTo()}>
         <div
           className="bg-blue-200 rounded-md text-center p-4 flex-1 mx-2"
           key={property.title}

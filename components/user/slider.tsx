@@ -12,7 +12,7 @@ import Autoplay from "embla-carousel-autoplay";
 const Slider = ({ array }: { array: string[] }) => {
   return (
     <Carousel
-      className="w-full max-w-[600px]  "
+      className="w-full max-w-[400px]  "
       opts={{
         align: "start",
         loop: true,
@@ -32,9 +32,10 @@ const Slider = ({ array }: { array: string[] }) => {
                   <Image
                     src={item}
                     alt="Pool Image"
-                    width={10}
-                    height={10}
-                    className="min-w-full rounded-xl "
+                    width={450}
+                    height={500}
+                    className=" rounded-xl "
+                    loading="eager"
                   />
                 </CardContent>
               </Card>
