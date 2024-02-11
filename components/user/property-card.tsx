@@ -78,9 +78,9 @@ const PropertyCard = ({ property }: any) => {
           </h3>
 
           <div className="flex justify-between items-center text-l font-bold text-blue-900">
-            <p> Price : {price} TL</p>
+            <p> {price} TL</p>
 
-            <p>Type : {env()}</p>
+            <p> {env()}</p>
           </div>
           <Button
             className=" text-xl font-bold  bg-blue-200 text-blue-900 shadow-none hover:text-white  w-full mt-2 "

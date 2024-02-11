@@ -29,10 +29,12 @@ const BookingPage = async () => {
             trigger={
               <div
                 key={booking.id}
-                className="mb-4 p-4 bg-blue-100 rounded-md shadow-md w-[350px] flex items-center justify-between"
+                className="mb-4 p-4 bg-blue-100 rounded-md shadow-md w-[350px] flex flex-col items-center justify-between"
               >
                 <h2 className="text-l font-bold">{booking.date}</h2>
-                <p className="text-gray-600">Pool : {booking.propertyTitle}</p>
+                <p className="text-gray-600 text-center">
+                  {booking.propertyTitle}
+                </p>
               </div>
             }
           />
@@ -48,17 +50,17 @@ const BookingPage = async () => {
           key={booking.id}
           className="mb-4 px-3 py-2 bg-blue-100 rounded-md shadow-md"
         >
-          <p className="text-l font-bold text-center">{booking.date}</p>
+          <p className="text-l font-bold text-center mb-3 mt-1">
+            {booking.propertyTitle}
+          </p>
           <div className="flex justify-between">
-            <p className="text-gray-600">Price: {booking.price.toFixed(1)}TL</p>
-            <p className="text-gray-600">Pool: {booking.propertyTitle}</p>
+            <p className="text-gray-600">{booking.date}</p>
+            <p className="text-gray-600 ">{booking.price.toFixed(1)}TL</p>
           </div>
-
           <div className="flex justify-between">
             <p className="text-gray-600">check in: {booking.checkIn}</p>
             <p className="text-gray-600">check out: {booking.checkOut}</p>
           </div>
-
           {!booking.review && (
             <ReviewButton
               bookingId={booking.id}

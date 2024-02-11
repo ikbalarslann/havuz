@@ -11,9 +11,10 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createReview } from "@/actions/create-review";
 import { RatingPicker } from "./rating-picker";
+import * as z from "zod";
 
 interface ModalProps {
   Trigger: React.ReactNode;
@@ -49,37 +50,39 @@ export function Modal({ Trigger, bookingId, propertyId }: ModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{Trigger}</DialogTrigger>
-      <DialogContent className="bg-blue-400 rounded-md w-[350px]">
+      <DialogContent className="bg-blue-200 rounded-md w-[350px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Leave a Review</DialogTitle>
           </DialogHeader>
-          <div className="flex items-center space-x-2 gap-4 flex-col ">
-            <div className="grid flex-1 gap-2">
+          <div className="flex items-center  gap-4 flex-col my-3 text-center ">
+            <div className=" flex flex-col gap-1 ">
               <Label htmlFor="rating">Rating</Label>
               <RatingPicker setRating={setRating} />
             </div>
-            <div className="grid flex-1 gap-2">
+            <div className=" ">
               <Label htmlFor="title">title</Label>
               <Input
                 id="title"
                 className="bg-white"
                 defaultValue=""
+                placeholder="I loved it!"
                 onChange={handleChange}
               />
             </div>
-            <div className="grid flex-1 gap-2">
+            <div className="   ">
               <Label htmlFor="description">description</Label>
               <Input
                 id="description"
                 className="bg-white"
                 defaultValue=""
+                placeholder="It was great!"
                 onChange={handleChange}
               />
             </div>
           </div>
-          <DialogFooter className="sm:justify-end flex  mt-4">
-            <Button type="submit" variant="default">
+          <DialogFooter className=" flex  mt-4">
+            <Button type="submit" className="bg-blue-600">
               Update
             </Button>
           </DialogFooter>
