@@ -17,7 +17,9 @@ const PropertyCard = ({ property }: any) => {
   useEffect(() => {
     const date = localStorage.getItem("choosenDate");
 
-    date && setCurrentDate(date);
+    date
+      ? setCurrentDate(date)
+      : setCurrentDate(new Date().toLocaleDateString("en-GB"));
   }, []);
 
   useEffect(() => {
@@ -33,12 +35,6 @@ const PropertyCard = ({ property }: any) => {
     }
     avilability.free > 0 ? setIsAvailable(true) : setIsAvailable(false);
   }, [currentDate, property.availability]);
-
-  const onClick = () => {
-    const singleProperty = JSON.stringify(property);
-
-    localStorage.setItem("singleProperty", singleProperty);
-  };
 
   const env = () => {
     const environment = property.env;
@@ -62,7 +58,6 @@ const PropertyCard = ({ property }: any) => {
           className="bg-blue-200 rounded-md text-center p-4 flex-1 mx-2"
           key={property.title}
           style={{ cursor: "pointer", maxWidth: "600px" }}
-          onClick={onClick}
         >
           <div className="relative overflow-hidden rounded-md">
             <Image

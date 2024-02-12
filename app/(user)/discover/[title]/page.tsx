@@ -1,5 +1,6 @@
 import SingleProperty from "@/components/user/single-property";
 import { Metadata } from "next";
+import { getPropertyByTitle } from "@/data/property";
 
 export async function generateMetadata({
   params,
@@ -7,14 +8,28 @@ export async function generateMetadata({
   params: { title: string };
 }): Promise<Metadata> {
   const title = params.title.split("-").join(" ");
+  const property = await getPropertyByTitle(title);
   return {
     title: title,
-    description: "Rent this beautiful pool for your next vacation! ",
+    description: property?.description,
   };
 }
 
-const SinglePropertyPage = () => {
-  return <SingleProperty />;
+const SinglePropertyPage = async ({
+  params,
+}: {
+  params: { title: string };
+}) => {
+  const title = params.title.split("-").join(" ");
+  const property = await getPropertyByTitle(title);
+
+  return property ? (
+    <SingleProperty propertyObj={property} />
+  ) : (
+    <div>
+      <h1>Property not found</h1>
+    </div>
+  );
 };
 
 export default SinglePropertyPage;

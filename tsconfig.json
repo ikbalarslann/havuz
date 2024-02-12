@@ -35,7 +35,7 @@
     "app/(user)/pay/page.tsx",
     "app/(user)/bookings/page.tsx",
     "app/(user)/shoppingCard/page.tsx",
-    "app/(user)/page.jsx",
+    "app/(user)/page.tsx",
     "app/host/_components/sidebar.tsx",
     "app/host/reviews/page.tsx",
     "app/host/bookings/page.tsx",

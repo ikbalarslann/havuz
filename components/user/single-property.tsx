@@ -6,17 +6,14 @@ import { useEffect, useState } from "react";
 import * as z from "zod";
 import { PropertySchema } from "@/schemas";
 
-const SingleProperty = () => {
+const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
   const [array, setArray] = useState<string[]>([]);
   const [property, setProperty] = useState<z.infer<typeof PropertySchema>>();
 
   useEffect(() => {
-    const singleProperty = localStorage.getItem("singleProperty");
-    const object = singleProperty && JSON.parse(singleProperty);
-
-    setProperty(object);
-    setArray(object.imgUrls);
-  }, []);
+    setProperty(propertyObj);
+    setArray(propertyObj.imgUrls);
+  }, [propertyObj]);
 
   return (
     <div className="flex flex-col max-w-[400px]">
