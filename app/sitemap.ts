@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postEntries = titleArray
     ? titleArray?.map((title) => ({
-        url: `${process.env.NEXT_PUBLIC_APP_URL}/discover/${title}`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}discover/${title}`,
       }))
     : [];
 
@@ -49,6 +49,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${process.env.NEXT_PUBLIC_APP_URL}shoppingCard`,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_APP_URL}host`,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_APP_URL}host/analytics`,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_APP_URL}host/availability`,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_APP_URL}host/bookings`,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_APP_URL}host/reviews`,
     },
 
     ...postEntries,
