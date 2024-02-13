@@ -1,9 +1,17 @@
 import { Nav } from "./_components/nav";
 import Footer from "@/components/user/footer";
+import type { Metadata } from "next";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
 }
+
+export const metadata: Metadata = {
+  title: {
+    default: "Havuz ve Havuz",
+    template: "%s | Havuz ve Havuz",
+  },
+};
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (

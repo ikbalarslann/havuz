@@ -2,9 +2,6 @@ import DatePickerForm from "@/components/user/date-picker";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: {
-    absolute: "Havuz ve Havuz",
-  },
   description: "Pool renting made easy.",
 };
 
