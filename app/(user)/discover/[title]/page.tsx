@@ -2,6 +2,7 @@ import SingleProperty from "@/components/user/single-property";
 import { Metadata } from "next";
 import { getPropertyByTitle } from "@/data/property";
 import StructuredData from "@/components/user/structured-data";
+import mockPng from "@/public/authdataflow.png";
 
 export async function generateMetadata({
   params,
@@ -41,7 +42,8 @@ const SinglePropertyPage = async ({
     },
     description: property?.description,
     name: property?.title,
-    image: property?.imgUrls[0],
+    image:
+      "https://hdqwalls.com/wallpapers/lamborghini-aventador-s-roadster-2019-4k-ok.jpg",
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
