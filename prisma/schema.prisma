@@ -73,14 +73,14 @@ model Property {
   userId       String?        @unique
   title        String         @unique
   description  String
+  meta         String
   checkIn      String
   checkOut     String
   location     String
+  address      String
   depth        Float
-  width        Float
-  heigth       Float
   type         String
-  env          String
+  tags         String[]
   imgUrls      String[]
   availability Json[]
   reviews      Json[]

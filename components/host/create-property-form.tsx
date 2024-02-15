@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition, useCallback } from "react";
+import { useState, useTransition, useCallback, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreatePropertyFormProps } from "@/schemas";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
@@ -22,7 +33,8 @@ import { createProperty } from "@/actions/create-property";
 import { UploadButton } from "@/components/uploadthing";
 import { TypePicker } from "@/components/host/type-picker";
 import { TagPicker } from "@/components/host/tag-picker";
-import { EnviromentPicker } from "@/components/host/env-picker";
+import Image from "next/image";
+import { set } from "date-fns";
 
 export const CreatePropertyForm = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -30,6 +42,16 @@ export const CreatePropertyForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [tags, setTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    setImages([
+      "https://utfs.io/f/ed88d8a9-d345-47b4-8bc4-33c58e41f90c-lsxa4g.png",
+      "https://utfs.io/f/26360577-049c-4b97-810b-a7c8e9e09bbe-1zbfv.png",
+      "https://utfs.io/f/989ebaf4-188b-412c-959f-6e6c069e508f-sh25b1.png",
+      "https://utfs.io/f/59f1f3f7-50f8-4358-8236-2c8e7d565f14-odztoi.jpeg",
+      "https://utfs.io/f/6ba3c896-01ff-4a7b-a1c6-21d74c906e0a-odztoi.jpg",
+    ]);
+  }, []);
 
   const setTagsOne = (tag: string) => {
     if (tags.includes(tag)) {
@@ -39,6 +61,10 @@ export const CreatePropertyForm = () => {
     }
 
     setTags([...tags, tag]);
+  };
+
+  const handleImageClick = (img: string) => {
+    setImages(images.filter((image) => image !== img));
   };
 
   const form = useForm<z.infer<typeof CreatePropertyFormProps>>({
@@ -65,22 +91,21 @@ export const CreatePropertyForm = () => {
     setError("");
     setSuccess("");
     values = { ...values, tags: tagsWithoutEmpty, imgUrls: images };
-    console.log("Values: ", values);
-    // startTransition(() => {
-    //   createProperty(values)
-    //     .then((data) => {
-    //       if (data?.error) {
-    //         form.reset();
-    //         setError(data.error);
-    //       }
-    //       if (data?.success) {
-    //         form.reset();
-    //         setSuccess(data.success);
-    //         window.location.reload();
-    //       }
-    //     })
-    //     .catch(() => setError("Something went wrong"));
-    // });
+    startTransition(() => {
+      createProperty(values)
+        .then((data) => {
+          if (data?.error) {
+            form.reset();
+            setError(data.error);
+          }
+          if (data?.success) {
+            form.reset();
+            setSuccess(data.success);
+            window.location.reload();
+          }
+        })
+        .catch(() => setError("Something went wrong"));
+    });
   };
 
   return (
@@ -332,7 +357,6 @@ export const CreatePropertyForm = () => {
                       <UploadButton
                         endpoint="imageUploader"
                         onClientUploadComplete={(res) => {
-                          console.log("Files: ", res);
                           const newImages = [...images, res[0].url];
                           setImages(newImages);
 
@@ -347,6 +371,43 @@ export const CreatePropertyForm = () => {
                   </FormItem>
                 )}
               />
+              {
+                <div className="flex  space-x-2 max-w-[450px]">
+                  {images.map((img, index) => (
+                    <div key={index}>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <div key={index} className="relative w-20 h-20">
+                            <Image
+                              src={img}
+                              alt="property image"
+                              layout="fill"
+                              objectFit="cover"
+                            />
+                          </div>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete Image</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Are you sure you want to delete this image?
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter className="flex">
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => handleImageClick(img)}
+                              className="bg-red-600 mt-2"
+                            >
+                              delete
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  ))}
+                </div>
+              }
             </>
           </div>
           <FormError message={error} />

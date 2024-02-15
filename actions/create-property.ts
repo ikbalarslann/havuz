@@ -27,13 +27,10 @@ export const createProperty = async (
     location,
     address,
     depth,
-    width,
-    heigth,
     type,
     tags,
     checkIn,
     checkOut,
-    enviroment,
   } = validatedFields.data;
 
   const avaliabiliyMock = [];
@@ -59,16 +56,16 @@ export const createProperty = async (
         userId: user?.id,
         title: title,
         description: description,
+        meta: meta,
         imgUrls: imgUrls,
         depth: depth,
-        width: width,
-        heigth: heigth,
         location: location,
+        address: address,
         type: type,
+        tags: tags,
         availability: avaliabiliyMock,
         checkIn: checkIn,
         checkOut: checkOut,
-        env: enviroment,
       },
     });
 
