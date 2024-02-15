@@ -35,6 +35,7 @@ export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
       rating: rating,
       title: title,
       description: description,
+      date: new Date().toLocaleDateString("en-GB"),
     };
 
     const newReviewArray = [...reviewArray, review];

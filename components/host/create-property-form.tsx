@@ -34,7 +34,6 @@ import { UploadButton } from "@/components/uploadthing";
 import { TypePicker } from "@/components/host/type-picker";
 import { TagPicker } from "@/components/host/tag-picker";
 import Image from "next/image";
-import { set } from "date-fns";
 
 export const CreatePropertyForm = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -42,16 +41,6 @@ export const CreatePropertyForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [tags, setTags] = useState<string[]>([]);
-
-  useEffect(() => {
-    setImages([
-      "https://utfs.io/f/ed88d8a9-d345-47b4-8bc4-33c58e41f90c-lsxa4g.png",
-      "https://utfs.io/f/26360577-049c-4b97-810b-a7c8e9e09bbe-1zbfv.png",
-      "https://utfs.io/f/989ebaf4-188b-412c-959f-6e6c069e508f-sh25b1.png",
-      "https://utfs.io/f/59f1f3f7-50f8-4358-8236-2c8e7d565f14-odztoi.jpeg",
-      "https://utfs.io/f/6ba3c896-01ff-4a7b-a1c6-21d74c906e0a-odztoi.jpg",
-    ]);
-  }, []);
 
   const setTagsOne = (tag: string) => {
     if (tags.includes(tag)) {
@@ -365,6 +354,9 @@ export const CreatePropertyForm = () => {
                         onUploadError={(error: Error) => {
                           console.log(`ERROR! ${error.message}`);
                         }}
+                        content={{
+                          button: () => <div>Upload Image</div>,
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -372,7 +364,7 @@ export const CreatePropertyForm = () => {
                 )}
               />
               {
-                <div className="flex  space-x-2 max-w-[450px]">
+                <div className="flex  space-x-1 max-w-[400px]">
                   {images.map((img, index) => (
                     <div key={index}>
                       <AlertDialog>
