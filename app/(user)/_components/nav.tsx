@@ -16,11 +16,11 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="relative container mx-auto p-6  ">
+    <nav className="relative container   ">
       <div className="flex items-center justify-between ">
         <div className="pt-2 text-5xl">
           <Link href="/">
-            <Image src="/logo.png" alt="logo" width={120} height={100} />
+            <Image src="/logo.png" alt="logo" width={70} height={70} />
           </Link>
         </div>
         <div className="hidden space-x-6 md:flex">

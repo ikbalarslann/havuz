@@ -17,7 +17,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useEffect } from "react";
-import { set } from "date-fns";
 
 const frameworks = [
   {
@@ -29,12 +28,20 @@ const frameworks = [
     label: "Outdoor Pool",
   },
   {
+    value: "turkish-bath",
+    label: "Turkish Bath",
+  },
+  {
     value: "jacuzzi",
     label: "Jacuzzi",
   },
   {
-    value: "turkish-bath",
-    label: "Turkish Bath",
+    value: "toilet",
+    label: "Toilet",
+  },
+  {
+    value: "shower",
+    label: "Shower",
   },
   {
     value: "sauna",

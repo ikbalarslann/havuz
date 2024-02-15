@@ -4,6 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { DotFilledIcon } from "@radix-ui/react-icons";
+
+import { FaSwimmingPool } from "react-icons/fa";
+import { MdOutlinePool } from "react-icons/md";
+import { LiaBathSolid } from "react-icons/lia";
+import { FaHotTubPerson } from "react-icons/fa6";
+import { FaToiletPaper } from "react-icons/fa";
+import { FaShower } from "react-icons/fa6";
+import { FaWarehouse } from "react-icons/fa";
+import { FaCloudRain } from "react-icons/fa6";
+import { TbMassage } from "react-icons/tb";
+import { CgGym } from "react-icons/cg";
+import { PiPersonArmsSpreadLight } from "react-icons/pi";
+
+import { HoverIcon } from "./icon-hover";
 
 const PropertyCard = ({ property }: any) => {
   const [currentDate, setCurrentDate] = useState("");
@@ -51,38 +66,65 @@ const PropertyCard = ({ property }: any) => {
     return `discover/${newTitle}`;
   };
 
+  const averageRating = () => {
+    let sum = 0;
+    property.reviews.forEach((review: any) => {
+      sum += review.rating;
+    });
+    return sum / property.reviews.length;
+  };
+
   return (
     isAvailable && (
       <Link href={linkTo()}>
         <div
-          className="bg-blue-200 rounded-md text-center p-4 flex-1 mx-2"
+          className=" rounded-md  "
           key={property.title}
           style={{ cursor: "pointer", maxWidth: "600px" }}
         >
-          <div className="relative overflow-hidden rounded-md">
-            <Image
-              src={`${property.imgUrls[0]}`}
-              alt={property.title}
-              width={1000}
-              height={700}
-              className="rounded-md z-0 "
-            />
-          </div>
-          <h3 className="text-blue-600 text-xl font-bold mb-2 pt-3">
+          <Image
+            src={`${property.imgUrls[0]}`}
+            alt={property.title}
+            width={400}
+            height={200}
+            className="rounded-md"
+          />
+          <h3 className="text-blue-950 text-xl font-medium  mb-2 pt-3 ">
             {property.title}
           </h3>
+          <div className="flex items-center justify-start gap-1">
+            {property.type !== "mix" && (
+              <p className="p-1 bg-blue-900 text-gray-100  rounded  inline mr-2 ">
+                {property.type}
+              </p>
+            )}
 
-          <div className="flex justify-between items-center text-l font-bold text-blue-900">
-            <p> {price} TL</p>
-
-            <p> {env()}</p>
+            {property.reviews.length > 0 && (
+              <>
+                <p className="bg-gray-300 text-gray-800 inline p-1 rounded ">
+                  {averageRating().toFixed(1)}
+                </p>
+                <DotFilledIcon className="w-3 h-3 text-blue-900 inline" />
+                <p className="inline">{property.reviews.length} Reviews</p>
+              </>
+            )}
           </div>
-          <Button
-            className=" text-xl font-bold  bg-blue-200 text-blue-900 shadow-none hover:text-white  w-full mt-2 "
-            onClick={openNewTab}
-          >
-            Location
-          </Button>
+          <div className="my-3 flex gap-3">
+            {property.tags.map((tag: string, index: number) => (
+              <div key={index}>
+                <HoverIcon tag={tag} />
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-between px-3 items-center   text-gray-900">
+            <p className="font-medium">Day Pass</p>
+            <div className="flex  items-end gap-1">
+              <span className="font-bold text-xl text-blue-950">{price}</span>
+              <span className="font-light ">TL</span>
+            </div>
+          </div>
+          <hr />
         </div>
       </Link>
     )

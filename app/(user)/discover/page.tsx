@@ -11,7 +11,8 @@ const DiscoverPage = async () => {
   const properties = await getAllProperties();
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4  justify-center">
+    <div className="flex flex-col  gap-4  justify-center mx-2">
+      <hr />
       {properties?.map((property) => (
         <div key={property.id}>
           <PropertyCard property={property} />
