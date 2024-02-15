@@ -34,7 +34,6 @@ const Slider = ({ array }: { array: string[] }) => {
                     alt="Pool Image"
                     width={450}
                     height={500}
-                    className=" rounded-xl "
                     loading="eager"
                   />
                 </CardContent>

@@ -3,20 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { DotFilledIcon } from "@radix-ui/react-icons";
-
-import { FaSwimmingPool } from "react-icons/fa";
-import { MdOutlinePool } from "react-icons/md";
-import { LiaBathSolid } from "react-icons/lia";
-import { FaHotTubPerson } from "react-icons/fa6";
-import { FaToiletPaper } from "react-icons/fa";
-import { FaShower } from "react-icons/fa6";
-import { FaWarehouse } from "react-icons/fa";
-import { FaCloudRain } from "react-icons/fa6";
-import { TbMassage } from "react-icons/tb";
-import { CgGym } from "react-icons/cg";
-import { PiPersonArmsSpreadLight } from "react-icons/pi";
 
 import { HoverIcon } from "./icon-hover";
 
@@ -24,10 +11,6 @@ const PropertyCard = ({ property }: any) => {
   const [currentDate, setCurrentDate] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [price, setPrice] = useState("");
-
-  const openNewTab = () => {
-    window.open(property.location, "_blank");
-  };
 
   useEffect(() => {
     const date = localStorage.getItem("choosenDate");

@@ -77,6 +77,9 @@ export const PropertySchema = z.object({
   description: z.string().min(1, {
     message: "Description is required",
   }),
+  meta: z.string().min(1, {
+    message: "Meta description is required",
+  }),
   checkIn: z.string().min(5, {
     message: "checkIn is required",
   }),
@@ -85,6 +88,9 @@ export const PropertySchema = z.object({
   }),
   location: z.string().min(1, {
     message: "location is required",
+  }),
+  address: z.string().min(1, {
+    message: "address is required",
   }),
   reviews: z.array(
     z.object({
@@ -107,8 +113,7 @@ export const PropertySchema = z.object({
   free: z.number(),
   type: z.string(),
   depth: z.number(),
-  heigth: z.number(),
-  width: z.number(),
+  tags: z.array(z.string()),
 });
 export const EditPropertyFormProps = z.object({
   description: z.string().min(1, {

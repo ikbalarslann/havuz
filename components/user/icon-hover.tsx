@@ -17,43 +17,94 @@ import { TbMassage } from "react-icons/tb";
 import { CgGym } from "react-icons/cg";
 import { PiPersonArmsSpreadLight } from "react-icons/pi";
 
-const iconArr = [
-  {
-    text: "indoor-pool",
-    icon: <FaSwimmingPool className="text-gray-500 w-4 h-4" />,
-  },
-  {
-    text: "outdoor-pool",
-    icon: <MdOutlinePool className="text-gray-500 w-4 h-4" />,
-  },
-  {
-    text: "turkish-bath",
-    icon: <LiaBathSolid className="text-gray-500 w-4 h-4" />,
-  },
-  {
-    text: "jacuzzi",
-    icon: <FaHotTubPerson className="text-gray-500 w-4 h-4" />,
-  },
-  { text: "toilet", icon: <FaToiletPaper className="text-gray-500 w-4 h-4" /> },
-  { text: "shower", icon: <FaShower className="text-gray-500 w-4 h-4" /> },
-  { text: "sauna", icon: <FaWarehouse className="text-gray-500 w-4 h-4" /> },
-  {
-    text: "steam-room",
-    icon: <FaCloudRain className="text-gray-500 w-4 h-4" />,
-  },
-  { text: "massage", icon: <TbMassage className="text-gray-500 w-4 h-4" /> },
-  { text: "gym", icon: <CgGym className="text-gray-500 w-4 h-4" /> },
-  {
-    text: "body-scrub",
-    icon: <PiPersonArmsSpreadLight className="text-gray-500 w-4 h-4" />,
-  },
-];
-
-export function HoverIcon({ tag }: { tag: string }) {
+export function HoverIcon({
+  tag,
+  iconSize = 4,
+}: {
+  tag: string;
+  iconSize?: number;
+}) {
   const [obj, setObj] = useState({
     text: "",
     icon: <></>,
   });
+
+  const iconArr = [
+    {
+      text: "indoor-pool",
+      icon: (
+        <FaSwimmingPool
+          className={`text-gray-500 w-${iconSize} h-${iconSize}`}
+        />
+      ),
+    },
+    {
+      text: "outdoor-pool",
+      icon: (
+        <MdOutlinePool
+          className={`text-gray-500 w-${iconSize} h-${iconSize}`}
+        />
+      ),
+    },
+    {
+      text: "turkish-bath",
+      icon: (
+        <LiaBathSolid className={`text-gray-500 w-${iconSize} h-${iconSize}`} />
+      ),
+    },
+    {
+      text: "jacuzzi",
+      icon: (
+        <FaHotTubPerson
+          className={`text-gray-500 w-${iconSize} h-${iconSize}`}
+        />
+      ),
+    },
+    {
+      text: "toilet",
+      icon: (
+        <FaToiletPaper
+          className={`text-gray-500 w-${iconSize} h-${iconSize}`}
+        />
+      ),
+    },
+    {
+      text: "shower",
+      icon: (
+        <FaShower className={`text-gray-500 w-${iconSize} h-${iconSize}`} />
+      ),
+    },
+    {
+      text: "sauna",
+      icon: (
+        <FaWarehouse className={`text-gray-500 w-${iconSize} h-${iconSize}`} />
+      ),
+    },
+    {
+      text: "steam-room",
+      icon: (
+        <FaCloudRain className={`text-gray-500 w-${iconSize} h-${iconSize}`} />
+      ),
+    },
+    {
+      text: "massage",
+      icon: (
+        <TbMassage className={`text-gray-500 w-${iconSize} h-${iconSize}`} />
+      ),
+    },
+    {
+      text: "gym",
+      icon: <CgGym className={`text-gray-500 w-${iconSize} h-${iconSize}`} />,
+    },
+    {
+      text: "body-scrub",
+      icon: (
+        <PiPersonArmsSpreadLight
+          className={`text-gray-500 w-${iconSize} h-${iconSize}`}
+        />
+      ),
+    },
+  ];
 
   useEffect(() => {
     const theobj = iconArr.find((item) => item.text === tag);

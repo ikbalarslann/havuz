@@ -28,7 +28,7 @@ const SinglePropertyPage = async ({
       (a: any) => a?.date === new Date().toLocaleDateString("en-GB")
     )
   );
-  const obj = JSON.parse(sobj);
+  const obj = sobj && JSON.parse(sobj);
   const price = obj?.price;
 
   const jsonLd = {

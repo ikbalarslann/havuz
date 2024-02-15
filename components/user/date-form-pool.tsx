@@ -153,7 +153,9 @@ const DatePickerForm = ({
             </FormItem>
           )}
         />
-        <Button type="submit">Add to Shopping Card</Button>
+        <Button type="submit" className="bg-cyan-500">
+          Add to Shopping Card
+        </Button>
       </form>
     </Form>
   );
