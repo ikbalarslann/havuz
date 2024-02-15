@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     default: "Havuz ve Havuz",
     template: "%s | Havuz ve Havuz",
   },
+  description: "Pool renting made easy.",
 };
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {

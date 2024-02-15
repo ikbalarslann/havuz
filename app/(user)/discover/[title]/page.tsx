@@ -2,7 +2,6 @@ import SingleProperty from "@/components/user/single-property";
 import { Metadata } from "next";
 import { getPropertyByTitle } from "@/data/property";
 import StructuredData from "@/components/user/structured-data";
-import mockPng from "@/public/authdataflow.png";
 
 export async function generateMetadata({
   params,

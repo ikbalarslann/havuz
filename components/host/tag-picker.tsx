@@ -16,32 +16,57 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useEffect } from "react";
+import { set } from "date-fns";
 
 const frameworks = [
   {
-    value: "mens-only",
-    label: "Mens Only",
+    value: "indoor-pool",
+    label: "Indoor Pool",
   },
   {
-    value: "womens-only",
-    label: "Womens Only",
+    value: "outdoor-pool",
+    label: "Outdoor Pool",
   },
   {
-    value: "gender-separated",
-    label: "Gender Separated",
+    value: "jacuzzi",
+    label: "Jacuzzi",
   },
   {
-    value: "mix",
-    label: "Mix",
+    value: "turkish-bath",
+    label: "Turkish Bath",
+  },
+  {
+    value: "sauna",
+    label: "Sauna",
+  },
+  {
+    value: "steam-room",
+    label: "Steam Room",
+  },
+  {
+    value: "massage",
+    label: "Massage",
+  },
+  {
+    value: "gym",
+    label: "Gym",
+  },
+  {
+    value: "body-scrub",
+    label: "Body Scrub",
   },
 ];
 
-export function TypePicker({ setType }: any) {
+export function TagPicker({ setType, tags }: any) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
-  React.useEffect(() => {
-    setType(value);
-  }, [value, setType]);
+
+  useEffect(() => {
+    if (value !== "") {
+      setType(value);
+    }
+  }, [value]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -52,9 +77,7 @@ export function TypePicker({ setType }: any) {
           aria-expanded={open}
           className="w-[400px] justify-between"
         >
-          {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select Type"}
+          {"Select Tags"}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -68,14 +91,13 @@ export function TypePicker({ setType }: any) {
                 value={framework.value}
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue);
-                  setOpen(false);
                 }}
               >
                 {framework.label}
                 <CheckIcon
                   className={cn(
                     "ml-auto h-4 w-4",
-                    value === framework.value ? "opacity-100" : "opacity-0"
+                    tags.includes(framework.value) ? "opacity-100" : "opacity-0"
                   )}
                 />
               </CommandItem>

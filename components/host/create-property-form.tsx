@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useCallback } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreatePropertyFormProps } from "@/schemas";
 import { Input } from "@/components/ui/input";
@@ -21,6 +21,7 @@ import { FormSuccess } from "@/components/form-success";
 import { createProperty } from "@/actions/create-property";
 import { UploadButton } from "@/components/uploadthing";
 import { TypePicker } from "@/components/host/type-picker";
+import { TagPicker } from "@/components/host/tag-picker";
 import { EnviromentPicker } from "@/components/host/env-picker";
 
 export const CreatePropertyForm = () => {
@@ -28,45 +29,58 @@ export const CreatePropertyForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const [tags, setTags] = useState<string[]>([]);
+
+  const setTagsOne = (tag: string) => {
+    if (tags.includes(tag)) {
+      const newTags = tags.filter((t) => t !== tag);
+      setTags(newTags);
+      return;
+    }
+
+    setTags([...tags, tag]);
+  };
 
   const form = useForm<z.infer<typeof CreatePropertyFormProps>>({
     resolver: zodResolver(CreatePropertyFormProps),
     defaultValues: {
       title: "",
       description: "",
+      meta: "",
       checkIn: "08:00",
       checkOut: "23:00",
       location: "",
+      address: "",
       type: "",
       imgUrls: [],
       price: 0,
       free: 0,
       depth: 0,
-      heigth: 0,
-      width: 0,
-      enviroment: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof CreatePropertyFormProps>) => {
+    const tagsWithoutEmpty = tags.filter((tag) => tag !== "");
+
     setError("");
     setSuccess("");
-    values = { ...values, imgUrls: images };
-    startTransition(() => {
-      createProperty(values)
-        .then((data) => {
-          if (data?.error) {
-            form.reset();
-            setError(data.error);
-          }
-          if (data?.success) {
-            form.reset();
-            setSuccess(data.success);
-            window.location.reload();
-          }
-        })
-        .catch(() => setError("Something went wrong"));
-    });
+    values = { ...values, tags: tagsWithoutEmpty, imgUrls: images };
+    console.log("Values: ", values);
+    // startTransition(() => {
+    //   createProperty(values)
+    //     .then((data) => {
+    //       if (data?.error) {
+    //         form.reset();
+    //         setError(data.error);
+    //       }
+    //       if (data?.success) {
+    //         form.reset();
+    //         setSuccess(data.success);
+    //         window.location.reload();
+    //       }
+    //     })
+    //     .catch(() => setError("Something went wrong"));
+    // });
   };
 
   return (
@@ -107,6 +121,25 @@ export const CreatePropertyForm = () => {
                         {...field}
                         disabled={isPending}
                         placeholder="A 5-star hotel in the heart of Istanbul."
+                        type="text"
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="meta"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Meta Description</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="A 5-star hotel ..."
                         type="text"
                       />
                     </FormControl>
@@ -219,6 +252,24 @@ export const CreatePropertyForm = () => {
               />
               <FormField
                 control={form.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Address</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="hocapasa mahallesi no:12 Istanbul/Turkey"
+                        type="text"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="depth"
                 render={({ field }) => (
                   <FormItem>
@@ -242,62 +293,13 @@ export const CreatePropertyForm = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="heigth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Heigth (meters)</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="25 (meters)"
-                        type="number"
-                        onChange={(e) => {
-                          const value = parseFloat(e.target.value);
-                          if (!isNaN(value)) {
-                            field.onChange(value);
-                          }
-                        }}
-                      />
-                    </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="width"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Width (meters)</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="6 (meters)"
-                        type="number"
-                        onChange={(e) => {
-                          const value = parseFloat(e.target.value);
-                          if (!isNaN(value)) {
-                            field.onChange(value);
-                          }
-                        }}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Type</FormLabel>
+                    <FormLabel>Gender Separation Type</FormLabel>
                     <FormControl>
                       <TypePicker setType={field.onChange} />
                     </FormControl>
@@ -307,12 +309,12 @@ export const CreatePropertyForm = () => {
               />
               <FormField
                 control={form.control}
-                name="enviroment"
-                render={({ field }) => (
+                name="tags"
+                render={() => (
                   <FormItem>
-                    <FormLabel>Enviroment</FormLabel>
+                    <FormLabel>Tags</FormLabel>
                     <FormControl>
-                      <EnviromentPicker setEnv={field.onChange} />
+                      <TagPicker tags={tags} setType={setTagsOne} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

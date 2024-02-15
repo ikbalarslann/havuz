@@ -131,6 +131,9 @@ export const CreatePropertyFormProps = z.object({
   description: z.string().min(1, {
     message: "Description is required",
   }),
+  meta: z.string().min(1, {
+    message: "Meta description is required",
+  }),
   checkIn: z.string().min(5, {
     message: "checkIn is required",
   }),
@@ -140,14 +143,15 @@ export const CreatePropertyFormProps = z.object({
   location: z.string().min(1, {
     message: "location is required",
   }),
+  address: z.string().min(1, {
+    message: "address is required",
+  }),
   imgUrls: z.array(z.string()),
   price: z.number(),
   free: z.number(),
   type: z.string(),
+  tags: z.array(z.string()).optional(),
   depth: z.number(),
-  heigth: z.number(),
-  width: z.number(),
-  enviroment: z.string(),
 });
 export const BookingSchema = z.object({
   id: z.string(),
