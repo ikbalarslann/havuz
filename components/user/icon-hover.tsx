@@ -16,6 +16,7 @@ import { FaCloudRain } from "react-icons/fa6";
 import { TbMassage } from "react-icons/tb";
 import { CgGym } from "react-icons/cg";
 import { PiPersonArmsSpreadLight } from "react-icons/pi";
+import { FaBoltLightning } from "react-icons/fa6";
 
 export function HoverIcon({
   tag,
@@ -100,6 +101,14 @@ export function HoverIcon({
       text: "body-scrub",
       icon: (
         <PiPersonArmsSpreadLight
+          className={`text-gray-500 w-${iconSize} h-${iconSize}`}
+        />
+      ),
+    },
+    {
+      text: "shock-pool",
+      icon: (
+        <FaBoltLightning
           className={`text-gray-500 w-${iconSize} h-${iconSize}`}
         />
       ),

@@ -63,6 +63,10 @@ const frameworks = [
     value: "body-scrub",
     label: "Body Scrub",
   },
+  {
+    value: "shock-pool",
+    label: "Shock Pool",
+  },
 ];
 
 export function TagPicker({ setType, tags }: any) {
