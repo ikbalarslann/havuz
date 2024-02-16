@@ -52,9 +52,10 @@ export const DiscountForm = ({ setDiscount, setCode }: any) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" bg-white p-2 m-1 rounded-md shadow-md"
+        className=" bg-white p-2 m-1 flex flex-col justify-end "
       >
         <div className="mb-4   ">
+          <hr />
           <>
             <FormField
               control={form.control}
@@ -77,11 +78,16 @@ export const DiscountForm = ({ setDiscount, setCode }: any) => {
             />
           </>
         </div>
-        <Button disabled={isPending} type="submit" className="w-full">
-          Apply
+        <Button
+          disabled={isPending}
+          type="submit"
+          className="w-70 bg-cyan-500 mb-2  "
+        >
+          Apply Discount Code
         </Button>
         <FormError message={error} />
         <FormSuccess message={success} />
+        <hr />
       </form>
     </Form>
   );

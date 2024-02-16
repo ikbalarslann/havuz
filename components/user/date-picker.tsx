@@ -106,7 +106,7 @@ const DatePickerForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full bg-cyan-500">
           Choose the Date
         </Button>
       </form>

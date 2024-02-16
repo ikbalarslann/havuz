@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import * as z from "zod";
 import { PropertySchema } from "@/schemas";
+import { FaRegTrashAlt } from "react-icons/fa";
+import Image from "next/image";
 
 const ShoppingCard = () => {
   const [items, setItems] = useState<z.infer<typeof PropertySchema>[]>([]);
@@ -48,37 +50,58 @@ const ShoppingCard = () => {
 
   return items.length > 0 ? (
     <div className="flex justify-start items-center min-h-full flex-col gap-7 ">
-      <h1 className="text-3xl">Shopping Card</h1>
+      <h1 className="text-2xl text-cyan-900">Shopping Card</h1>
       <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-blue-800 p-4 rounded-md text-white text-center flex w-auto  mx-2 "
+            className=" py-1 rounded-md  text-center flex w-full  mx-2 "
           >
-            <div className="flex gap-3 justify-center items-center flex-col w-[300px]">
-              <h3 className="text-lg font-semibold">{item.title}</h3>
-              <div className="flex gap-4">
-                <p className="pb-1">{item.availability[0].date}</p>
-                <p>Price : {item.availability[0].price} TL</p>
-              </div>
-              <div className="flex gap-4">
-                <p>Check in : {item.checkIn}</p>
-                <p>Check out : {item.checkOut}</p>
+            <div className="flex gap-3  flex-col w-[300px]">
+              <div className="flex gap-2">
+                <div>
+                  <Image
+                    src={item.imgUrls[0]}
+                    alt="property"
+                    width={80}
+                    height={80}
+                    className="rounded-md"
+                  />
+                </div>
+
+                <div className="flex flex-col items-center justify-start">
+                  <p className="text-sm text-gray-600">
+                    {item.availability[0].date}
+                  </p>
+                  <h3 className="text-lg font-semibold text-blue-950">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 ml-2">
+                    {item.checkIn}-{item.checkOut}
+                  </p>
+                </div>
               </div>
 
-              <Button
-                onClick={() => handleRemoveClick(item)}
-                className="w-full bg-blue-950"
-              >
-                Remove from the card
-              </Button>
+              <div className="flex items-center justify-between">
+                <Button
+                  className=" bg-red-100 rounded-full py-1 px-3"
+                  onClick={() => handleRemoveClick(item)}
+                >
+                  <FaRegTrashAlt className="text-red-600 cursor-pointer w-4 h-4 " />
+                </Button>
+                <p> {item.availability[0].price} TL</p>
+              </div>
+              <hr />
             </div>
           </div>
         ))}
       </div>
       <FormError message={error} />
       <FormSuccess message={success} />
-      <Button onClick={() => handleOnClick()} className="w-full bg-blue-950">
+      <Button
+        onClick={() => handleOnClick()}
+        className="w-full bg-cyan-500 text-md"
+      >
         Pay Now
       </Button>
     </div>

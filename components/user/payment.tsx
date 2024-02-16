@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { DiscountForm } from "@/components/user/discount-form";
 import * as z from "zod";
 import { PropertySchema } from "@/schemas";
+import { IoWarningOutline } from "react-icons/io5";
 
 const Payment = () => {
   const router = useRouter();
@@ -49,18 +50,23 @@ const Payment = () => {
   };
 
   return (
-    <div className="text-center">
-      <h1 className="text-3xl font-bold mb-4">Payment</h1>
-      <div className="bg-blue-100 p-4 rounded-md my-5 mx-1">
+    <div className="mx-1">
+      <h1 className="text-2xl font-medium mb-4 text-center text-cyan-900">
+        Payment
+      </h1>
+      <div className=" my-5 mx-1">
         {items.map((item, index) => (
-          <p key={index} className="mb-4">
-            {item.title}
-            {"   "}
-            Date: {item.availability[0].date}
-            {"   "} Price: {item.availability[0].price} TL
-          </p>
+          <div key={index} className="mb-4  flex flex-col flex-start px-1">
+            <p className="text-sm text-gray-500">{item.availability[0].date}</p>
+
+            <div className="flex justify-between pb-2">
+              <p className="font-medium text-cyan-900">{item.title}</p>
+              <p>{item.availability[0].price} TL</p>
+            </div>
+            <hr />
+          </div>
         ))}
-        total Price : {total.toFixed(1)} TL
+        Total Price : {total.toFixed(1)} TL
         {discount ? (
           <p className="text-green-500 ">
             Discounted Price : {(total * 0.9).toFixed(1)} TL
@@ -69,12 +75,18 @@ const Payment = () => {
           ""
         )}
       </div>
-      <p className="my-4 mx-1 bg-red-300 p-3 rounded-md text-gray-900">
-        <span className="text-red-600">important Note:</span> full payment will
-        be charged in person at the time of check-in
-      </p>
       <DiscountForm setDiscount={setDiscount} setCode={setCode} />
-      <Button className="my-4" onClick={handlePayment}>
+      <div className="bg-amber-100 p-3 rounded-md gap-3 flex items-center mx-1 ">
+        <IoWarningOutline className="text-amber-600 w-8 h-8 " />
+        <p className="text-gray-700 ">
+          full payment will be charged in person at the time of check-in
+        </p>
+      </div>
+
+      <Button
+        className="my-4 w-full bg-cyan-800 font-medium text-xl"
+        onClick={handlePayment}
+      >
         Complete the Reservation
       </Button>
     </div>
