@@ -197,7 +197,7 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
               <h2 className="text-gray-800 mb-3 text-2xl font-medium">
                 Location
               </h2>
-              <p className="text-gray-600">{property?.address}</p>
+              <p className="text-gray-600 my-4">{property?.address}</p>
 
               <Button
                 className=" text-xl font-bold mb-2 bg-cyan-500 text-white shadow-none w-full"
@@ -221,7 +221,9 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
                 </p>
               </div>
               <p className=" p-2 shadow rounded bg-gray-200 inline ">
-                {averageRating()?.toFixed(1)}
+                {averageRating()?.toFixed(1) === "NaN"
+                  ? "0.0"
+                  : averageRating()?.toFixed(1)}
               </p>
             </div>
             <hr />

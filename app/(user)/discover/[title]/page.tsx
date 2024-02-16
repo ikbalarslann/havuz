@@ -63,8 +63,8 @@ const SinglePropertyPage = async ({
     "@type": "Product",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: averageRating(),
-      reviewCount: property?.reviews.length,
+      ratingValue: averageRating() || 0,
+      reviewCount: property?.reviews.length || 0,
     },
     description: property?.description,
     name: property?.title,
@@ -75,7 +75,7 @@ const SinglePropertyPage = async ({
       price: price,
       priceCurrency: "TL",
     },
-    review: reviewSchemaArr,
+    review: reviewSchemaArr || [],
   };
 
   return property ? (
