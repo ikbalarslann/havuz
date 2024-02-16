@@ -12,7 +12,7 @@ export async function generateMetadata({
   const property = await getPropertyByTitle(title);
   return {
     title: title,
-    description: property?.description,
+    description: property?.meta,
   };
 }
 
@@ -31,53 +31,51 @@ const SinglePropertyPage = async ({
   const obj = sobj && JSON.parse(sobj);
   const price = obj?.price;
 
+  const averageRating = () => {
+    let sum = 0;
+    property?.reviews.forEach((review: any) => {
+      sum += review.rating;
+    });
+
+    if (!property) return;
+
+    return sum / property?.reviews?.length;
+  };
+
+  const reviewSchemaArr = property?.reviews.map((review: any) => {
+    return {
+      "@type": "Review",
+      author: review.userName,
+      datePublished: review.date,
+      reviewBody: review.description,
+      name: review.title,
+      reviewRating: {
+        "@type": "Rating",
+        bestRating: "5",
+        ratingValue: review.rating.toString(),
+        worstRating: "1",
+      },
+    };
+  });
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "3.5",
-      reviewCount: "11",
+      ratingValue: averageRating(),
+      reviewCount: property?.reviews.length,
     },
     description: property?.description,
     name: property?.title,
-    image:
-      "https://hdqwalls.com/wallpapers/lamborghini-aventador-s-roadster-2019-4k-ok.jpg",
+    image: property?.imgUrls[0],
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
       price: price,
       priceCurrency: "TL",
     },
-    review: [
-      {
-        "@type": "Review",
-        author: "Ellie",
-        datePublished: "2011-04-01",
-        reviewBody: "The lamp burned out and now I have to replace it.",
-        name: "Not a happy camper",
-        reviewRating: {
-          "@type": "Rating",
-          bestRating: "5",
-          ratingValue: "1",
-          worstRating: "1",
-        },
-      },
-      {
-        "@type": "Review",
-        author: "Lucas",
-        datePublished: "2011-03-25",
-        reviewBody:
-          "Great microwave for the price. It is small and fits in my apartment.",
-        name: "Value purchase",
-        reviewRating: {
-          "@type": "Rating",
-          bestRating: "5",
-          ratingValue: "4",
-          worstRating: "1",
-        },
-      },
-    ],
+    review: reviewSchemaArr,
   };
 
   return property ? (

@@ -51,7 +51,7 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
     {
       title: "1",
       description:
-        "Select an available day in the calendar, the number of guests, and complete booking",
+        "Select an available day in the calendar and complete booking",
     },
     {
       title: "2",
@@ -59,10 +59,15 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
     },
     {
       title: "3",
-      description: "Bring valid photo ID and check-in at the front desk",
+      description:
+        "Payments are in-person at the front desk on the day of visit",
     },
     {
       title: "4",
+      description: "Bring valid photo ID and check-in at the front desk",
+    },
+    {
+      title: "5",
       description: "Enjoy your pool day!",
     },
   ];
@@ -118,7 +123,7 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
         <div className="flex my-4">
           <p
             className={`flex-1 text-center border-t-4 pt-2 ${
-              activeTab === "DayPass" ? "border-blue-300" : "border-transparent"
+              activeTab === "DayPass" ? "border-cyan-500" : "border-transparent"
             }`}
             onClick={() => handleTabClick("DayPass")}
           >
@@ -127,7 +132,7 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
           <p
             className={`flex-1 text-center border-t-4 pt-2 ${
               activeTab === "Reviews"
-                ? " border-blue-300"
+                ? " border-cyan-500"
                 : "border-transparent"
             }`}
             onClick={() => handleTabClick("Reviews")}
