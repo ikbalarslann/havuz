@@ -16,8 +16,8 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="relative container   ">
-      <div className="flex items-center justify-between ">
+    <nav className="relative container m-0 p-0  ">
+      <div className="flex items-center justify-between mx-3 ">
         <div className="pt-2 text-5xl">
           <Link href="/">
             <Image src="/logo.png" alt="logo" width={70} height={70} />
@@ -55,20 +55,30 @@ export const Nav = () => {
         </div>
       </div>
       <div
-        className={`md:hidden z-50 sticky  ${isMenuOpen ? "block " : "hidden"}`}
+        className={`md:hidden z-50 sticky   ${
+          isMenuOpen ? "block " : "hidden"
+        }`}
       >
         <div
           id="menu"
-          className={`absolute flex-col items-center  self-end py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ${
+          className={` absolute flex-col items-center py-3  w-full  gap-2  bg-gray-100 ${
             isMenuOpen ? "flex" : "hidden"
           }`}
         >
-          <Link onClick={toggleMenu} href="/shoppingCard">
+          <Link
+            onClick={toggleMenu}
+            href="/shoppingCard"
+            className="text-lg text-gray-700"
+          >
             Shopping Card
           </Link>
 
           {role && (
-            <Link onClick={toggleMenu} href="/bookings">
+            <Link
+              onClick={toggleMenu}
+              href="/bookings "
+              className="text-lg text-gray-700"
+            >
               Bookings
             </Link>
           )}
@@ -77,41 +87,5 @@ export const Nav = () => {
         </div>
       </div>
     </nav>
-
-    // <nav className="bg-secondary flex justify-between items-center p-4  w-full shadow-sm">
-    //   <div className="flex gap-x-2">
-    //     <Button asChild variant={pathname === "/" ? "default" : "outline"}>
-    //       <Link href="/">Home</Link>
-    //     </Button>
-    //     <Button
-    //       asChild
-    //       variant={pathname === "/shoppingCard" ? "default" : "outline"}
-    //     >
-    //       <Link href="/shoppingCard">Shopping Card</Link>
-    //     </Button>
-
-    //     {role && (
-    //       <>
-    //         <Button
-    //           asChild
-    //           variant={pathname === "/bookings" ? "default" : "outline"}
-    //         >
-    //           <Link href="/bookings">Bookings</Link>
-    //         </Button>
-
-    //         <Button
-    //           asChild
-    //           variant={pathname === "/settings" ? "default" : "outline"}
-    //         >
-    //           <Link href="/settings">Settings</Link>
-    //         </Button>
-    //       </>
-    //     )}
-    //   </div>
-    //   <div>
-    //     {!role && <LoginButtonDropDown />}
-    //     <UserButton />
-    //   </div>
-    // </nav>
   );
 };

@@ -43,10 +43,10 @@ export const UserButton = ({ toggleMenu }: any) => {
 
   return user ? (
     <DropdownMenu>
-      <DropdownMenuTrigger className="text-xl">
+      <DropdownMenuTrigger className="text-lg text-gray-700">
         {user?.name}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40" align="end">
+      <DropdownMenuContent className="w-screen" align="end">
         <Link href="/settings">
           <DropdownMenuItem onClick={onClick}>Settings</DropdownMenuItem>
         </Link>
@@ -61,7 +61,7 @@ export const UserButton = ({ toggleMenu }: any) => {
   ) : (
     <DropdownMenu>
       <DropdownMenuTrigger>Login</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-20">
+      <DropdownMenuContent className="w-screen">
         <DropdownMenuGroup>
           <LoginButton asChild>
             <DropdownMenuItem onClick={onClick}>Login</DropdownMenuItem>
