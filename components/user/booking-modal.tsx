@@ -22,22 +22,22 @@ const Modal = ({ trigger, booking }: ModalProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="bg-blue-300 rounded-md w-[350px]">
+      <DialogContent className="rounded-md w-[350px]">
         <DialogHeader>
           <DialogTitle>{booking.propertyTitle}</DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col items-center space-y-2">
-          <div className="flex  gap-4 text-blue-950">
-            <p>{booking.date}</p>
+        <div className="flex flex-col gap-3">
+          <div className="flex  justify-between text-gray-500">
+            <p className="text-sm">{booking.date}</p>
             <p> {booking.price.toFixed(1)}TL</p>
           </div>
 
-          <div className="flex gap-4">
-            <p className="text-blue-900">Check-in: {booking.checkIn}</p>
-            <p className="text-blue-900">Check-out: {booking.checkOut}</p>
+          <div className="flex justify-between">
+            <p className="text-gray-500">Check-in: {booking.checkIn}</p>
+            <p className="text-gray-500">Check-out: {booking.checkOut}</p>
           </div>
           <Button
-            className=" text-xl font-bold mb-2 bg-blue-200 text-blue-900 shadow-none w-full"
+            className=" text-xl font-bold mb-2 bg-cyan-500 text-white shadow-none w-full"
             onClick={openNewTab}
           >
             Location

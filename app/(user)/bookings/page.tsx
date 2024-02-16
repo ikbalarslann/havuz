@@ -15,7 +15,9 @@ const BookingPage = async () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 text-center">Arrival Bookings</h1>
+      <h1 className="text-xl font-bold mb-4 text-center text-cyan-950">
+        Arrival Bookings
+      </h1>
       {bookingsPending?.map((booking: any) => (
         <div key={booking.id}>
           <Modal
@@ -23,10 +25,10 @@ const BookingPage = async () => {
             trigger={
               <div
                 key={booking.id}
-                className="mb-4 p-4 bg-blue-100 rounded-md shadow-md w-[350px] flex flex-col items-center justify-between"
+                className=" px-1 py-2 mb-1 w-[350px] flex flex-col items-start justify-start shadow rounded"
               >
-                <h2 className="text-l font-bold">{booking.date}</h2>
-                <p className="text-gray-600 text-center">
+                <h2 className="text-gray-500 text-sm">{booking.date}</h2>
+                <p className="text-cyan-900 text-center">
                   {booking.propertyTitle}
                 </p>
               </div>
@@ -35,32 +37,31 @@ const BookingPage = async () => {
         </div>
       ))}
 
-      <hr />
+      <hr className="my-4" />
 
-      <h1 className="text-2xl font-bold my-4 text-center">Previous Bookings</h1>
+      <h1 className="text-xl font-bold mb-4 text-center text-cyan-950">
+        Previous Bookings
+      </h1>
 
       {bookingsApproved?.map((booking: any) => (
-        <div
-          key={booking.id}
-          className="mb-4 px-3 py-2 bg-blue-100 rounded-md shadow-md"
-        >
-          <p className="text-l font-bold text-center mb-3 mt-1">
-            {booking.propertyTitle}
-          </p>
+        <div key={booking.id} className="mb-4 px-1 py-2  ">
+          <p className="text-gray-600 text-sm">{booking.date}</p>
+
+          <p className="text-lg text-cyan-950 mb-1 ">{booking.propertyTitle}</p>
           <div className="flex justify-between">
-            <p className="text-gray-600">{booking.date}</p>
+            <p className="text-gray-600 ">
+              {booking.checkIn} - {booking.checkOut}
+            </p>
             <p className="text-gray-600 ">{booking.price.toFixed(1)}TL</p>
           </div>
-          <div className="flex justify-between">
-            <p className="text-gray-600">check in: {booking.checkIn}</p>
-            <p className="text-gray-600">check out: {booking.checkOut}</p>
-          </div>
+
           {!booking.review && (
             <ReviewButton
               bookingId={booking.id}
               propertyId={booking.propertyId}
             />
           )}
+          <hr className="my-3" />
         </div>
       ))}
     </div>

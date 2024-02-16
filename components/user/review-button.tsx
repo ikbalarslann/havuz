@@ -7,7 +7,7 @@ const ReviewButton = ({ bookingId, propertyId }: any) => {
   return (
     <Modal
       Trigger={
-        <Button className="w-full mt-3 bg-blue-400 text-xl text-blue-950">
+        <Button className="w-full mt-3 bg-cyan-500 text-xl text-white">
           Review
         </Button>
       }

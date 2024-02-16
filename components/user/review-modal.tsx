@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { createReview } from "@/actions/create-review";
 import { RatingPicker } from "./rating-picker";
-import * as z from "zod";
 
 interface ModalProps {
   Trigger: React.ReactNode;
@@ -50,18 +49,22 @@ export function Modal({ Trigger, bookingId, propertyId }: ModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{Trigger}</DialogTrigger>
-      <DialogContent className="bg-blue-200 rounded-md w-[350px]">
+      <DialogContent className="bg-gray-100 rounded-md w-[350px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Leave a Review</DialogTitle>
           </DialogHeader>
           <div className="flex items-center  gap-4 flex-col my-3 text-center ">
             <div className=" flex flex-col gap-1 ">
-              <Label htmlFor="rating">Rating</Label>
+              <Label htmlFor="rating" className="text-cyan-950">
+                Rating
+              </Label>
               <RatingPicker setRating={setRating} />
             </div>
             <div className=" ">
-              <Label htmlFor="title">title</Label>
+              <Label htmlFor="title" className="text-cyan-950">
+                title
+              </Label>
               <Input
                 id="title"
                 className="bg-white"
@@ -71,7 +74,9 @@ export function Modal({ Trigger, bookingId, propertyId }: ModalProps) {
               />
             </div>
             <div className="   ">
-              <Label htmlFor="description">description</Label>
+              <Label htmlFor="description" className="text-cyan-950">
+                description
+              </Label>
               <Input
                 id="description"
                 className="bg-white"
@@ -82,8 +87,8 @@ export function Modal({ Trigger, bookingId, propertyId }: ModalProps) {
             </div>
           </div>
           <DialogFooter className=" flex  mt-4">
-            <Button type="submit" className="bg-blue-600">
-              Update
+            <Button type="submit" className="bg-cyan-500 text-lg">
+              Leave Review
             </Button>
           </DialogFooter>
         </form>
