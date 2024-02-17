@@ -39,7 +39,7 @@ const SinglePropertyPage = async ({
 
     if (!property) return;
 
-    return sum / property?.reviews?.length;
+    return (sum / property?.reviews?.length).toFixed(1);
   };
 
   const reviewSchemaArr = property?.reviews.map((review: any) => {
