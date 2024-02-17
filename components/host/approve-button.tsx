@@ -8,7 +8,11 @@ const ApproveButton = ({ bookingId, propertyId, date }: any) => {
 
     window.location.reload();
   };
-  return <Button onClick={handleApprove}>Approve</Button>;
+  return (
+    <Button className="bg-cyan-500" onClick={handleApprove}>
+      Approve
+    </Button>
+  );
 };
 
 export default ApproveButton;

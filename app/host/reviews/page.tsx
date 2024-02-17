@@ -9,26 +9,26 @@ const HostReviewsPage = async () => {
   const reviewsArray = stringArray?.map((r) => JSON.parse(r));
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="flex flex-col">
       <h1 className="text-3xl font-bold mb-8 text-center">Customer Reviews</h1>
 
       {reviewsArray?.map((review) => (
-        <div
-          key={review.id}
-          className="mb-8 p-6 w-[500px] bg-white rounded-md shadow-md"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-bold">{review.userName}</h1>
-            <span
-              className={`text-${
-                review.rating >= 4 ? "green" : "red"
-              }-500 font-semibold`}
-            >
-              {review.rating}/5
+        <div key={review.id} className="mb-8 p-6 w-[360px] bg-white ">
+          <h3 className="text-lg font-bold mb-2">{review.title}</h3>
+
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex gap-2 items-center">
+              <p className="text-sm">{review.date}</p>
+              <h1 className=" ">{review.userName}</h1>
+            </div>
+
+            <span className="text-gray-100 p-2 bg-gray-500 rounded">
+              {review.rating.toFixed(1)}
             </span>
           </div>
-          <h3 className="text-lg font-bold mb-2">{review.title}</h3>
+
           <p className="text-gray-700">{review.description}</p>
+          <hr className="my-2" />
         </div>
       ))}
     </div>

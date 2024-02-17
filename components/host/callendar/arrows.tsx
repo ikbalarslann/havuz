@@ -54,7 +54,7 @@ const Arrows = ({ setMonth }: any) => {
   };
 
   return (
-    <div className="flex justify-between w-[500px]">
+    <div className="flex justify-between w-[300px]">
       <ArrowLeftIcon className="w-6 h-6" onClick={decreaseMonth} />
       {month[parseInt(currentMonth) - 1].label}
       <ArrowRightIcon className="w-6 h-6" onClick={increaseMonth} />

@@ -37,7 +37,7 @@ export function Modal({ Trigger, availabilityItem, title }: any) {
   return (
     <Dialog>
       <DialogTrigger asChild>{Trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md w-[350px] rounded">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Edit Availability</DialogTitle>
@@ -62,7 +62,11 @@ export function Modal({ Trigger, availabilityItem, title }: any) {
             </div>
           </div>
           <DialogFooter className="sm:justify-start flex">
-            <Button type="submit" variant="default" className="mt-4">
+            <Button
+              type="submit"
+              variant="default"
+              className="mt-4 bg-cyan-500"
+            >
               Update
             </Button>
           </DialogFooter>

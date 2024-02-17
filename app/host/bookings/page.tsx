@@ -14,16 +14,18 @@ const HostBookingsPage = async () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Pending Bookings</h1>
+      <h1 className="text-lg text-cyan-950 font-bold mb-4 mt-4">
+        Pending Bookings
+      </h1>
 
       {bookingsPending?.map((booking) => (
         <div
           key={booking.id}
-          className="mb-8 p-6 bg-white rounded-md shadow-md w-[500px] flex items-center justify-between"
+          className="mb-8 p-3 bg-white border rounded-md shadow-md w-[300px] flex items-center justify-between"
         >
           <div>
-            <p className="text-xl font-bold mb-2">{booking.date}</p>
-            <p className="text-gray-600">User: {booking.userName}</p>
+            <p className="text-sm text-gray-500 mb-2">{booking.date}</p>
+            <p className="text-cyan-900">{booking.userName}</p>
           </div>
 
           <div className="mt-4 flex items-center justify-between">
@@ -38,15 +40,15 @@ const HostBookingsPage = async () => {
 
       <hr />
 
-      <h1 className="text-2xl font-bold mb-4 mt-4">Completed Bookings</h1>
+      <h1 className="text-lg text-cyan-950 font-bold mb-4 mt-4">
+        Completed Bookings
+      </h1>
 
       {bookingsApproved?.map((booking) => (
-        <div
-          key={booking.id}
-          className="mb-4 p-4 bg-white rounded-md shadow-md"
-        >
-          <p className="text-lg font-bold mb-2">{booking.date}</p>
-          <p className="text-gray-600">User: {booking.userName}</p>
+        <div key={booking.id} className="mb-4 p-4 bg-white ">
+          <p className="text-sm text-gray-500 mb-2">{booking.date}</p>
+          <p className="text-cyan-900">{booking.userName}</p>
+          <hr className="my-2" />
         </div>
       ))}
     </div>

@@ -48,7 +48,7 @@ export const login = async (
       password,
       redirectTo:
         existingUser.role === "ADMIN"
-          ? "/host"
+          ? "/host/bookings"
           : callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {

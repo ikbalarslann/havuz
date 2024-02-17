@@ -40,7 +40,7 @@ const Callendar = ({ property, array }: any) => {
         <Arrows setMonth={setMonth} />
       </div>
 
-      <div className="mt-10 grid grid-cols-5 gap-4">
+      <div className="mt-10 grid sm:grid-cols-5  gap-4">
         {sortedArray.map(
           (a: any) =>
             a && (
@@ -49,8 +49,8 @@ const Callendar = ({ property, array }: any) => {
                   availabilityItem={a}
                   title={property?.title}
                   Trigger={
-                    <div className="bg-white p-4 rounded-md shadow-md transition transform hover:scale-105">
-                      <p className="text-lg font-semibold text-center">
+                    <div className="bg-white p-4 border rounded-md shadow-md transition transform hover:scale-105">
+                      <p className="text-lg font-semibold text-cyan-950 text-center">
                         {a.date.split("/")[0]}
                       </p>
                       <p className="text-gray-600"> Price: {a.price} TL</p>

@@ -4,14 +4,18 @@ import { getPropertyById } from "@/data/property";
 import Header from "@/components/host/sidebar-header";
 import Image from "next/image";
 
-export const Sidebar = async () => {
+export const Sidebar = async ({ className }: any) => {
   const user = await currentUser();
   const properties = user?.propertyIds;
   const property = properties && (await getPropertyById(properties[0]));
 
   return (
-    <aside className="bg-gray-400 h-full w-[250px] p-4 shadow-sm flex flex-col items-center ">
-      <Image src="/logo.png" width={100} height={100} alt="logo" />
+    <aside
+      className={`bg-gray-400 min-h-full w-[250px] p-4 shadow-sm  flex-col items-center ${className}`}
+    >
+      <Link href="/host">
+        <Image src="/logo.png" width={100} height={100} alt="logo" />
+      </Link>
 
       <Header property={property} />
 
