@@ -17,9 +17,7 @@ export const NavbarClient = ({ property, className }: any) => {
     <nav className={`relative container m-0 p-0  ${className} `}>
       <div className="flex items-center justify-between mx-3 ">
         <div className="pt-2 text-5xl">
-          <Link href="/host">
-            <Image src="/logo.png" alt="logo" width={70} height={70} />
-          </Link>
+          <Image src="/logo.png" alt="logo" width={70} height={70} />
         </div>
 
         {/* hamburger icon */}

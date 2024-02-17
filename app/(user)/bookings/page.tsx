@@ -44,7 +44,7 @@ const BookingPage = async () => {
       </h1>
 
       {bookingsApproved?.map((booking: any) => (
-        <div key={booking.id} className="mb-4 px-1 py-2  ">
+        <div key={booking.id} className="mb-4 px-1 py-2  w-[350px] ">
           <p className="text-gray-600 text-sm">{booking.date}</p>
 
           <p className="text-lg text-cyan-950 mb-1 ">{booking.propertyTitle}</p>

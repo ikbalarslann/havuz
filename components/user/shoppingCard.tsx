@@ -77,7 +77,8 @@ const ShoppingCard = () => {
                     {item.title}
                   </h3>
                   <p className="text-sm text-gray-500 ml-2">
-                    {item.checkIn}-{item.checkOut}
+                    {item.hours.mens.weekday.checkIn}-
+                    {item.hours.mens.weekday.checkOut}
                   </p>
                 </div>
               </div>

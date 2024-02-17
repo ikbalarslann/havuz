@@ -1,7 +1,6 @@
 "use client";
 
 import { CreatePropertyForm } from "@/components/host/create-property-form";
-import { EditPropertyForm } from "@/components/host/edit-property-form";
 import { useEffect, useState } from "react";
 
 const HostHomePage = () => {
@@ -13,9 +12,13 @@ const HostHomePage = () => {
     setProperty(propertyHost);
   }, []);
 
+  if (property) {
+    window.location.href = "/host/bookings";
+  }
+
   return (
     <div className="text-center">
-      {property ? <EditPropertyForm /> : <CreatePropertyForm />}
+      {property ? "property already exists" : <CreatePropertyForm />}
     </div>
   );
 };

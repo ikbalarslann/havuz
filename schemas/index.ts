@@ -80,11 +80,44 @@ export const PropertySchema = z.object({
   meta: z.string().min(1, {
     message: "Meta description is required",
   }),
-  checkIn: z.string().min(5, {
-    message: "checkIn is required",
-  }),
-  checkOut: z.string().min(5, {
-    message: "checkOut is required",
+  hours: z.object({
+    mens: z.object({
+      weekend: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+      weekday: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+    }),
+
+    womens: z.object({
+      weekend: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+      weekday: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+    }),
   }),
   location: z.string().min(1, {
     message: "location is required",
@@ -115,20 +148,7 @@ export const PropertySchema = z.object({
   depth: z.number(),
   tags: z.array(z.string()),
 });
-export const EditPropertyFormProps = z.object({
-  description: z.string().min(1, {
-    message: "Description is required",
-  }),
-  checkIn: z.string().min(5, {
-    message: "checkIn is required",
-  }),
-  checkOut: z.string().min(5, {
-    message: "checkOut is required",
-  }),
 
-  price: z.number(),
-  free: z.number(),
-});
 export const CreatePropertyFormProps = z.object({
   title: z.string().min(1, {
     message: "Title is required",
@@ -139,12 +159,94 @@ export const CreatePropertyFormProps = z.object({
   meta: z.string().min(1, {
     message: "Meta description is required",
   }),
-  checkIn: z.string().min(5, {
+  mwdcheckIn: z.string().min(5, {
     message: "checkIn is required",
   }),
-  checkOut: z.string().min(5, {
+  mwdcheckOut: z.string().min(5, {
     message: "checkOut is required",
   }),
+  mwecheckIn: z.string().min(5, {
+    message: "checkIn is required",
+  }),
+  mwecheckOut: z.string().min(5, {
+    message: "checkOut is required",
+  }),
+  wwdcheckIn: z.string().min(5, {
+    message: "checkIn is required",
+  }),
+  wwdcheckOut: z.string().min(5, {
+    message: "checkOut is required",
+  }),
+  wwecheckIn: z.string().min(5, {
+    message: "checkIn is required",
+  }),
+  wwecheckOut: z.string().min(5, {
+    message: "checkOut is required",
+  }),
+  location: z.string().min(1, {
+    message: "location is required",
+  }),
+  address: z.string().min(1, {
+    message: "address is required",
+  }),
+  imgUrls: z.array(z.string()),
+  price: z.number(),
+  free: z.number(),
+  type: z.string(),
+  tags: z.array(z.string()).optional(),
+  depth: z.number(),
+});
+
+export const CreatePropertyProps = z.object({
+  title: z.string().min(1, {
+    message: "Title is required",
+  }),
+  description: z.string().min(1, {
+    message: "Description is required",
+  }),
+  meta: z.string().min(1, {
+    message: "Meta description is required",
+  }),
+  hours: z.object({
+    mens: z.object({
+      weekend: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+      weekday: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+    }),
+
+    womens: z.object({
+      weekend: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+      weekday: z.object({
+        checkIn: z.string().min(5, {
+          message: "checkIn is required",
+        }),
+        checkOut: z.string().min(5, {
+          message: "checkOut is required",
+        }),
+      }),
+    }),
+  }),
+
   location: z.string().min(1, {
     message: "location is required",
   }),

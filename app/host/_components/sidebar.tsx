@@ -13,9 +13,7 @@ export const Sidebar = async ({ className }: any) => {
     <aside
       className={`bg-gray-400 min-h-full w-[250px] p-4 shadow-sm  flex-col items-center ${className}`}
     >
-      <Link href="/host">
-        <Image src="/logo.png" width={100} height={100} alt="logo" />
-      </Link>
+      <Image src="/logo.png" width={100} height={100} alt="logo" />
 
       <Header property={property} />
 

@@ -12,6 +12,7 @@ import { HoverIcon } from "./icon-hover";
 import { FaRegClock } from "react-icons/fa";
 import { IoWarningOutline } from "react-icons/io5";
 import { SiGooglemaps } from "react-icons/si";
+import Hours from "./hours";
 
 const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
   const [array, setArray] = useState<string[]>([]);
@@ -166,12 +167,8 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
 
             <div className="py-3">
               <h2 className="text-gray-800 mb-3 text-2xl font-medium">Hours</h2>
-              <div className="flex gap-3">
-                <FaRegClock className="text-gray-500 w-6 h-6 inline" />
-                <p className="text-gray-600">
-                  {property?.checkIn} - {property?.checkOut}
-                </p>
-              </div>
+
+              <Hours type={property?.type} hours={property?.hours} />
             </div>
 
             <hr />

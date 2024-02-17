@@ -62,8 +62,14 @@ export const CreatePropertyForm = () => {
       title: "",
       description: "",
       meta: "",
-      checkIn: "08:00",
-      checkOut: "23:00",
+      mwdcheckIn: "08:00",
+      mwdcheckOut: "23:00",
+      mwecheckIn: "08:00",
+      mwecheckOut: "23:00",
+      wwdcheckIn: "08:00",
+      wwdcheckOut: "23:00",
+      wwecheckIn: "08:00",
+      wwecheckOut: "23:00",
       location: "",
       address: "",
       type: "",
@@ -75,13 +81,50 @@ export const CreatePropertyForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof CreatePropertyFormProps>) => {
-    const tagsWithoutEmpty = tags.filter((tag) => tag !== "");
+    const hours = {
+      mens: {
+        weekday: {
+          checkIn: values.mwdcheckIn,
+          checkOut: values.mwdcheckOut,
+        },
+        weekend: {
+          checkIn: values.mwecheckIn,
+          checkOut: values.mwecheckOut,
+        },
+      },
+      womens: {
+        weekday: {
+          checkIn: values.wwdcheckIn,
+          checkOut: values.wwdcheckOut,
+        },
+        weekend: {
+          checkIn: values.wwecheckIn,
+          checkOut: values.wwecheckOut,
+        },
+      },
+    };
 
+    const tagsWithoutEmpty = tags.filter((tag) => tag !== "");
     setError("");
     setSuccess("");
-    values = { ...values, tags: tagsWithoutEmpty, imgUrls: images };
+
+    const newValue = {
+      title: values.title,
+      description: values.description,
+      meta: values.meta,
+      hours: hours,
+      location: values.location,
+      address: values.address,
+      imgUrls: images,
+      price: values.price,
+      free: values.free,
+      type: values.type,
+      tags: tagsWithoutEmpty,
+      depth: values.depth,
+    };
+
     startTransition(() => {
-      createProperty(values)
+      createProperty(newValue)
         .then((data) => {
           if (data?.error) {
             form.reset();
@@ -162,44 +205,185 @@ export const CreatePropertyForm = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="checkIn"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Checkin Time</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="checkin time"
-                        type="time"
-                      />
-                    </FormControl>
+              <div className="bg-blue-200 p-2 rounded">
+                <h2>Mens</h2>
+                <div className="bg-cyan-100 mb-3 p-1 rounded">
+                  <h3>Week day</h3>
+                  <FormField
+                    control={form.control}
+                    name="mwdcheckIn"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Checkin Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkin time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="checkOut"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>CheckOut Time</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="checkout time"
-                        type="time"
-                      />
-                    </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="mwdcheckOut"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>CheckOut Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkout time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="bg-cyan-100 p-1 rounded">
+                  <h3>Weekend</h3>
+                  <FormField
+                    control={form.control}
+                    name="mwecheckIn"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Checkin Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkin time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="mwecheckOut"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>CheckOut Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkout time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="bg-red-200 p-2 rounded">
+                <h2>Womens</h2>
+                <div className="bg-orange-100 mb-3 p-1 rounded">
+                  <h3>Week day</h3>
+                  <FormField
+                    control={form.control}
+                    name="wwdcheckIn"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Checkin Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkin time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="wwdcheckOut"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>CheckOut Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkout time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="bg-orange-100 p-1 rounded">
+                  <h3>Weekend</h3>
+                  <FormField
+                    control={form.control}
+                    name="wwecheckIn"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Checkin Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkin time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="wwecheckOut"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>CheckOut Time</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="checkout time"
+                            type="time"
+                            className="bg-white"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
               <FormField
                 control={form.control}
                 name="price"

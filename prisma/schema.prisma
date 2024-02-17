@@ -74,8 +74,6 @@ model Property {
   title        String         @unique
   description  String
   meta         String
-  checkIn      String
-  checkOut     String
   location     String
   address      String
   depth        Float
@@ -83,6 +81,7 @@ model Property {
   tags         String[]
   imgUrls      String[]
   availability Json[]
+  hours        Json
   reviews      Json[]
 }
 

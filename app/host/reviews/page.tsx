@@ -10,27 +10,33 @@ const HostReviewsPage = async () => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-3xl font-bold mb-8 text-center">Customer Reviews</h1>
+      <h1 className="text-xl text-cyan-950 font-bold mb-4 mt-4">
+        Customer Reviews
+      </h1>
 
-      {reviewsArray?.map((review) => (
-        <div key={review.id} className="mb-8 p-6 w-[360px] bg-white ">
-          <h3 className="text-lg font-bold mb-2">{review.title}</h3>
+      {reviewsArray && reviewsArray?.length < 1 ? (
+        <div className="text-center">No reviews yet</div>
+      ) : (
+        reviewsArray?.map((review) => (
+          <div key={review.id} className="mb-8 p-6 w-[360px] bg-white ">
+            <h3 className="text-lg font-bold mb-2">{review.title}</h3>
 
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex gap-2 items-center">
-              <p className="text-sm">{review.date}</p>
-              <h1 className=" ">{review.userName}</h1>
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex gap-2 items-center">
+                <p className="text-sm">{review.date}</p>
+                <h1 className=" ">{review.userName}</h1>
+              </div>
+
+              <span className="text-gray-100 p-2 bg-gray-500 rounded">
+                {review.rating.toFixed(1)}
+              </span>
             </div>
 
-            <span className="text-gray-100 p-2 bg-gray-500 rounded">
-              {review.rating.toFixed(1)}
-            </span>
+            <p className="text-gray-700">{review.description}</p>
+            <hr className="my-2" />
           </div>
-
-          <p className="text-gray-700">{review.description}</p>
-          <hr className="my-2" />
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

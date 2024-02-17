@@ -16,8 +16,8 @@ export const createBooking = async (property) => {
     userName: user?.name,
     discountCode: property.code,
     location: property.location,
-    checkIn: property.checkIn,
-    checkOut: property.checkOut,
+    checkIn: property.hours.mens.weekday.checkIn,
+    checkOut: property.hours.mens.weekday.checkOut,
   };
 
   const {
