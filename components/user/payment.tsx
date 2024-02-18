@@ -14,11 +14,16 @@ const Payment = () => {
   const [items, setItems] = useState<z.infer<typeof PropertySchema>[]>([]);
   const [discount, setDiscount] = useState(false);
   const [code, setCode] = useState("");
+  const [choosenDate, setChoosenDate] = useState("");
 
   useEffect(() => {
     const storedItems = localStorage.getItem("shoppingCard");
+    const storedDate = localStorage.getItem("choosenDate");
     if (storedItems) {
       setItems(JSON.parse(storedItems));
+    }
+    if (storedDate) {
+      setChoosenDate(storedDate);
     }
   }, []);
 
@@ -37,10 +42,10 @@ const Payment = () => {
           availability: [newAvailability],
           code: code,
         };
-        return createBooking(newItem);
+        return createBooking(newItem, choosenDate);
       }
 
-      return createBooking(item);
+      return createBooking(item, choosenDate);
     });
 
     await Promise.all(bookingPromises);

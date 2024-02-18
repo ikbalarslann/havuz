@@ -4,8 +4,29 @@ import { db } from "@/lib/db";
 import { getPropertyById } from "@/data/property";
 import { currentUser } from "@/lib/auth";
 
-export const createBooking = async (property) => {
+export const createBooking = async (property, choosenDate) => {
   const user = await currentUser();
+
+  const checkIncheckOut = () => {
+    const dateArray = choosenDate.split("/");
+    const formattedDate = new Date(
+      dateArray[2],
+      dateArray[1] - 1,
+      dateArray[0]
+    );
+
+    const isoDate = formattedDate.toISOString();
+    const daynumber = new Date(isoDate).getDay();
+    const dayString =
+      daynumber === 0 || daynumber === 6 ? "weekend" : "weekday";
+    if (property.type === "womens-only") {
+      const gender = property.hours.womens;
+      return gender[dayString];
+    } else {
+      const gender = property.hours.mens;
+      return gender[dayString];
+    }
+  };
 
   const inputs = {
     propertyId: property.id,
@@ -16,8 +37,9 @@ export const createBooking = async (property) => {
     userName: user?.name,
     discountCode: property.code,
     location: property.location,
-    checkIn: property.hours.mens.weekday.checkIn,
-    checkOut: property.hours.mens.weekday.checkOut,
+    type: property.type,
+    checkIn: checkIncheckOut().checkIn,
+    checkOut: checkIncheckOut().checkOut,
   };
 
   const {
@@ -29,6 +51,7 @@ export const createBooking = async (property) => {
     userName,
     discountCode,
     location,
+    type,
     checkIn,
     checkOut,
   } = inputs;
@@ -44,6 +67,7 @@ export const createBooking = async (property) => {
         userName,
         discountCode,
         location,
+        type,
         checkIn,
         checkOut,
       },
