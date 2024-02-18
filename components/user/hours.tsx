@@ -28,8 +28,8 @@ const Hours = ({ type, hours }: any) => {
             <div>
               <h4 className="text-cyan-950 pb-1">weekend</h4>
               <Row
-                checkIn={hours.mens.weekday.checkIn}
-                checkOut={hours.mens.weekday.checkOut}
+                checkIn={hours.mens.weekend.checkIn}
+                checkOut={hours.mens.weekend.checkOut}
               />
             </div>
           </div>
@@ -51,8 +51,8 @@ const Hours = ({ type, hours }: any) => {
             <div>
               <h4 className="text-cyan-950 pb-1">weekend</h4>
               <Row
-                checkIn={hours.womens.weekday.checkIn}
-                checkOut={hours.womens.weekday.checkOut}
+                checkIn={hours.womens.weekend.checkIn}
+                checkOut={hours.womens.weekend.checkOut}
               />
             </div>
           </div>
@@ -69,8 +69,8 @@ const Hours = ({ type, hours }: any) => {
           <div>
             <h4 className="text-cyan-950 pb-1">weekend</h4>
             <Row
-              checkIn={hours.womens.weekday.checkIn}
-              checkOut={hours.womens.weekday.checkOut}
+              checkIn={hours.womens.weekend.checkIn}
+              checkOut={hours.womens.weekend.checkOut}
             />
           </div>
         </div>
@@ -87,8 +87,8 @@ const Hours = ({ type, hours }: any) => {
             <div>
               <h4 className="text-cyan-950 pb-1">weekend</h4>
               <Row
-                checkIn={hours.mens.weekday.checkIn}
-                checkOut={hours.mens.weekday.checkOut}
+                checkIn={hours.mens.weekend.checkIn}
+                checkOut={hours.mens.weekend.checkOut}
               />
             </div>
           </div>

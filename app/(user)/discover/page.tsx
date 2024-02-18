@@ -13,6 +13,7 @@ const DiscoverPage = async () => {
   return (
     <div className="flex flex-col  gap-4  justify-center mx-2">
       <hr />
+
       {properties?.map((property) => (
         <div key={property.id}>
           <PropertyCard property={property} />
