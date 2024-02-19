@@ -5,9 +5,11 @@ import { UserButton } from "@/components/auth/user-button";
 import { useCurrentRole } from "@/hooks/use-current-role";
 import { useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export const Nav = () => {
   const role = useCurrentRole();
+  const path = usePathname();
 
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -48,9 +50,19 @@ export const Nav = () => {
             }`}
             onClick={toggleMenu}
           >
-            <span className="hamburger-top"></span>
-            <span className="hamburger-middle"></span>
-            <span className="hamburger-bottom"></span>
+            {path === "/" ? (
+              <div>
+                <span className="hamburger-top bg-white"></span>
+                <span className="hamburger-middle bg-white"></span>
+                <span className="hamburger-bottom bg-white"></span>
+              </div>
+            ) : (
+              <div>
+                <span className="hamburger-top bg-cyan-700"></span>
+                <span className="hamburger-middle bg-cyan-700"></span>
+                <span className="hamburger-bottom bg-cyan-700"></span>
+              </div>
+            )}
           </button>
         </div>
       </div>

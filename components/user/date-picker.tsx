@@ -56,35 +56,36 @@ const DatePickerForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 flex flex-col justify-center items-center"
+        className="space-y-8 flex  items-center "
       >
         <FormField
           control={form.control}
           name="dob"
           render={({ field }) => (
-            <FormItem className="flex flex-col ">
+            <FormItem className="flex flex-col w-[200px]  ">
               <Popover open={isOpen}>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[300px] pl-3 text-left font-normal",
+                        "font-normal mt-8 text-lg h-12 rounded-none rounded-l-lg ",
                         !field.value && "text-muted-foreground"
                       )}
                       onClick={handleOnClick}
                     >
+                      <CalendarIcon className="mr-auto h-7 w-7 opacity-50" />
+
                       {field.value ? (
-                        format(field.value, "dd/MM/yyyy")
+                        format(field.value, "d MMMM")
                       ) : (
                         <span>Pick a date</span>
                       )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
 
-                <PopoverContent className="w-[300px] p-0" align="start">
+                <PopoverContent className="w-[250px] p-0 " align="start">
                   <Calendar
                     mode="single"
                     selected={field.value}
@@ -106,8 +107,11 @@ const DatePickerForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-cyan-500">
-          Choose the Date
+        <Button
+          type="submit"
+          className=" bg-cyan-500 h-12 rounded-none rounded-r-lg"
+        >
+          Search
         </Button>
       </form>
     </Form>
