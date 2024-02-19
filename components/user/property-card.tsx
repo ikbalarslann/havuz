@@ -92,6 +92,13 @@ const PropertyCard = ({ property }: any) => {
               </>
             )}
           </div>
+          {property.title === "Guven Hamam" && (
+            <div className="mt-1">
+              <p className="p-1 bg-amber-600 text-gray-100 text-sm rounded  inline mr-2   ">
+                Tuesday Women&apos;s Only
+              </p>
+            </div>
+          )}
           <div className="my-3 flex gap-3">
             {property.tags.map((tag: string, index: number) => (
               <div key={index}>

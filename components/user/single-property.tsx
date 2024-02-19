@@ -104,6 +104,13 @@ const SingleProperty = ({ propertyObj }: { propertyObj: any }) => {
           </div>
         )}
 
+        {property?.title === "Guven Hamam" && (
+          <div className="bg-amber-100 p-3 rounded-md gap-3 flex mt-2">
+            <IoWarningOutline className="text-amber-600 w-6 h-6 " />
+            <p className="text-gray-700 ">Tuesday Women&apos;s Only</p>
+          </div>
+        )}
+
         <div className=" py-4 px-2 mb-1 ">
           <p
             className={`overflow-hidden ${
